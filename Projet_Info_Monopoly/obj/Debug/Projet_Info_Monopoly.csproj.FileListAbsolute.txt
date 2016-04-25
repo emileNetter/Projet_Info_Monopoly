@@ -1,1 +1,6 @@
 c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\Projet_Info_Monopoly.exe.config
+c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\Projet_Info_Monopoly.exe
+c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\Projet_Info_Monopoly.pdb
+c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.csprojResolveAssemblyReference.cache
+c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.exe
+c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.pdb

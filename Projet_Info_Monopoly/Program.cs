@@ -10,7 +10,16 @@ namespace Projet_Info_Monopoly
     {
         static void Main(string[] args)
         {
-            //bonjour tu pues
+            Des d1 = new Des();
+            Des d2 = new Des();
+            d1.jetteDes();
+            d2.jetteDes();
+            d1.afficheValeurDe();
+            d2.afficheValeurDe();
+           int result=d1.sommeDes(d2);
+            Console.WriteLine(result);
+            Console.WriteLine(d1.sontIdentiques(d2));
+
         }
     }
 }
