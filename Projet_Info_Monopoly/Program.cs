@@ -10,7 +10,7 @@ namespace Projet_Info_Monopoly
     {
         static void Main(string[] args)
         {
-            //bonjour
+            //bonjour tu pues
         }
     }
 }
