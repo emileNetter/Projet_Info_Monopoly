@@ -43,9 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AAcheter.cs" />
+    <Compile Include="Avancer.cs" />
+    <Compile Include="Banque.cs" />
+    <Compile Include="Cartes.cs" />
+    <Compile Include="Cases.cs" />
+    <Compile Include="Compagnie .cs" />
     <Compile Include="Des.cs" />
+    <Compile Include="Gare.cs" />
+    <Compile Include="Joueur.cs" />
+    <Compile Include="Payer.cs" />
+    <Compile Include="Plateau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propriete.cs" />
+    <Compile Include="Recevoir.cs" />
+    <Compile Include="Special.cs" />
+    <Compile Include="Speciales.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

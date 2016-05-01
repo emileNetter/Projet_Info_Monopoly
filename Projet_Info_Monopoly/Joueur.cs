@@ -34,6 +34,13 @@ public class Joueur : Plateau
 		get;
 		set;
 	}
+    public Joueur(string nom, int numero, int arg, int pos)
+    {
+        nom_joueur = nom;
+        numero_joueur = numero;
+        argent = arg;
+        position = pos; 
+    }
 
 }
 

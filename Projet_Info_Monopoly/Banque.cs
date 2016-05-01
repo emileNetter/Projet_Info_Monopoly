@@ -17,5 +17,10 @@ public class Banque
 		set;
 	}
 
+    public Banque()
+    {
+        plafond = 100000;
+    }
+
 }
 

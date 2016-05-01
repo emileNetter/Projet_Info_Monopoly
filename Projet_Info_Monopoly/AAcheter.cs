@@ -11,7 +11,7 @@ using System.Text;
 
 public class AAcheter : Cartes
 {
-	public virtual int prixAchat
+	public int prixAchat
 	{
 		get;
 		set;

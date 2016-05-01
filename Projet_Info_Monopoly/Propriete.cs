@@ -11,23 +11,43 @@ using System.Text;
 
 public class Propriete : AAcheter
 {
-	public virtual int prixMaison
-	{
-		get;
-		set;
-	}
-
-	public virtual int prixHotel
-	{
-		get;
-		set;
-	}
-
+    private int loyerTerrainNu;
+    private int loyer1Maison;
+    private int loyer2Maison;
+    private int loyer3Maison;
+    private int loyer4Maison;
+    private int loyerHotel;
+    private int nbMaison;
 	public virtual string couleur
 	{
 		get;
 		set;
 	}
+
+    public Propriete (int unPrix,string uneCouleur, int m1, int m2, int m3, int m4, int h, int valHypo) :base()
+    {
+        loyerTerrainNu = unPrix;
+        loyer1Maison = m1;
+        loyer2Maison = m2;
+        loyer3Maison = m3;
+        loyer4Maison = m4;
+        loyerHotel = h;
+        valHypo = unPrix / 2;
+        couleur = uneCouleur;
+            
+    }
+
+    public string getCouleur()
+    {
+        return this.couleur;
+    }
+
+    public bool peutConstruireHotel(Joueur j)
+    {
+        if(nbMaison==4)
+        { return true; }
+        return false;
+    }
 
 }
 
