@@ -40,6 +40,8 @@ public class AAcheter : Cartes
 		get;
 		set;
 	}
+    public AAcheter()
+    { }
 
 }
 

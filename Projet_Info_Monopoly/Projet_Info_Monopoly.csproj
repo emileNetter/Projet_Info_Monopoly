@@ -51,6 +51,7 @@
     <Compile Include="Compagnie .cs" />
     <Compile Include="Des.cs" />
     <Compile Include="Gare.cs" />
+    <Compile Include="Groupe.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Payer.cs" />
     <Compile Include="Plateau.cs" />
@@ -63,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="cases.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

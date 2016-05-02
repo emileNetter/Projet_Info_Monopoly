@@ -8,8 +8,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using Projet_Info_Monopoly;
 
 public class Plateau
 {
+    private LinkedList<Cases> cases = new LinkedList<Cases>();
+    private LinkedList<Joueur> joueurs = new LinkedList<Joueur>();
+    private Dictionary<string, Groupe> categorie = new Dictionary<string, Groupe>();
+
+
+    public Plateau(LinkedList<Joueur> listeDeJoueurs)
+    {
+        joueurs = listeDeJoueurs;
+        StreamReader sr = new StreamReader("cases.csv");
+
+        string[] categories = sr.ReadLine().Split(new char[] { '/' });
+        for(int t=0; t<categories.Length;t++)
+        {
+            categorie.Add(categories[t], new Groupe(categories[t]));
+            Console.WriteLine(categories[t]);
+        }
+    }
+
 }
 

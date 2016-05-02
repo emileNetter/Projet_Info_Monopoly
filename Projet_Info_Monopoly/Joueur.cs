@@ -9,37 +9,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Joueur : Plateau
+public class Joueur 
 {
-	public virtual string nom_joueur
-	{
-		get;
-		set;
-	}
+    private string nom_joueur;
+    private int argent;
+    private Cases position;
 
-	public virtual int numero_joueur
-	{
-		get;
-		set;
-	}
-
-	public virtual int argent
-	{
-		get;
-		set;
-	}
-
-	public virtual int position
-	{
-		get;
-		set;
-	}
-    public Joueur(string nom, int numero, int arg, int pos)
+    public Joueur(string nom)
     {
         nom_joueur = nom;
-        numero_joueur = numero;
-        argent = arg;
-        position = pos; 
+        argent = 1500;
+        
+
     }
 
 }

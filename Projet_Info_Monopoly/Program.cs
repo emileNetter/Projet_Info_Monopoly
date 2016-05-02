@@ -10,15 +10,21 @@ namespace Projet_Info_Monopoly
     {
         static void Main(string[] args)
         {
-            Des d1 = new Des();
-            Des d2 = new Des();
-            d1.jetteDes();
-            d2.jetteDes();
-            d1.afficheValeurDe();
-            d2.afficheValeurDe();
-           int result=d1.sommeDes(d2);
-            Console.WriteLine(result);
-            Console.WriteLine(d1.sontIdentiques(d2));
+           // Des d1 = new Des();
+           // Des d2 = new Des();
+           // d1.jetteDes();
+           // d2.jetteDes();
+           // d1.afficheValeurDe();
+           // d2.afficheValeurDe();
+           //int result=d1.sommeDes(d2);
+           // Console.WriteLine(result);
+           // Console.WriteLine(d1.sontIdentiques(d2));
+
+            LinkedList<Joueur> l = new LinkedList<Joueur>();
+            l.AddLast(new Joueur("Emile"));
+            l.AddLast(new Joueur("Thomas"));
+            Plateau p = new Plateau(l);
+            
 
         }
     }

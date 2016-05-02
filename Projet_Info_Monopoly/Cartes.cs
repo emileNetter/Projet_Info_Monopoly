@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Cartes : Plateau
+public class Cartes 
 {
 	public virtual int id
 	{

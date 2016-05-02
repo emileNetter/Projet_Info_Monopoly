@@ -24,7 +24,7 @@ public class Propriete : AAcheter
 		set;
 	}
 
-    public Propriete (int unPrix,string uneCouleur, int m1, int m2, int m3, int m4, int h, int valHypo) :base()
+    public Propriete (int prixAchat,int unPrix,string uneCouleur, int m1, int m2, int m3, int m4, int h, int valHypo)
     {
         loyerTerrainNu = unPrix;
         loyer1Maison = m1;
