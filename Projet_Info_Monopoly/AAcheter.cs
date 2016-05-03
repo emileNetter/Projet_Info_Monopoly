@@ -40,8 +40,13 @@ public class AAcheter : Cartes
 		get;
 		set;
 	}
-    public AAcheter()
-    { }
+    public AAcheter(int prix, string nom, bool estPoss, int aPayer)
+    {
+        prixAchat = prix;
+        nom_carte = nom;
+        estPossedee = estPoss;
+        prixAPayer = aPayer;
+    }
 
 }
 

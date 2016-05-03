@@ -11,11 +11,6 @@ using System.Text;
 
 public class Cartes 
 {
-	public virtual int id
-	{
-		get;
-		set;
-	}
-
+    private String type;
 }
 

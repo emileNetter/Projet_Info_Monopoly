@@ -12,15 +12,40 @@ using System.Text;
 public class Joueur 
 {
     private string nom_joueur;
-    private int argent;
-    private Cases position;
+    private int argent; // argent du joueur (initialisé à 1500)
+    private int position; // la position du joueur sur le plateau
+    private static Random r = new Random();
 
     public Joueur(string nom)
     {
         nom_joueur = nom;
-        argent = 1500;
-        
+        this.argent = 1500;
+        this.position = 0;
 
+    }
+
+    public void Acheter(AAcheter a)
+    { }
+
+    public void Avancer()
+    {
+        position += LanceDe();
+    }
+
+    public int LanceDe()
+    {
+        int compteurDouble = 0;
+        int de1 = r.Next(1, 7);
+        int de2 = r.Next(1, 7);
+        int total = de1 + de2;
+
+        if(de1 == de2)
+        {
+            Console.WriteLine("C'est un double ! ");
+            compteurDouble++;
+        }
+
+        return total;
     }
 
 }

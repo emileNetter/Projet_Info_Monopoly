@@ -29,6 +29,62 @@ public class Plateau
             categorie.Add(categories[t], new Groupe(categories[t]));
             Console.WriteLine(categories[t]);
         }
+
+        string[] prixGares = sr.ReadLine().Split(new char[] { '/' });
+
+        string line = sr.ReadLine();
+        string[] typeCase = line.Split(new char[] { '/' });
+        
+        while (line != null)
+        {
+            typeCase = line.Split(new Char[] { '/' });
+
+            switch (typeCase[0])
+            {
+                
+                case "depart":
+                    cases.AddLast(new Depart());
+                    break;
+                case "communaute":
+                    cases.AddLast(new Speciales());
+                    break;
+                case "chance":
+                    cases.AddLast(new Speciales());
+                    break;
+                case "prison":
+                    Prison p = new Prison();
+                    cases.AddLast(p);
+                    prison = p;
+                    break;
+                case "caseNeutre":
+                    cases.AddLast(new CaseNeutre(typeCase[0], typeCase[1]));
+                    break;
+                case "impot":
+                    cases.AddLast(new Impot(typeCase[1], int.Parse(typeCase[2])));
+                    break;
+                case "AAcheter":
+                    switch (typeCase[1])
+                    {
+                        case "Propriete":
+                            Propriete t = new Propriete(categorie[typeCase[2]], int.Parse(typeCase[3]), typeCase[4], int.Parse(typeCase[5]), int.Parse(typeCase[6]), int.Parse(typeCase[7]), int.Parse(typeCase[8]), int.Parse(typeCase[9]), int.Parse(typeCase[10]), int.Parse(typeCase[11]), int.Parse(typeCase[12]));
+                            cases.AddLast(t);
+                            categorie[typeCase[2]].getPropriete().Add(t);
+                            break;
+                        case "gare":
+                            Gare g = new Gare(categorie[typeCase[1]], int.Parse(prixGares[0]), typeCase[2], int.Parse(prixGares[1]), int.Parse(prixGares[2]), int.Parse(prixGares[3]), int.Parse(prixGares[4]));
+                            cases.AddLast(g);
+                            categorie[typeCase[1]].getPropriete().Add(g);
+                            break;
+                        case "compagnie":
+                            Compagnie c = new Compagnie(categorie[typeCase[1]], typeCase[2], int.Parse(typeCase[3]));
+                            cases.AddLast(c);
+                            categorie[typeCase[1]].getPropriete().Add(c);
+                            break;
+                    }
+                    break;
+            }
+        }
+
     }
 
 }
