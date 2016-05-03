@@ -11,6 +11,11 @@ using System.Text;
 
 public class Cartes 
 {
-    private String type;
+    protected string groupe;
+
+    public Cartes(string groupe)
+    {
+        this.groupe = groupe;
+    }
 }
 
