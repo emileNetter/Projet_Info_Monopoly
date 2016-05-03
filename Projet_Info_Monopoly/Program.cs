@@ -19,7 +19,7 @@ namespace Projet_Info_Monopoly
            //int result=d1.sommeDes(d2);
            // Console.WriteLine(result);
            // Console.WriteLine(d1.sontIdentiques(d2));
-
+           
             LinkedList<Joueur> l = new LinkedList<Joueur>();
             l.AddLast(new Joueur("Emile"));
             l.AddLast(new Joueur("Thomas"));

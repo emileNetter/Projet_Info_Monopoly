@@ -11,41 +11,19 @@ using System.Text;
 
 public class AAcheter : Cartes
 {
-	public int prixAchat
-	{
-		get;
-		set;
-	}
-
-	public virtual string nom_carte
-	{
-		get;
-		set;
-	}
-
-	public virtual int valHypothec
-	{
-		get;
-		set;
-	}
-
-	public virtual bool estPossedee
-	{
-		get;
-		set;
-	}
-
-	public virtual int prixAPayer
-	{
-		get;
-		set;
-	}
-    public AAcheter(int prix, string nom, bool estPoss, int aPayer)
+    protected int prixAchat;
+    protected string nom_carte;
+    protected int valHypothec;
+    protected bool estPossedee;
+    protected Joueur proprietaire;
+    protected Projet_Info_Monopoly.Groupe groupe;
+	
+    public AAcheter(Projet_Info_Monopoly.Groupe groupe,int prix, string nom)
     {
         prixAchat = prix;
         nom_carte = nom;
-        estPossedee = estPoss;
-        prixAPayer = aPayer;
+        estPossedee = false;
+        proprietaire = null;
     }
 
 }

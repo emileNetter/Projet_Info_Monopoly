@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_Info_Monopoly
 {
-    class Groupe
+    public class Groupe
     {
         private string categorie;
         public Groupe(string c)

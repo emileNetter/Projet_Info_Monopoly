@@ -11,5 +11,21 @@ using System.Text;
 
 public class Gare : AAcheter
 {
+    private int Loyer1gare;
+    private int loyer2gares;
+    private int loyer3gares;
+    private int loyer4gares;
+    private Projet_Info_Monopoly.Groupe _groupe;
+
+    public Gare( Projet_Info_Monopoly.Groupe groupe, int prix, string nom,int l1, int l2, int l3, int l4)
+            : base("gare", prix, nom)
+    {
+
+        Loyer1gare = l1;
+        loyer2gares = l2;
+        loyer3gares = l3;
+        loyer4gares = l4;
+        _groupe = groupe;
+    }
 }
 

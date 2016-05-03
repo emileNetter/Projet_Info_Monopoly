@@ -11,5 +11,6 @@ using System.Text;
 
 public class Speciales : Cartes
 {
+
 }
 

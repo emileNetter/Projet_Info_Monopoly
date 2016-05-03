@@ -57,7 +57,7 @@ public class Plateau
                     prison = p;
                     break;
                 case "caseNeutre":
-                    cases.AddLast(new CaseNeutre(typeCase[0], typeCase[1]));
+                    cases.AddLast(new visitePrison(typeCase[0], typeCase[1]));
                     break;
                 case "impot":
                     cases.AddLast(new Impot(typeCase[1], int.Parse(typeCase[2])));

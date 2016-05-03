@@ -55,6 +55,7 @@
     <Compile Include="Joueur.cs" />
     <Compile Include="Payer.cs" />
     <Compile Include="Plateau.cs" />
+    <Compile Include="Prison.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propriete.cs" />

@@ -14,6 +14,7 @@ public class Joueur
     private string nom_joueur;
     private int argent; // argent du joueur (initialisé à 1500)
     private int position; // la position du joueur sur le plateau
+    private LinkedList<Cartes> cartesDuJoueur; // 
     private static Random r = new Random();
 
     public Joueur(string nom)
@@ -21,15 +22,20 @@ public class Joueur
         nom_joueur = nom;
         this.argent = 1500;
         this.position = 0;
+        cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
 
     }
 
     public void Acheter(AAcheter a)
-    { }
+    {
+
+    }
 
     public void Avancer()
     {
         position += LanceDe();
+
+
     }
 
     public int LanceDe()
@@ -43,6 +49,10 @@ public class Joueur
         {
             Console.WriteLine("C'est un double ! ");
             compteurDouble++;
+        }
+        else
+        {
+            Console.WriteLine("Vous avez fait : " + total + " (" + de1 + "+" + de2 + ")");
         }
 
         return total;
