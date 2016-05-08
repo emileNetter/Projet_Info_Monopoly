@@ -15,10 +15,10 @@ public class Gare : AAcheter
     private int loyer2gares;
     private int loyer3gares;
     private int loyer4gares;
-    private Projet_Info_Monopoly.Groupe _groupe;
+    private Projet_Info_Monopoly.Groupe _groupe; // ajout de projet_Info_Monopoly sinon il trouve pas la classe...
 
-    public Gare( Projet_Info_Monopoly.Groupe groupe, int prix, string nom,int l1, int l2, int l3, int l4)
-            : base("gare", prix, nom)
+    public Gare( Projet_Info_Monopoly.Groupe groupe, int prix, string nom,int l1, int l2, int l3, int l4,int valHyp) 
+            : base("gare", prix, nom,valHyp)
     {
 
         Loyer1gare = l1;

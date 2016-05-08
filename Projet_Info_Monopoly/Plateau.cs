@@ -16,7 +16,7 @@ public class Plateau
     private LinkedList<Cases> cases = new LinkedList<Cases>();
     private LinkedList<Joueur> joueurs = new LinkedList<Joueur>();
     private Dictionary<string, Groupe> categorie = new Dictionary<string, Groupe>();
-
+    
 
     public Plateau(LinkedList<Joueur> listeDeJoueurs)
     {

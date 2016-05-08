@@ -11,11 +11,11 @@ using System.Text;
 
 public class Compagnie  : AAcheter
 {
-    private Projet_Info_Monopoly.Groupe _groupe;
-    public Compagnie(Projet_Info_Monopoly.Groupe groupe, int prix, string nom)
-            : base("compagnie", prix, nom)
+    
+    public Compagnie(string type, int prix, string nom,int valHyp)
+            : base("compagnie", prix, nom, valHyp)
     {
-        _groupe = groupe;
+        
         
     }
 }

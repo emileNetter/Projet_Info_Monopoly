@@ -11,6 +11,11 @@ using System.Text;
 
 public class Cases
 {
+    protected string _type;
 
+    public Cases(string type)
+    {
+        _type = type;
+    }
 }
 

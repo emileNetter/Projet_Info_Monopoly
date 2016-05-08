@@ -9,21 +9,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class AAcheter : Cartes
+public class AAcheter : Cases
 {
     protected int prixAchat;
     protected string nom_carte;
     protected int valHypothec;
     protected bool estPossedee;
     protected Joueur proprietaire;
-    protected Projet_Info_Monopoly.Groupe groupe;
+    
+    
+    
 	
-    public AAcheter(Projet_Info_Monopoly.Groupe groupe,int prix, string nom)
+    public AAcheter(string type,int prix, string nom,int valHyp) :base("AAcheter")
     {
         prixAchat = prix;
+        valHypothec = valHyp;
         nom_carte = nom;
         estPossedee = false;
         proprietaire = null;
+        
     }
 
 }

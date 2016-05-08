@@ -16,6 +16,7 @@ public class Joueur
     private int position; // la position du joueur sur le plateau
     private LinkedList<Cartes> cartesDuJoueur; // 
     private static Random r = new Random();
+    
 
     public Joueur(string nom)
     {

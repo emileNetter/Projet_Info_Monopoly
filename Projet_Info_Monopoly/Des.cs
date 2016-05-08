@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_Info_Monopoly
 {
-    class Des
+    public class Des
     {
         private static Random r = new Random();
         protected int valeur1;
