@@ -33,9 +33,9 @@ namespace Projet_Info_Monopoly
             estEnPrison = false;
         }
 
-        public void acheterPropriete(Propriete p, Joueur j)
+        public void acheterPropriete(Propriete p)
         {
-            if ((j.argent > p.prixAchat) && p.estPossedee == false)
+            if ((this.argent > p.prixAchat) && p.estPossedee == false)
             {
                 ConsoleKeyInfo c;
                 Console.WriteLine("Souhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_prop, p.prixAchat);
@@ -47,10 +47,10 @@ namespace Projet_Info_Monopoly
                 if (c.KeyChar == 'y')
                 {
                     Console.WriteLine("Vous avez acheté {0}", p.nom_prop);
-                    p.proprietaire = j;
+                    p.proprietaire = this;
                     p.estPossedee = true;
-                    j.proprieteDuJoueur.AddLast(p);
-                    j.argent -= p.prixAchat;
+                    this.proprieteDuJoueur.AddLast(p);
+                    this.argent -= p.prixAchat;
                     //this.addCard(carte qui correspond à la propriete)
                 }
 
