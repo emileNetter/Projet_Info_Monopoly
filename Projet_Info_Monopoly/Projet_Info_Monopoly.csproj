@@ -50,12 +50,15 @@
     <Compile Include="Cases.cs" />
     <Compile Include="Compagnie .cs" />
     <Compile Include="Depart.cs" />
-    <Compile Include="Des.cs" />
     <Compile Include="Gare.cs" />
     <Compile Include="Groupe.cs" />
+    <Compile Include="Impot.cs" />
     <Compile Include="Joueur.cs" />
+    <Compile Include="ParcGratuit.cs" />
+    <Compile Include="Partie.cs" />
     <Compile Include="Payer.cs" />
     <Compile Include="Plateau.cs" />
+    <Compile Include="Police.cs" />
     <Compile Include="Prison.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +70,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="cases.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Plateau.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

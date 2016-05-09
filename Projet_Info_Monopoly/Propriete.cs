@@ -36,9 +36,9 @@ namespace Projet_Info_Monopoly
             return false;
         }
 
-        public double calculLoyer()
+        public void calculLoyer()
         {
-
+            
         }
 
     }

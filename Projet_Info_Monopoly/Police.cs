@@ -8,5 +8,6 @@ namespace Projet_Info_Monopoly
 {
     class Police :Cases
     {
+
     }
 }

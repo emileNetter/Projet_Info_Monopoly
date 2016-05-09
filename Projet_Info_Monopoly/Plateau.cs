@@ -15,13 +15,12 @@ namespace Projet_Info_Monopoly
     public class Plateau
     {
         public Cases [] cases { get; set; }
-        private LinkedList<Joueur> joueurs = new LinkedList<Joueur>();
         
 
-        public Plateau(LinkedList<Joueur> listeDeJoueurs)
+        public Plateau()
         {
             cases = new Cases[40];
-            joueurs = listeDeJoueurs;
+            
         }
 
         public void generePlateau ()
@@ -38,7 +37,7 @@ namespace Projet_Info_Monopoly
                 var terrain = g.Descendants("terrain");
                 foreach (var t in terrain)
                 {
-                    cases[(int)t.Attribute("id")] = new Propriete((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("hyp"), (ProprieteDeCouleur.couleur)Enum.Parse(typeof(ProprieteDeCouleur.couleur), (string)g.Attribute("couleur")));
+                    cases[(int)t.Attribute("id")] = new Propriete((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("hyp"), (Propriete.couleur)Enum.Parse(typeof(Propriete.couleur), (string)g.Attribute("couleur")));
                 }
             }
 

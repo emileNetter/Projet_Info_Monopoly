@@ -8,8 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Avancer : Speciales
+namespace Projet_Info_Monopoly
 {
+    public class Avancer : Speciales
+    {
+
+    }
 }
+
 

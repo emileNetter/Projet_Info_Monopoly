@@ -12,11 +12,11 @@ namespace Projet_Info_Monopoly
 {
     public class Cartes
     {
-        protected string groupe;
+        protected int numeroCarte;
 
-        public Cartes(string groupe)
+        public Cartes()
         {
-            this.groupe = groupe;
+            
         }
     }
 }

@@ -15,8 +15,11 @@ namespace Projet_Info_Monopoly
         private string nom_joueur;
         private int argent; // argent du joueur (initialisé à 1500)
         private int position; // la position du joueur sur le plateau
+        public bool estEnPrison;
+        public bool estMort;
         private LinkedList<Cartes> cartesDuJoueur; // 
         private static Random r = new Random();
+
 
 
         public Joueur(string nom)
@@ -25,7 +28,7 @@ namespace Projet_Info_Monopoly
             argent = 1500;
             position = 0;
             cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
-
+            estEnPrison = false;
         }
 
         public void Acheter(AAcheter a)
@@ -33,7 +36,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public void Avancer()
+        public int Avancer()
         {
             position += LanceDe();
             if(position>=40)
@@ -41,6 +44,7 @@ namespace Projet_Info_Monopoly
                 position = position % 40;
                 argent += 200; // pouvoir définir une valeur modifiable depuis le XML
             }
+            return position;
 
 
         }
@@ -72,7 +76,7 @@ namespace Projet_Info_Monopoly
         }
         public void removeCard(Cartes c)
         {
-            cartesDuJoueur.Re
+            
         }
 
     }

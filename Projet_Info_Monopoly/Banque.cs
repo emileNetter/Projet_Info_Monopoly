@@ -8,19 +8,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Banque
+namespace Projet_Info_Monopoly
 {
-	public virtual int plafond
-	{
-		get;
-		set;
-	}
-
-    public Banque()
+    public class Banque
     {
-        plafond = 100000;
-    }
+        public virtual int plafond
+        {
+            get;
+            set;
+        }
 
+        public Banque()
+        {
+            plafond = 100000;
+        }
+
+    }
 }
+
 

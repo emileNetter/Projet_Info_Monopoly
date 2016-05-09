@@ -14,7 +14,4 @@ namespace Projet_Info_Monopoly
     {
     }
 }
-public class Payer : Speciales
-{
-}
 
