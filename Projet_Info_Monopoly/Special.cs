@@ -8,8 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Special : Speciales
+namespace Projet_Info_Monopoly
 {
+    public class Special : Speciales
+    {
+    }
 }
+
 

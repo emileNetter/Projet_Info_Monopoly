@@ -8,84 +8,62 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
-using Projet_Info_Monopoly;
-
-public class Plateau
+using System.Xml;
+using System.Xml.Linq;
+namespace Projet_Info_Monopoly
 {
-    private LinkedList<Cases> cases = new LinkedList<Cases>();
-    private LinkedList<Joueur> joueurs = new LinkedList<Joueur>();
-    private Dictionary<string, Groupe> categorie = new Dictionary<string, Groupe>();
-    
-
-    public Plateau(LinkedList<Joueur> listeDeJoueurs)
+    public class Plateau
     {
-        joueurs = listeDeJoueurs;
-        StreamReader sr = new StreamReader("cases.csv");
-
-        string[] categories = sr.ReadLine().Split(new char[] { '/' });
-        for(int t=0; t<categories.Length;t++)
-        {
-            categorie.Add(categories[t], new Groupe(categories[t]));
-            Console.WriteLine(categories[t]);
-        }
-
-        string[] prixGares = sr.ReadLine().Split(new char[] { '/' });
-
-        string line = sr.ReadLine();
-        string[] typeCase = line.Split(new char[] { '/' });
+        public Cases [] cases { get; set; }
+        private LinkedList<Joueur> joueurs = new LinkedList<Joueur>();
         
-        while (line != null)
-        {
-            typeCase = line.Split(new Char[] { '/' });
 
-            switch (typeCase[0])
-            {
-                
-                case "depart":
-                    cases.AddLast(new Depart());
-                    break;
-                case "communaute":
-                    cases.AddLast(new Speciales());
-                    break;
-                case "chance":
-                    cases.AddLast(new Speciales());
-                    break;
-                case "prison":
-                    Prison p = new Prison();
-                    cases.AddLast(p);
-                    prison = p;
-                    break;
-                case "caseNeutre":
-                    cases.AddLast(new visitePrison(typeCase[0], typeCase[1]));
-                    break;
-                case "impot":
-                    cases.AddLast(new Impot(typeCase[1], int.Parse(typeCase[2])));
-                    break;
-                case "AAcheter":
-                    switch (typeCase[1])
-                    {
-                        case "Propriete":
-                            Propriete t = new Propriete(categorie[typeCase[2]], int.Parse(typeCase[3]), typeCase[4], int.Parse(typeCase[5]), int.Parse(typeCase[6]), int.Parse(typeCase[7]), int.Parse(typeCase[8]), int.Parse(typeCase[9]), int.Parse(typeCase[10]), int.Parse(typeCase[11]), int.Parse(typeCase[12]));
-                            cases.AddLast(t);
-                            categorie[typeCase[2]].getPropriete().Add(t);
-                            break;
-                        case "gare":
-                            Gare g = new Gare(categorie[typeCase[1]], int.Parse(prixGares[0]), typeCase[2], int.Parse(prixGares[1]), int.Parse(prixGares[2]), int.Parse(prixGares[3]), int.Parse(prixGares[4]));
-                            cases.AddLast(g);
-                            categorie[typeCase[1]].getPropriete().Add(g);
-                            break;
-                        case "compagnie":
-                            Compagnie c = new Compagnie(categorie[typeCase[1]], typeCase[2], int.Parse(typeCase[3]));
-                            cases.AddLast(c);
-                            categorie[typeCase[1]].getPropriete().Add(c);
-                            break;
-                    }
-                    break;
-            }
+        public Plateau(LinkedList<Joueur> listeDeJoueurs)
+        {
+            cases = new Cases[40];
+            joueurs = listeDeJoueurs;
         }
 
-    }
+        public void generePlateau ()
+        {
+            XDocument doc = XDocument.Load("Plateau.xml");
+            var jeu = doc.Descendants("jeu").First();
+            var plateau = doc.Descendants("plateau").First();
+            var groupe = jeu.Descendants("groupe");
+            var gares = jeu.Descendants("gare").First();
+            var compagnie = jeu.Descendants("compagnie").First();
 
+            foreach (var g in groupe)
+            {
+                var terrain = g.Descendants("terrain");
+                foreach (var t in terrain)
+                {
+                    cases[(int)t.Attribute("id")] = new Propriete((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("hyp"), (ProprieteDeCouleur.couleur)Enum.Parse(typeof(ProprieteDeCouleur.couleur), (string)g.Attribute("couleur")));
+                }
+            }
+
+            var gare = plateau.Descendants("gare");
+            foreach (var ga in gare)
+            {
+                cases[(int)ga.Attribute("id")] = new Gare((string)ga.Attribute("nom"), (double)gares.Attribute("prix"), (double)gares.Attribute("t0"), (double)gares.Attribute("hyp"));
+            }
+            var impot = plateau.Descendants("impot");
+            foreach (var t in impot)
+            {
+                cases[(int)t.Attribute("id")] = new Impot((string)t.Attribute("nom"), (double)t.Attribute("prix"));
+            }
+            var compagnies = plateau.Descendants("compagnie");
+            foreach (var c in compagnies)
+            {
+                cases[(int)c.Attribute("id")] = new Compagnie((string)c.Attribute("nom"), (double)compagnie.Attribute("prix"), (double)compagnie.Attribute("mul1"), (double)compagnie.Attribute("hyp"));
+            }
+            cases[20] = new ParcGratuit();
+            cases[30] = new Police();
+            cases[10] = new Prison();
+            cases[0] = new Depart();
+
+        }
+    }
 }
+
 

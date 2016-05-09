@@ -8,46 +8,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Propriete : AAcheter
+namespace Projet_Info_Monopoly
 {
-    private int loyerTerrainNu;
-    private int loyer1Maison;
-    private int loyer2Maison;
-    private int loyer3Maison;
-    private int loyer4Maison;
-    private int loyerHotel;
-    private int nbMaison;
-	public virtual string couleur
-	{
-		get;
-		set;
-	}
-
-    public Propriete (int prixAchat,int unPrix,string uneCouleur, int m1, int m2, int m3, int m4, int h, int valHypo)
+    public class Propriete : AAcheter
     {
-        loyerTerrainNu = unPrix;
-        loyer1Maison = m1;
-        loyer2Maison = m2;
-        loyer3Maison = m3;
-        loyer4Maison = m4;
-        loyerHotel = h;
-        valHypo = unPrix / 2;
-        couleur = uneCouleur;
-            
-    }
+        protected double prixMaison;
+        protected double prixHotel;
+        protected int nbMaisonConstruites;
+        protected int nbHotelConstruits;
+        public enum couleur { bleu,cyan, rose, marron,orange,rouge,jaune,vert};
+        public couleur Couleur { get; set; }
 
-    public string getCouleur()
-    {
-        return this.couleur;
-    }
+        public Propriete(double prixM, double prixH, string nom, double prix, double prixL, double valHyp, couleur c):base(nom,prix,prixL,valHyp)
+        {
+            prixMaison = prixM;
+            prixHotel = prixH;
+            nbMaisonConstruites = 0;
+            nbHotelConstruits = 0;
 
-    public bool peutConstruireHotel(Joueur j)
-    {
-        if(nbMaison==4)
-        { return true; }
-        return false;
-    }
+        }
 
+
+        public bool peutConstruireHotel(Joueur j)
+        {
+            if (nbMaisonConstruites == 4)
+            { return true; }
+            return false;
+        }
+
+        public double calculLoyer()
+        {
+
+        }
+
+    }
 }
+
 

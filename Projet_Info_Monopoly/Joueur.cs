@@ -8,56 +8,74 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Joueur 
+namespace Projet_Info_Monopoly
 {
-    private string nom_joueur;
-    private int argent; // argent du joueur (initialisé à 1500)
-    private int position; // la position du joueur sur le plateau
-    private LinkedList<Cartes> cartesDuJoueur; // 
-    private static Random r = new Random();
-    
-
-    public Joueur(string nom)
+    public class Joueur
     {
-        nom_joueur = nom;
-        this.argent = 1500;
-        this.position = 0;
-        cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
-
-    }
-
-    public void Acheter(AAcheter a)
-    {
-
-    }
-
-    public void Avancer()
-    {
-        position += LanceDe();
+        private string nom_joueur;
+        private int argent; // argent du joueur (initialisé à 1500)
+        private int position; // la position du joueur sur le plateau
+        private LinkedList<Cartes> cartesDuJoueur; // 
+        private static Random r = new Random();
 
 
-    }
-
-    public int LanceDe()
-    {
-        int compteurDouble = 0;
-        int de1 = r.Next(1, 7);
-        int de2 = r.Next(1, 7);
-        int total = de1 + de2;
-
-        if(de1 == de2)
+        public Joueur(string nom)
         {
-            Console.WriteLine("C'est un double ! ");
-            compteurDouble++;
-        }
-        else
-        {
-            Console.WriteLine("Vous avez fait : " + total + " (" + de1 + "+" + de2 + ")");
+            nom_joueur = nom;
+            argent = 1500;
+            position = 0;
+            cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
+
         }
 
-        return total;
-    }
+        public void Acheter(AAcheter a)
+        {
 
+        }
+
+        public void Avancer()
+        {
+            position += LanceDe();
+            if(position>=40)
+            {
+                position = position % 40;
+                argent += 200; // pouvoir définir une valeur modifiable depuis le XML
+            }
+
+
+        }
+
+        public int LanceDe()
+        {
+            int compteurDouble = 0;
+            int de1 = r.Next(1, 7);
+            int de2 = r.Next(1, 7);
+            int total = de1 + de2;
+
+            if (de1 == de2)
+            {
+                Console.WriteLine("C'est un double ! ");
+                compteurDouble++;
+            }
+            else
+            {
+                Console.WriteLine("Vous avez fait : " + total + " (" + de1 + "+" + de2 + ")");
+            }
+
+            return total;
+        }
+
+        public void addCard(Cartes c)
+        {
+            cartesDuJoueur.AddLast(c);
+
+        }
+        public void removeCard(Cartes c)
+        {
+            cartesDuJoueur.Re
+        }
+
+    }
 }
+
 

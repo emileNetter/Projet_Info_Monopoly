@@ -8,14 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Cases
+namespace Projet_Info_Monopoly
 {
-    protected string _type;
-
-    public Cases(string type)
+    public class Cases
     {
-        _type = type;
+        
+
+        public Cases()
+        {
+            
+        }
     }
 }
+
 

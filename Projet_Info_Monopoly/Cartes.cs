@@ -8,14 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Cartes 
+namespace Projet_Info_Monopoly
 {
-    protected string groupe;
-
-    public Cartes(string groupe)
+    public class Cartes
     {
-        this.groupe = groupe;
+        protected string groupe;
+
+        public Cartes(string groupe)
+        {
+            this.groupe = groupe;
+        }
     }
 }
+
 

@@ -8,26 +8,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class AAcheter : Cases
+namespace Projet_Info_Monopoly
 {
-    protected int prixAchat;
-    protected string nom_carte;
-    protected int valHypothec;
-    protected bool estPossedee;
-    protected Joueur proprietaire;
-    
-    
-    
-	
-    public AAcheter(string type,int prix, string nom,int valHyp) :base("AAcheter")
+    public class AAcheter : Cases
     {
-        prixAchat = prix;
-        valHypothec = valHyp;
-        nom_carte = nom;
-        estPossedee = false;
-        proprietaire = null;
-        
+        protected double prixAchat;
+        protected double prixLoyer;
+        protected string nom_carte;
+        protected double valHypothec;
+        protected bool estPossedee;
+        protected Joueur proprietaire;
+
+
+        public AAcheter(string nom,double prix, double prixL, double valHyp) 
+        {
+            prixAchat = prix;
+            valHypothec = valHyp;
+            nom_carte = nom;
+            estPossedee = false;
+            proprietaire = null;
+
+        }
+
     }
 
 }

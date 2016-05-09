@@ -8,24 +8,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Gare : AAcheter
+namespace Projet_Info_Monopoly
 {
-    private int Loyer1gare;
-    private int loyer2gares;
-    private int loyer3gares;
-    private int loyer4gares;
-    private Projet_Info_Monopoly.Groupe _groupe; // ajout de projet_Info_Monopoly sinon il trouve pas la classe...
-
-    public Gare( Projet_Info_Monopoly.Groupe groupe, int prix, string nom,int l1, int l2, int l3, int l4,int valHyp) 
-            : base("gare", prix, nom,valHyp)
+    public class Gare : AAcheter
     {
+        
 
-        Loyer1gare = l1;
-        loyer2gares = l2;
-        loyer3gares = l3;
-        loyer4gares = l4;
-        _groupe = groupe;
+        public Gare(string nom, double prix, double prixL,double valHyp):base(nom,prix,prixL,valHyp)       
+        {
+
+        }
+
+        public double calculLoyer(int nombreGares)
+        {
+            double loyer = 25 * nombreGares;
+            return loyer;
+        }
+
+
     }
+
 }
 

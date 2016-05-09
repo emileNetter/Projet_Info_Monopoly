@@ -8,15 +8,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class Compagnie  : AAcheter
+namespace Projet_Info_Monopoly
 {
-    
-    public Compagnie(string type, int prix, string nom,int valHyp)
-            : base("compagnie", prix, nom, valHyp)
+    public class Compagnie : AAcheter
     {
-        
-        
+
+        public Compagnie(string nom,double prix,double prixL,double valHyp)
+                : base(nom, prix, prixL, valHyp)
+        {
+            
+        }
+
+        public double calculLoyer(int nombreCompagnie,int valDe)
+        {
+            double loyer = 0;
+            if(nombreCompagnie==1)
+            {
+                loyer = valDe * 4;
+                
+            }
+            else if(nombreCompagnie==2)
+            {
+                loyer = valDe * 10;
+                
+            }
+            return loyer;
+
+        }
     }
 }
+
 
