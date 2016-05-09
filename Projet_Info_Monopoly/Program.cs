@@ -18,6 +18,7 @@ namespace Projet_Info_Monopoly
             //Plateau p = new Plateau(l);
             Partie partie1 = new Partie();
             partie1.partie();
+            Console.ReadLine();
 
         }
     }

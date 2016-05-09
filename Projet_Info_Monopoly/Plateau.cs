@@ -20,6 +20,7 @@ namespace Projet_Info_Monopoly
         public Plateau()
         {
             cases = new Cases[40];
+            generePlateau();
             
         }
 

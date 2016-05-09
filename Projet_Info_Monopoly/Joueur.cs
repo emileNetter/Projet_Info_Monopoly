@@ -12,9 +12,9 @@ namespace Projet_Info_Monopoly
 {
     public class Joueur
     {
-        private string nom_joueur { get; set; }
+        public string nom_joueur { get; set; }
         private double argent { get; set; } // argent du joueur (initialisé à 1500)
-        private int position { get; set; } // la position du joueur sur le plateau
+        public int position { get; set; } // la position du joueur sur le plateau
         public bool estEnPrison { get; set; }
         public bool estMort { get; set; }
         private LinkedList<Cartes> cartesDuJoueur; // 
@@ -84,12 +84,12 @@ namespace Projet_Info_Monopoly
 
             if (de1 == de2)
             {
-                Console.WriteLine("Double " + de1 + " ! ");
+                Console.WriteLine(nom_joueur+ " a fait  un double de " + de1 + " ! " + "(" +2*de1 + ")");
                 compteurDouble++;
             }
             else
             {
-                Console.WriteLine("Vous avez fait : " + total + " (" + de1 + "+" + de2 + ")");
+                Console.WriteLine(nom_joueur+" a fait : " + total + " (" + de1 + "+" + de2 + ")");
             }
 
             return total;
