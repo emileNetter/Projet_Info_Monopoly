@@ -17,10 +17,10 @@ namespace Projet_Info_Monopoly
             plateau = new Plateau();
             
         }
-        public void partie()
+        public void partie() // methode qui execute toutes les fonctions nécessaires pour jouer une partie 
         {
             ajoutJoueur();
-            Jouer(plateau);
+            jouer(plateau);
         }
         public void ajoutJoueur()
         {
@@ -32,7 +32,7 @@ namespace Projet_Info_Monopoly
                 
                     Console.WriteLine("Entrez le nom du joueur n° " + i + ".\n Taper * une fois tous les joueurs rentrés. (de 2 à 8 joueurs)");
                     nom = Console.ReadLine();
-                    if (nom != "*")
+                    if (nom != "*" && nom!="")
                     {
                         joueurs.AddLast(new Joueur(nom));
                         i++;
@@ -40,15 +40,15 @@ namespace Projet_Info_Monopoly
             //penser au try-catch pour gérer les erreurs
 
             }
-            while (i < 9 || nom != "*"); 
-
+            while ((i < 2 || nom != "*")&& i<9);
+            
         }
 
-        public void Jouer(Plateau p)
+        public void jouer(Plateau p)
         {
             foreach(Joueur j in joueurs)
             {
-                int newPosition= j.Avancer(); 
+                int newPosition= j.avancer(); 
                 Console.WriteLine(p.cases[newPosition]);
             }
         }

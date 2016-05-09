@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 namespace Projet_Info_Monopoly
 {
-    public class Compagnie : AAcheter
+    public class Compagnie : Propriete
     {
 
         public Compagnie(string nom,double prix,double prixL,double valHyp)

@@ -10,38 +10,28 @@ using System.Linq;
 using System.Text;
 namespace Projet_Info_Monopoly
 {
-    public class Propriete : AAcheter
+    public abstract class Propriete : Cases
     {
-        protected double prixMaison;
-        protected double prixHotel;
-        protected int nbMaisonConstruites;
-        protected int nbHotelConstruits;
-        public enum couleur { bleu,cyan, rose, marron,orange,rouge,jaune,vert};
-        public couleur Couleur { get; set; }
+        public double prixAchat { get; set; }
+        public double prixLoyer { get; set; }
+        public string nom_prop { get; set; }
+        public double valHypothec { get; set; }
+        public bool estPossedee { get; set; }
+        public Joueur proprietaire { get; set; }
 
-        public Propriete(double prixM, double prixH, string nom, double prix, double prixL, double valHyp, couleur c):base(nom,prix,prixL,valHyp)
+
+        public Propriete(string nom,double prix, double prixL, double valHyp) 
         {
-            prixMaison = prixM;
-            prixHotel = prixH;
-            nbMaisonConstruites = 0;
-            nbHotelConstruits = 0;
+            prixAchat = prix;
+            valHypothec = valHyp;
+            nom_prop = nom;
+            estPossedee = false;
+            proprietaire = null;
 
         }
 
-
-        public bool peutConstruireHotel(Joueur j)
-        {
-            if (nbMaisonConstruites == 4)
-            { return true; }
-            return false;
-        }
-
-        public void calculLoyer()
-        {
-            
-        }
 
     }
-}
 
+}
 

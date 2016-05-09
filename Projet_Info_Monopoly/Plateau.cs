@@ -37,7 +37,7 @@ namespace Projet_Info_Monopoly
                 var terrain = g.Descendants("terrain");
                 foreach (var t in terrain)
                 {
-                    cases[(int)t.Attribute("id")] = new Propriete((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("hyp"), (Propriete.couleur)Enum.Parse(typeof(Propriete.couleur), (string)g.Attribute("couleur")));
+                    cases[(int)t.Attribute("id")] = new Terrain((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("hyp"), (Terrain.couleur)Enum.Parse(typeof(Terrain.couleur), (string)g.Attribute("couleur")));
                 }
             }
 

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AAcheter.cs" />
+    <Compile Include="Propriete.cs" />
     <Compile Include="Avancer.cs" />
     <Compile Include="Banque.cs" />
     <Compile Include="Cartes.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="Prison.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Propriete.cs" />
+    <Compile Include="Terrain.cs" />
     <Compile Include="Recevoir.cs" />
     <Compile Include="Special.cs" />
     <Compile Include="Speciales.cs" />

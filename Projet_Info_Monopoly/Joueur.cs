@@ -12,12 +12,13 @@ namespace Projet_Info_Monopoly
 {
     public class Joueur
     {
-        private string nom_joueur;
-        private int argent; // argent du joueur (initialisé à 1500)
-        private int position; // la position du joueur sur le plateau
-        public bool estEnPrison;
-        public bool estMort;
+        private string nom_joueur { get; set; }
+        private double argent { get; set; } // argent du joueur (initialisé à 1500)
+        private int position { get; set; } // la position du joueur sur le plateau
+        public bool estEnPrison { get; set; }
+        public bool estMort { get; set; }
         private LinkedList<Cartes> cartesDuJoueur; // 
+        public LinkedList<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
 
 
@@ -28,17 +29,42 @@ namespace Projet_Info_Monopoly
             argent = 1500;
             position = 0;
             cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
+            proprieteDuJoueur = new LinkedList<Propriete>();
             estEnPrison = false;
         }
 
-        public void Acheter(AAcheter a)
+        public void acheterPropriete(Propriete p, Joueur j)
         {
+            if ((j.argent > p.prixAchat) && p.estPossedee == false)
+            {
+                ConsoleKeyInfo c;
+                Console.WriteLine("Souhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_prop, p.prixAchat);
+                do
+                {
+                    c = Console.ReadKey();
+                }
+                while (c.KeyChar != 'o' && c.KeyChar != 'n');
+                if (c.KeyChar == 'y')
+                {
+                    Console.WriteLine("Vous avez acheté {0}", p.nom_prop);
+                    p.proprietaire = j;
+                    p.estPossedee = true;
+                    j.proprieteDuJoueur.AddLast(p);
+                    j.argent -= p.prixAchat;
+                    //this.addCard(carte qui correspond à la propriete)
+                }
+
+            }
+            else if (this.argent < p.prixAchat)
+            {
+                Console.WriteLine("Vous n'avez pas assez d'argent pour acheter cette propriété");
+            }
 
         }
 
-        public int Avancer()
+        public int avancer()
         {
-            position += LanceDe();
+            position += lanceDe();
             if(position>=40)
             {
                 position = position % 40;
@@ -49,7 +75,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public int LanceDe()
+        public int lanceDe()
         {
             int compteurDouble = 0;
             int de1 = r.Next(1, 7);
@@ -58,7 +84,7 @@ namespace Projet_Info_Monopoly
 
             if (de1 == de2)
             {
-                Console.WriteLine("C'est un double ! ");
+                Console.WriteLine("Double " + de1 + " ! ");
                 compteurDouble++;
             }
             else
