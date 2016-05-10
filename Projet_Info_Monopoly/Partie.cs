@@ -71,10 +71,10 @@ namespace Projet_Info_Monopoly
                 //{
 
                 //}
-                if (p.cases[j.position] is Terrain)
+                if (p.cases[j.position] is Propriete)
                 {
-                    Terrain t =  p.cases[j.position] as Terrain;
-                    t.affiche_info_terrain();
+                    Propriete prop =  p.cases[j.position] as Propriete;
+                    prop.affiche_info_case(p.cases[j.position]);
                 }
 
                 

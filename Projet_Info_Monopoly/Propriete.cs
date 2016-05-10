@@ -45,9 +45,10 @@ namespace Projet_Info_Monopoly
                 t.affiche_info_terrain();
             }
 
-            if (c is Gare)
+            else if (c is Gare)
             {
-
+                Gare g = c as Gare;
+                g.affiche_info_gare();
             }
         }
         

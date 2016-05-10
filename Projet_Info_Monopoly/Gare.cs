@@ -12,9 +12,9 @@ namespace Projet_Info_Monopoly
 {
     public class Gare : Propriete
     {
-        
 
-        public Gare(string nom, double prix, double prixL,double valHyp):base(nom,prix,prixL,valHyp)       
+
+        public Gare(string nom, double prix, double prixL, double valHyp) : base(nom, prix, prixL, valHyp)
         {
 
         }
@@ -39,12 +39,13 @@ namespace Projet_Info_Monopoly
             if (c.KeyChar == 'o')
             {
                 Console.Clear();
-                Console.WriteLine("Nom : " + nom_prop + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 2 gares : " + prixLoyer*2 + "\nAvec 3 gares : " + prixLoyer*3 + "\nAvec 4 gares : " + prixLoyer*4 + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
+                Console.WriteLine("Nom : " + nom_prop + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 2 gares : " + prixLoyer * 2 + "\nAvec 3 gares : " + prixLoyer * 3 + "\nAvec 4 gares : " + prixLoyer * 4);
 
             }
 
 
         }
 
+    }
 }
 
