@@ -21,10 +21,7 @@ namespace Projet_Info_Monopoly
         {
             cases = new Cases[40];
             generePlateau();
-<<<<<<< HEAD
-            
-=======
->>>>>>> 6fd07ad32e0118424a7983a42ddc76c5b8c57bcd
+
             
         }
 

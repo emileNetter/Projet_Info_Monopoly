@@ -13,6 +13,7 @@ namespace Projet_Info_Monopoly
     public class Cases
     {
         public string nom_case;
+        public enum typeCase {terrain, compagnie, gare };
 
 
         public Cases()
