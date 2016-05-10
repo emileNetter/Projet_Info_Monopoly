@@ -46,10 +46,28 @@ namespace Projet_Info_Monopoly
 
         public void jouer(Plateau p)
         {
+            int maxDe = 1;
+            string nomFirstPlayer = "";
+
+            foreach (Joueur j in joueurs)// 
+            {
+                int de = j.lanceDe();
+                if (de > maxDe)
+                {
+                    maxDe = de;
+                    nomFirstPlayer = j.nom_joueur;
+                }
+            }
+            Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
+  
+
             foreach(Joueur j in joueurs)
             {
-                int newPosition= j.avancer(); 
-                Console.WriteLine(p.cases[newPosition]);
+                int newPosition= j.avancer();
+                j.position = newPosition;
+                Console.WriteLine(j.position);
+                Console.WriteLine(p.cases[j.position]);
+
             }
         }
 

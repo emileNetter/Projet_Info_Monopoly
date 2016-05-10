@@ -4,3 +4,16 @@ c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Proje
 c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.csprojResolveAssemblyReference.cache
 c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.exe
 c:\users\emile1\documents\visual studio 2015\Projects\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.pdb
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\Projet_Info_Monopoly.exe.config
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.exe
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.pdb
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\Projet_Info_Monopoly.exe
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\Projet_Info_Monopoly.pdb
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\mscorlib.dll
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\fr\mscorlib.resources.dll
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\normidna.nlp
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\normnfc.nlp
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\normnfd.nlp
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\normnfkc.nlp
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\bin\Debug\normnfkd.nlp
+C:\Users\thomas\Documents\GitHub\Projet_Info_Monopoly\Projet_Info_Monopoly\obj\Debug\Projet_Info_Monopoly.csprojResolveAssemblyReference.cache

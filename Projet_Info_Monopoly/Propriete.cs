@@ -30,6 +30,15 @@ namespace Projet_Info_Monopoly
 
         }
 
+        public override string ToString()
+        {
+            string ch = "Nom : " + nom_prop + "\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)";
+            return ch;
+        }
+        
+            
+        
+
 
     }
 

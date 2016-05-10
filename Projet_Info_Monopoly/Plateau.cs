@@ -20,6 +20,8 @@ namespace Projet_Info_Monopoly
         public Plateau()
         {
             cases = new Cases[40];
+            generePlateau();
+            
             
         }
 
@@ -37,7 +39,7 @@ namespace Projet_Info_Monopoly
                 var terrain = g.Descendants("terrain");
                 foreach (var t in terrain)
                 {
-                    cases[(int)t.Attribute("id")] = new Terrain((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("hyp"), (Terrain.couleur)Enum.Parse(typeof(Terrain.couleur), (string)g.Attribute("couleur")));
+                    cases[(int)t.Attribute("id")] = new Terrain((double)g.Attribute("maison"), 1000, (string)t.Attribute("nom"), (double)t.Attribute("prix"), (double)t.Attribute("t0"), (double)t.Attribute("t1"), (double)t.Attribute("t2"), (double)t.Attribute("t3"), (double)t.Attribute("t4"), (double)t.Attribute("t5"),(double)t.Attribute("hyp"), (Terrain.couleur)Enum.Parse(typeof(Terrain.couleur), (string)g.Attribute("couleur")));
                 }
             }
 
@@ -61,6 +63,11 @@ namespace Projet_Info_Monopoly
             cases[10] = new Prison();
             cases[0] = new Depart();
 
+             
+        }
+
+        public void affiche_info_case(Cases c)
+        {
         }
     }
 }

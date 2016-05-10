@@ -12,12 +12,14 @@ namespace Projet_Info_Monopoly
 {
     public class Cases
     {
-        
+        public string nom_case;
+
 
         public Cases()
         {
-            
+
         }
+
     }
 }
 
