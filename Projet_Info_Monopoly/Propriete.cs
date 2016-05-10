@@ -23,6 +23,7 @@ namespace Projet_Info_Monopoly
         public Propriete(string nom,double prix, double prixL, double valHyp) 
         {
             prixAchat = prix;
+            prixLoyer = prixL;
             valHypothec = valHyp;
             nom_prop = nom;
             estPossedee = false;
@@ -36,7 +37,19 @@ namespace Projet_Info_Monopoly
             return ch;
         }
         
-            
+        public void affiche_info_case(Cases c)
+        {
+            if (c is Terrain)
+            {
+                Terrain t = c as Terrain;
+                t.affiche_info_terrain();
+            }
+
+            if (c is Gare)
+            {
+
+            }
+        }
         
 
 

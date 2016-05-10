@@ -59,12 +59,13 @@ namespace Projet_Info_Monopoly
             Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
             do
             {
+                
                 c = Console.ReadKey();
             }
             while (c.KeyChar != 'o' && c.KeyChar != 'n') ;
             if (c.KeyChar == 'o')
             {
-                
+                Console.Clear();
                 Console.WriteLine("Nom : " + nom_prop + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
 
             }

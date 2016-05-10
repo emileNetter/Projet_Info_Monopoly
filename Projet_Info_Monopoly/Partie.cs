@@ -67,11 +67,17 @@ namespace Projet_Info_Monopoly
                 j.position = newPosition;
                 Console.WriteLine(j.position);
                 Console.WriteLine(p.cases[j.position]);
+                //if (p.cases[j.position] is Propriete)
+                //{
+
+                //}
                 if (p.cases[j.position] is Terrain)
                 {
                     Terrain t =  p.cases[j.position] as Terrain;
                     t.affiche_info_terrain();
                 }
+
+                
 
 
 
