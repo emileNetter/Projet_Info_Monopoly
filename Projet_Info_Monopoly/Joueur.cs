@@ -64,6 +64,26 @@ namespace Projet_Info_Monopoly
 
         }
 
+        public void paye_loyer (Propriete p, Partie partie)
+        {
+            if (p.estPossedee == true)
+            {
+                foreach (Joueur joueur in partie.joueurs)
+                {
+                    if (p.proprietaire == joueur)
+                    {
+                        Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + joueur.nom_joueur);
+                        joueur.argent += p.prixLoyer;
+                        this.argent -= p.prixLoyer;
+                        Console.WriteLine(joueur.nom_joueur + " a désormais" + joueur.argent);
+                        Console.WriteLine("Vous avez désormais " + this.argent);
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                }
+            }
+        }
+
         public int avancer()
         {
             position += lanceDe();

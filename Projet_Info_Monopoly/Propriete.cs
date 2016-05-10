@@ -59,10 +59,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void paye_loyer (Joueur j)
-        {
-            
-        }
+        
         
 
 

@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Projet_Info_Monopoly
 {
-    class Partie
+    public class Partie
     {
         public LinkedList<Joueur> joueurs;
+        
         public Plateau plateau;
         
         public Partie()
         {
             joueurs = new LinkedList<Joueur>();
+            
             plateau = new Plateau();
             
         }
@@ -48,16 +50,29 @@ namespace Projet_Info_Monopoly
         {
             int maxDe = 1;
             string nomFirstPlayer = "";
+            Joueur jfirst = null;
 
             foreach (Joueur j in joueurs)// 
             {
                 int de = j.lanceDe();
+                int aux = de;
                 if (de > maxDe)
                 {
                     maxDe = de;
                     nomFirstPlayer = j.nom_joueur;
+                    jfirst = j;
                 }
+               
+
             }
+            
+            joueurs.Remove(jfirst);
+            joueurs.AddFirst(jfirst);
+
+
+                    
+                
+        
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
             Console.ReadLine();
             Console.Clear();
@@ -69,11 +84,18 @@ namespace Projet_Info_Monopoly
                 j.position = newPosition;
                 Console.WriteLine(p.cases[j.position]);
                 
-                if (p.cases[j.position] is Propriete)
+                if (p.cases[j.position] is Propriete )
                 {
                     Propriete prop =  p.cases[j.position] as Propriete;
-                    prop.affiche_info_case(p.cases[j.position]);
-                    j.acheterPropriete(prop);
+                    if (prop.estPossedee == false)
+                    {
+                        prop.affiche_info_case(p.cases[j.position]);
+                        j.acheterPropriete(prop);
+                    }
+                    else
+                    {
+                        j.paye_loyer(prop, this);
+                    }
                     
                 }
 
