@@ -38,19 +38,21 @@ namespace Projet_Info_Monopoly
             if ((this.argent > p.prixAchat) && p.estPossedee == false)
             {
                 ConsoleKeyInfo c;
-                Console.WriteLine("Souhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_prop, p.prixAchat);
+                Console.WriteLine("Souhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_case, p.prixAchat);
                 do
                 {
                     c = Console.ReadKey();
                 }
                 while (c.KeyChar != 'o' && c.KeyChar != 'n');
-                if (c.KeyChar == 'y')
+                if (c.KeyChar == 'o')
                 {
-                    Console.WriteLine("Vous avez acheté {0}", p.nom_prop);
+                    Console.Clear();
+                    Console.WriteLine(this.nom_joueur +" a acheté {0}", p.nom_case);
                     p.proprietaire = this;
                     p.estPossedee = true;
                     this.proprieteDuJoueur.AddLast(p);
                     this.argent -= p.prixAchat;
+                    Console.WriteLine("Il vous reste {0} euros.", this.argent);
                     //this.addCard(carte qui correspond à la propriete)
                 }
 
@@ -78,13 +80,13 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-            int de1 = 1;
-            int de2 = 4;
+            int de1 = r.Next(1, 7);
+            int de2 = r.Next(1, 7);
             int total = de1 + de2;
 
             if (de1 == de2)
             {
-                Console.WriteLine(nom_joueur+ " a fait  un double de " + de1 + " ! " + "(" +2*de1 + ")");
+                Console.WriteLine(nom_joueur+ " a fait  un double  " + de1 + " ! " + "(" +2*de1 + ")");
                 compteurDouble++;
             }
             else

@@ -14,12 +14,12 @@ namespace Projet_Info_Monopoly
     {
 
 
-        public Gare(string nom, double prix, double prixL, double valHyp) : base(nom, prix, prixL, valHyp)
+        public Gare(string nom_case, double prix, double prixL, double valHyp) : base(nom_case, prix, prixL, valHyp)
         {
 
         }
 
-        public double calculLoyer(int nombreGares)
+        public double calculeLoyer(int nombreGares)
         {
             double loyer = 25 * nombreGares;
             return loyer;
@@ -39,7 +39,7 @@ namespace Projet_Info_Monopoly
             if (c.KeyChar == 'o')
             {
                 Console.Clear();
-                Console.WriteLine("Nom : " + nom_prop + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 2 gares : " + prixLoyer * 2 + "\nAvec 3 gares : " + prixLoyer * 3 + "\nAvec 4 gares : " + prixLoyer * 4);
+                Console.WriteLine("Nom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 2 gares : " + prixLoyer * 2 + "\nAvec 3 gares : " + prixLoyer * 3 + "\nAvec 4 gares : " + prixLoyer * 4);
 
             }
 

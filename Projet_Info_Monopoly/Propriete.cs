@@ -20,12 +20,11 @@ namespace Projet_Info_Monopoly
         public Joueur proprietaire { get; set; }
 
 
-        public Propriete(string nom,double prix, double prixL, double valHyp) 
+        public Propriete(string nom_case,double prix, double prixL, double valHyp):base(nom_case)
         {
             prixAchat = prix;
             prixLoyer = prixL;
             valHypothec = valHyp;
-            nom_prop = nom;
             estPossedee = false;
             proprietaire = null;
 
@@ -33,7 +32,7 @@ namespace Projet_Info_Monopoly
 
         public override string ToString()
         {
-            string ch = "Nom : " + nom_prop;
+            string ch = "Vous tombez sur : " + nom_case;
             return ch;
         }
         
@@ -43,13 +42,26 @@ namespace Projet_Info_Monopoly
             {
                 Terrain t = c as Terrain;
                 t.affiche_info_terrain();
+                
             }
 
             else if (c is Gare)
             {
                 Gare g = c as Gare;
                 g.affiche_info_gare();
+                
             }
+            else if (c is Compagnie)
+            {
+                Compagnie comp = c as Compagnie;
+                comp.affiche_info_compagnie();
+                
+            }
+        }
+
+        public void paye_loyer (Joueur j)
+        {
+            
         }
         
 

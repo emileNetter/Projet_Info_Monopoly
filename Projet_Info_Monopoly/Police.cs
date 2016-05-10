@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Projet_Info_Monopoly
 {
-    class Police :Cases
+    class Police : Cases
     {
-
+        public Police():base("Police")
+        {
+        }
     }
 }

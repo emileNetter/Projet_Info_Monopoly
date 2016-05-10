@@ -8,5 +8,9 @@ namespace Projet_Info_Monopoly
 {
     class Prison : Cases
     {
+        public Prison():base("Prison")
+        {
+
+        }
     }
 }

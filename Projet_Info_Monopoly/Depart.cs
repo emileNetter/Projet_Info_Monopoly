@@ -7,6 +7,9 @@ namespace Projet_Info_Monopoly
 {
     public class Depart :Cases
     {
-        
+        public Depart():base("Depart")
+        {
+
+        }
     }
 }

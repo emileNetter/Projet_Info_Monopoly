@@ -13,13 +13,13 @@ namespace Projet_Info_Monopoly
     public class Compagnie : Propriete
     {
 
-        public Compagnie(string nom,double prix,double prixL,double valHyp)
-                : base(nom, prix, prixL, valHyp)
+        public Compagnie(string nom_case,double prix,double prixL,double valHyp)
+                : base(nom_case, prix, prixL, valHyp)
         {
             
         }
 
-        public double calculLoyer(int nombreCompagnie,int valDe)
+        public double calculeLoyer(int nombreCompagnie,int valDe)
         {
             double loyer = 0;
             if(nombreCompagnie==1)
@@ -33,6 +33,27 @@ namespace Projet_Info_Monopoly
                 
             }
             return loyer;
+
+        }
+
+        public void affiche_info_compagnie()
+        {
+            ConsoleKeyInfo c;
+
+            Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
+            do
+            {
+
+                c = Console.ReadKey();
+            }
+            while (c.KeyChar != 'o' && c.KeyChar != 'n');
+            if (c.KeyChar == 'o')
+            {
+                Console.Clear();
+                Console.WriteLine("Nom : " + nom_case + "\nPrix : " + prixAchat );
+
+            }
+
 
         }
     }

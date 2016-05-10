@@ -10,15 +10,14 @@ using System.Linq;
 using System.Text;
 namespace Projet_Info_Monopoly
 {
-    public class Cases
+    public abstract class Cases
     {
-        public string nom_case;
-        public enum typeCase {terrain, compagnie, gare };
+        public string nom_case { get; set; }
+        
 
-
-        public Cases()
+        public Cases(string _nom)
         {
-
+            nom_case = _nom;
         }
 
     }

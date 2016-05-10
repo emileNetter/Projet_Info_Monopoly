@@ -8,12 +8,12 @@ namespace Projet_Info_Monopoly
 {
     class Impot:Cases
     {
-        string nom;
-        double prixAPayer;
-        public Impot(string n, double prix):base()
+        
+        double prixAPayer { get; set; }
+        public Impot(string nom_case, double prix):base(nom_case)
         {
-            nom = n;
             prixAPayer = prix;
+            
         }
 
     }

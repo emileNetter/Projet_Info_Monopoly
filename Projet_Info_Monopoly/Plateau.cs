@@ -66,9 +66,7 @@ namespace Projet_Info_Monopoly
              
         }
 
-        public void affiche_info_case(Cases c)
-        {
-        }
+       
     }
 }
 

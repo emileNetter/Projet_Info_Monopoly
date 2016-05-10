@@ -24,7 +24,7 @@ namespace Projet_Info_Monopoly
         public enum couleur { bleu,cyan,rose, marron,orange,rouge,jaune,vert};
         public couleur Couleur { get; set; }
 
-        public Terrain(double prixM, double prixH, string nom, double prix, double prixL,double m1,double m2,double m3,double m4, double h1, double valHyp, couleur c):base(nom,prix,prixL,valHyp)
+        public Terrain(double prixM, double prixH, string nom_case, double prix, double prixL,double m1,double m2,double m3,double m4, double h1, double valHyp, couleur c):base(nom_case,prix,prixL,valHyp)
         {
             prixMaison = prixM;
             prixHotel = prixH;
@@ -66,7 +66,7 @@ namespace Projet_Info_Monopoly
             if (c.KeyChar == 'o')
             {
                 Console.Clear();
-                Console.WriteLine("Nom : " + nom_prop + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
+                Console.WriteLine("Nom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
 
             }
            

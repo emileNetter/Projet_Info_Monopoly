@@ -59,22 +59,22 @@ namespace Projet_Info_Monopoly
                 }
             }
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
+            Console.ReadLine();
+            Console.Clear();
   
 
             foreach(Joueur j in joueurs)
             {
                 int newPosition= j.avancer();
                 j.position = newPosition;
-                Console.WriteLine(j.position);
                 Console.WriteLine(p.cases[j.position]);
-                //if (p.cases[j.position] is Propriete)
-                //{
-
-                //}
+                
                 if (p.cases[j.position] is Propriete)
                 {
                     Propriete prop =  p.cases[j.position] as Propriete;
                     prop.affiche_info_case(p.cases[j.position]);
+                    j.acheterPropriete(prop);
+                    
                 }
 
                 
