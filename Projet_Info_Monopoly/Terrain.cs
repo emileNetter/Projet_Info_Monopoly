@@ -39,6 +39,34 @@ namespace Projet_Info_Monopoly
 
         }
 
+        public int nbreTerrainCouleur(Plateau p)
+        {
+            int nb=0;
+                 foreach( Terrain t in p.cases) 
+                {
+                     if (t.Couleur==this.Couleur)
+                     {
+                         nb++;
+                     }
+                 }
+            return nb;
+                
+        }
+
+
+
+
+
+        public bool peutConstruireMaison(Joueur j, Plateau p)
+        {
+            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(p))
+            {
+                return true;
+            }
+            return false;
+        }
+
+            
 
         public bool peutConstruireHotel(Joueur j)
         {
@@ -55,12 +83,10 @@ namespace Projet_Info_Monopoly
         public void affiche_info_terrain()
         {
             
-            
                 Console.Clear();
                 Console.WriteLine("Groupe de couleur : " + Couleur + "\nNom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
 
-           
-           
+            
 
         }
       
