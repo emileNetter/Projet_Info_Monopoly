@@ -27,21 +27,11 @@ namespace Projet_Info_Monopoly
 
         public void affiche_info_gare()
         {
-            ConsoleKeyInfo c;
-
-            Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
-            do
-            {
-
-                c = Console.ReadKey();
-            }
-            while (c.KeyChar != 'o' && c.KeyChar != 'n');
-            if (c.KeyChar == 'o')
-            {
+            
                 Console.Clear();
                 Console.WriteLine("Nom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 2 gares : " + prixLoyer * 2 + "\nAvec 3 gares : " + prixLoyer * 3 + "\nAvec 4 gares : " + prixLoyer * 4);
 
-            }
+            
 
 
         }

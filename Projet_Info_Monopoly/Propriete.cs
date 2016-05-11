@@ -36,26 +36,38 @@ namespace Projet_Info_Monopoly
             return ch;
         }
         
-        public void affiche_info_case(Cases c)
+        public void affiche_info_case(Cases c1)
         {
-            if (c is Terrain)
-            {
-                Terrain t = c as Terrain;
-                t.affiche_info_terrain();
-                
-            }
+            ConsoleKeyInfo c;
 
-            else if (c is Gare)
+            Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
+            do
             {
-                Gare g = c as Gare;
-                g.affiche_info_gare();
-                
+
+                c = Console.ReadKey();
             }
-            else if (c is Compagnie)
+            while (c.KeyChar != 'o' && c.KeyChar != 'n');
+            if (c.KeyChar == 'o')
             {
-                Compagnie comp = c as Compagnie;
-                comp.affiche_info_compagnie();
-                
+                if (c1 is Terrain)
+                {
+                    Terrain t = c1 as Terrain;
+                    t.affiche_info_terrain();
+
+                }
+
+                else if (c1 is Gare)
+                {
+                    Gare g = c1 as Gare;
+                    g.affiche_info_gare();
+
+                }
+                else if (c1 is Compagnie)
+                {
+                    Compagnie comp = c1 as Compagnie;
+                    comp.affiche_info_compagnie();
+
+                }
             }
         }
 
