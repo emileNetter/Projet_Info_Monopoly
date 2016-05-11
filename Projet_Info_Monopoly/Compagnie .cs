@@ -19,20 +19,23 @@ namespace Projet_Info_Monopoly
             
         }
 
-        public double calculeLoyer(int nombreCompagnie,int valDe)
+        public override double calculeLoyer(Joueur j)//Trouver un moyen d'avoir le résultat de dé de la personne tombant sur la case
         {
-            double loyer = 0;
+            
+            int valDe = j.lanceDe();//ne va pas puisqu'il relance les dés, ce qu'on ne veut pas .. 
+            int nombreCompagnie = j.calculeNombreCompagnies();
             if(nombreCompagnie==1)
             {
-                loyer = valDe * 4;
-                
+                Console.WriteLine("Val de" + valDe);
+                prixLoyer = valDe * 4;
+                   
             }
             else if(nombreCompagnie==2)
             {
-                loyer = valDe * 10;
+                prixLoyer = valDe * 10;
                 
             }
-            return loyer;
+            return prixLoyer;
 
         }
 

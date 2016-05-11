@@ -66,12 +66,14 @@ namespace Projet_Info_Monopoly
 
         public void paye_loyer(Propriete p, Partie partie)
         {
+            
             if (p.estPossedee == true)
             {
                 foreach (Joueur j in partie.joueurs)
                 {
                     if (p.proprietaire == j)
                     {
+                        p.calculeLoyer(j);
                         Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + j.nom_joueur);
                         j.argent += p.prixLoyer;
                         this.argent -= p.prixLoyer;
@@ -100,8 +102,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-            int de1 = r.Next(1, 7);
-            int de2 = r.Next(1, 7);
+            int de1 = r.Next(1,7);
+            int de2 = r.Next(1,7);
             int total = de1 + de2;
 
             if (de1 == de2)

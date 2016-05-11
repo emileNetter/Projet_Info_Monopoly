@@ -55,7 +55,7 @@ namespace Projet_Info_Monopoly
             foreach (Joueur j in joueurs)// 
             {
                 int de = j.lanceDe();
-                int aux = de;
+                //int aux = de;
                 if (de > maxDe)
                 {
                     maxDe = de;

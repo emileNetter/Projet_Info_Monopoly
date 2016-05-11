@@ -75,10 +75,35 @@ namespace Projet_Info_Monopoly
             return false;
         }
 
-        public void calculeLoyer()
+        public override double calculeLoyer(Joueur j)
         {
-            
+            int nb = this.nbMaisonConstruites;
+            if (nb == 1)
+            {
+                prixLoyer = prix1Maison;
+            }
+            else if (nb == 2)
+            {
+                prixLoyer = prix2Maison;
+            }
+            else if (nb == 3)
+            {
+                prixLoyer = prix3Maison;
+            }
+            else if (nb == 4)
+            {
+                prixLoyer = prix4Maison;
+            }
+            else if (nbHotelConstruits == 1)
+            {
+                prixLoyer = prixHotel;
+            }
+            return prixLoyer;
         }
+
+
+            
+        
 
         public void affiche_info_terrain()
         {

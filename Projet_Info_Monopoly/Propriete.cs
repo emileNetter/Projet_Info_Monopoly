@@ -36,6 +36,11 @@ namespace Projet_Info_Monopoly
             return ch;
         }
         
+        public virtual double calculeLoyer(Joueur j)
+        {
+            return prixLoyer;
+        }
+
         public void affiche_info_case(Cases c1)
         {
             ConsoleKeyInfo c;
