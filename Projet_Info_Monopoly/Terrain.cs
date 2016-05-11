@@ -47,7 +47,7 @@ namespace Projet_Info_Monopoly
             return false;
         }
 
-        public void calculLoyer()
+        public void calculeLoyer()
         {
             
         }
@@ -66,7 +66,7 @@ namespace Projet_Info_Monopoly
             if (c.KeyChar == 'o')
             {
                 Console.Clear();
-                Console.WriteLine("Nom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
+                Console.WriteLine("Groupe de couleur : " + Couleur + "\nNom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
 
             }
            

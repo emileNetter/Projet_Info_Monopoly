@@ -69,9 +69,7 @@ namespace Projet_Info_Monopoly
             joueurs.Remove(jfirst);
             joueurs.AddFirst(jfirst);
 
-
-                    
-                
+  
         
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
             Console.ReadLine();

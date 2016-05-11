@@ -47,7 +47,7 @@ namespace Projet_Info_Monopoly
                 if (c.KeyChar == 'o')
                 {
                     Console.Clear();
-                    Console.WriteLine(this.nom_joueur +" a acheté {0}", p.nom_case);
+                    Console.WriteLine(this.nom_joueur + " a acheté {0}", p.nom_case);
                     p.proprietaire = this;
                     p.estPossedee = true;
                     this.proprieteDuJoueur.AddLast(p);
@@ -64,18 +64,18 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public void paye_loyer (Propriete p, Partie partie)
+        public void paye_loyer(Propriete p, Partie partie)
         {
             if (p.estPossedee == true)
             {
-                foreach (Joueur joueur in partie.joueurs)
+                foreach (Joueur j in partie.joueurs)
                 {
-                    if (p.proprietaire == joueur)
+                    if (p.proprietaire == j)
                     {
-                        Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + joueur.nom_joueur);
-                        joueur.argent += p.prixLoyer;
+                        Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + j.nom_joueur);
+                        j.argent += p.prixLoyer;
                         this.argent -= p.prixLoyer;
-                        Console.WriteLine(joueur.nom_joueur + " a désormais" + joueur.argent);
+                        Console.WriteLine(j.nom_joueur + " a désormais" + j.argent);
                         Console.WriteLine("Vous avez désormais " + this.argent);
                         Console.ReadLine();
                         Console.Clear();
@@ -87,7 +87,7 @@ namespace Projet_Info_Monopoly
         public int avancer()
         {
             position += lanceDe();
-            if(position>=40)
+            if (position >= 40)
             {
                 position = position % 40;
                 argent += 200; // pouvoir définir une valeur modifiable depuis le XML
@@ -106,12 +106,12 @@ namespace Projet_Info_Monopoly
 
             if (de1 == de2)
             {
-                Console.WriteLine(nom_joueur+ " a fait  un double  " + de1 + " ! " + "(" +2*de1 + ")");
+                Console.WriteLine(nom_joueur + " a fait  un double  " + de1 + " ! " + "(" + 2 * de1 + ")");
                 compteurDouble++;
             }
             else
             {
-                Console.WriteLine(nom_joueur+" a fait : " + total + " (" + de1 + "+" + de2 + ")");
+                Console.WriteLine(nom_joueur + " a fait : " + total + " (" + de1 + "+" + de2 + ")");
             }
 
             return total;
@@ -124,10 +124,53 @@ namespace Projet_Info_Monopoly
         }
         public void removeCard(Cartes c)
         {
-            
+
         }
 
-        
+        public int calculeNombreTerrainCouleur(Terrain t)
+        {
+
+            int nbr = 0;
+            foreach (Terrain p in proprieteDuJoueur)
+            {
+                if (p.Couleur == t.Couleur)
+                {
+                    nbr++;
+                }
+            }
+            return nbr;
+
+        }
+
+        public int calculeNombreGares()
+        {
+            int nbr = 0;
+            {
+                foreach (Propriete p in proprieteDuJoueur)
+                {
+                    if (p is Gare)
+                    {
+                        nbr++;
+                    }
+                }
+            }
+            return nbr;
+        }
+
+        public int calculeNombreCompagnies()
+        {
+            int nbr = 0;
+            {
+                foreach (Propriete p in proprieteDuJoueur)
+                {
+                    if (p is Compagnie)
+                    {
+                        nbr++;
+                    }
+                }
+            }
+            return nbr;
+        }
 
     }
 }
