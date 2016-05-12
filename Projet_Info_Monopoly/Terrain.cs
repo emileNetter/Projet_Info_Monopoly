@@ -12,10 +12,10 @@ namespace Projet_Info_Monopoly
 {
     public class Terrain : Propriete
     {
-        protected double prixMaison { get; set; }
-        protected double prixHotel { get; set; }
-        protected int nbMaisonConstruites { get; set; }
-        protected int nbHotelConstruits { get; set; }
+        public double prixMaison { get; set; }
+        public double prixHotel { get; set; }
+        public int nbMaisonConstruites { get; set; }
+        public int nbHotelConstruits { get; set; }
         protected double prix1Maison{get;set;}
         protected double prix2Maison { get; set; }
         protected double prix3Maison { get; set; }
@@ -26,6 +26,7 @@ namespace Projet_Info_Monopoly
 
         public Terrain(double prixM, double prixH, string nom_case, double prix, double prixL,double m1,double m2,double m3,double m4, double h1, double valHyp, couleur c):base(nom_case,prix,prixL,valHyp)
         {
+            
             prixMaison = prixM;
             prixHotel = prixH;
             nbMaisonConstruites = 0;
@@ -54,12 +55,9 @@ namespace Projet_Info_Monopoly
         }
 
 
-
-
-
-        public bool peutConstruireMaison(Joueur j)
+        public bool peutConstruireMaison(Joueur j) // il faudrait vérifier que chaque terrain d'u^ne meme couleur comporte le meme nombre de maisons
         {
-            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau))
+            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau) && j.argent > this.prixMaison)
             {
                 return true;
             }
@@ -70,7 +68,7 @@ namespace Projet_Info_Monopoly
 
         public bool peutConstruireHotel(Joueur j)
         {
-            if (nbMaisonConstruites == 4)
+            if (this.nbMaisonConstruites == 4 && j.argent>this.prixHotel)
             { return true; }
             return false;
         }
@@ -108,9 +106,6 @@ namespace Projet_Info_Monopoly
             return prixLoyer;
         }
 
-
-            
-        
 
         public void affiche_info_terrain()
         {

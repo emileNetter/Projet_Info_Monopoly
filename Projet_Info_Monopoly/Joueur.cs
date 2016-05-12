@@ -187,6 +187,48 @@ namespace Projet_Info_Monopoly
             return nbr;
         }
 
+        public void construireMaison(Terrain t)
+        {
+            if (t.peutConstruireMaison(this))
+            {
+                Console.Clear();
+                Console.WriteLine("Voulez-vous construire une maison sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixMaison);
+                ConsoleKeyInfo c;
+                do
+                {
+                    c = Console.ReadKey();
+                }
+                while (c.KeyChar != 'o' && c.KeyChar != 'n');
+                if (c.KeyChar == 'o')
+                {
+                    this.argent -= t.prixMaison;
+                    t.nbMaisonConstruites++;
+                    Console.WriteLine("Vous avez construit une maison sur {0}", t.nom_case);
+                }
+            }
+        }
+
+        public void construireHotel(Terrain t)
+        {
+            if (t.peutConstruireHotel(this))
+            {
+                Console.Clear();
+                Console.WriteLine("Voulez-vous construire un hôtel sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixHotel);
+                ConsoleKeyInfo c;
+                do
+                {
+                    c = Console.ReadKey();
+                }
+                while (c.KeyChar != 'o' && c.KeyChar != 'n');
+                if (c.KeyChar == 'o')
+                {
+                    this.argent -= t.prixHotel;
+                    t.nbHotelConstruits ++;
+                    Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
+                }
+            }
+        }
+
       
     }
 }
