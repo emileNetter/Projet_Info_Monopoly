@@ -54,21 +54,12 @@ namespace Projet_Info_Monopoly
 
         public void affiche_info_terrain()
         {
-            ConsoleKeyInfo c;
             
-            Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
-            do
-            {
-                
-                c = Console.ReadKey();
-            }
-            while (c.KeyChar != 'o' && c.KeyChar != 'n') ;
-            if (c.KeyChar == 'o')
-            {
+            
                 Console.Clear();
                 Console.WriteLine("Groupe de couleur : " + Couleur + "\nNom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
 
-            }
+           
            
 
         }

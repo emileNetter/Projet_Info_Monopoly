@@ -38,21 +38,11 @@ namespace Projet_Info_Monopoly
 
         public void affiche_info_compagnie()
         {
-            ConsoleKeyInfo c;
-
-            Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
-            do
-            {
-
-                c = Console.ReadKey();
-            }
-            while (c.KeyChar != 'o' && c.KeyChar != 'n');
-            if (c.KeyChar == 'o')
-            {
+            
                 Console.Clear();
                 Console.WriteLine("Nom : " + nom_case + "\nPrix : " + prixAchat );
 
-            }
+            
 
 
         }
