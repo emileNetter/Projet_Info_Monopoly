@@ -64,6 +64,7 @@ namespace Projet_Info_Monopoly
             else if (this.argent < p.prixAchat)
             {
                 Console.WriteLine("Vous n'avez pas assez d'argent pour acheter cette propriété");
+                Console.Clear();
             }
 
         }
@@ -78,14 +79,22 @@ namespace Projet_Info_Monopoly
                     if (p.proprietaire == j)
                     {
 
-                        p.calculeLoyer(j, this);
-                        Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + j.nom_joueur);
-                        j.argent += p.prixLoyer;
-                        this.argent -= p.prixLoyer;
-                        Console.WriteLine(j.nom_joueur + " a désormais " + j.argent);
-                        Console.WriteLine("Vous avez désormais " + this.argent);
-                        Console.ReadLine();
-                        Console.Clear();
+                        double loy =p.calculeLoyer(j, this);
+                        if( loy > this.argent)
+                        {
+                            this.defaiteJoueur();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vous devez payer " + loy + " à " + j.nom_joueur);
+                            j.argent += loy;
+                            this.argent -= loy;
+                            Console.WriteLine(j.nom_joueur + " a désormais " + j.argent);
+                            Console.WriteLine("Vous avez désormais " + this.argent);
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        
                     }
                 }
             }
@@ -93,9 +102,17 @@ namespace Projet_Info_Monopoly
 
         public void payeImpot(Impot impot)
         {
-            Console.WriteLine("Vous devez payez une taxe de " + impot.prixAPayer);
-            this.argent -= impot.prixAPayer;
-            Console.WriteLine("Il vous reste :" + this.argent);
+            if (impot.prixAPayer > this.argent)
+            {
+                this.defaiteJoueur();
+            }
+            else
+            {
+                Console.WriteLine("Vous devez payez une taxe de " + impot.prixAPayer);
+                this.argent -= impot.prixAPayer;
+                Console.WriteLine("Il vous reste : " + this.argent);
+            }
+            
         }
 
 
@@ -227,6 +244,14 @@ namespace Projet_Info_Monopoly
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
                 }
             }
+        }
+
+        public void defaiteJoueur()
+        {
+            Console.WriteLine("Vous n'avez pas assez d'argent pour payer le loyer, vous avez perdu.");
+            this.statut = statutJoueur.perdu;
+            Console.ReadLine();
+            Console.Clear();
         }
 
       
