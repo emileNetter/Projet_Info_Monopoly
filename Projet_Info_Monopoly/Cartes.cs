@@ -13,10 +13,12 @@ namespace Projet_Info_Monopoly
     public class Cartes
     {
         protected int numeroCarte;
+        protected string typeCarte;
 
-        public Cartes()
+        public Cartes(int num,string type)
         {
-            
+            numeroCarte = num;
+            typeCarte = type;
         }
     }
 }
