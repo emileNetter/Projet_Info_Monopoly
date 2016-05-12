@@ -30,12 +30,6 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public override string ToString()
-        {
-            string ch = "Vous tombez sur : " + nom_case;
-            return ch;
-        }
-        
         public void affiche_info_case(Cases c1)
         {
             ConsoleKeyInfo c;

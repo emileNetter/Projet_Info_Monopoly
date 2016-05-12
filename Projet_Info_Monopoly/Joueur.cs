@@ -101,7 +101,7 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-            int de1 = r.Next(1, 7);
+            int de1 = r.Next(1,7 );
             int de2 = r.Next(1,7);
             int total = de1 + de2;
 

@@ -20,6 +20,11 @@ namespace Projet_Info_Monopoly
             nom_case = _nom;
         }
 
+        public override string ToString()
+        {
+            string ch = "Vous tombez sur : " + nom_case;
+            return ch;
+        }
     }
 }
 
