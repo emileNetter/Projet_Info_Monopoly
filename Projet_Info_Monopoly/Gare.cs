@@ -19,10 +19,11 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public double calculeLoyer(int nombreGares)
+        public override double calculeLoyer(Joueur j)
         {
-            double loyer = 25 * nombreGares;
-            return loyer;
+            int nombreGares = j.calculeNombreGares();
+            prixLoyer = 25 * nombreGares;
+            return prixLoyer;
         }
 
         public void affiche_info_gare()

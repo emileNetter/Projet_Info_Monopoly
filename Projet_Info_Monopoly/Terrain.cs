@@ -39,6 +39,34 @@ namespace Projet_Info_Monopoly
 
         }
 
+        public int nbreTerrainCouleur(Plateau p)
+        {
+            int nb=0;
+                 foreach( Terrain t in p.cases) 
+                {
+                     if (t.Couleur==this.Couleur)
+                     {
+                         nb++;
+                     }
+                 }
+            return nb;
+                
+        }
+
+
+
+
+
+        public bool peutConstruireMaison(Joueur j, Plateau p)
+        {
+            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(p))
+            {
+                return true;
+            }
+            return false;
+        }
+
+            
 
         public bool peutConstruireHotel(Joueur j)
         {
@@ -47,17 +75,51 @@ namespace Projet_Info_Monopoly
             return false;
         }
 
-        public void calculeLoyer()
+        public override double calculeLoyer(Joueur j)
         {
-            
+            int nb = this.nbMaisonConstruites;
+            if (nb == 1)
+            {
+                prixLoyer = prix1Maison;
+            }
+            else if (nb == 2)
+            {
+                prixLoyer = prix2Maison;
+            }
+            else if (nb == 3)
+            {
+                prixLoyer = prix3Maison;
+            }
+            else if (nb == 4)
+            {
+                prixLoyer = prix4Maison;
+            }
+            else if (nbHotelConstruits == 1)
+            {
+                prixLoyer = prixHotel;
+            }
+            return prixLoyer;
         }
+
+
+            
+        
 
         public void affiche_info_terrain()
         {
+<<<<<<< HEAD
                        
                 Console.Clear();
                 Console.WriteLine("Groupe de couleur : " + Couleur + "\nNom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
 
+=======
+            
+                Console.Clear();
+                Console.WriteLine("Groupe de couleur : " + Couleur + "\nNom : " + nom_case + "\nPrix : " + prixAchat + "\nTerrain nu : " + prixLoyer + "\nAvec 1 maison : " + prix1Maison + "\nAvec 2 maisons : " + prix2Maison + "\nAvec 3 maisons : " + prix3Maison + "\nAvec 4 maisons : " + prix4Maison + "\nAvec hôtel : " + prix1Hotel);
+
+            
+
+>>>>>>> 22e551a695603c40b829b6d5a5f13625c4440a2d
         }
       
     }

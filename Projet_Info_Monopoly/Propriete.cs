@@ -32,6 +32,20 @@ namespace Projet_Info_Monopoly
 
         public void affiche_info_case(Cases c1)
         {
+<<<<<<< HEAD
+=======
+            string ch = "Vous tombez sur : " + nom_case;
+            return ch;
+        }
+        
+        public virtual double calculeLoyer(Joueur j)
+        {
+            return prixLoyer;
+        }
+
+        public void affiche_info_case(Cases c1)
+        {
+>>>>>>> 22e551a695603c40b829b6d5a5f13625c4440a2d
             ConsoleKeyInfo c;
 
             Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");
