@@ -19,7 +19,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public override double calculeLoyer(Joueur j)
+        public override double calculeLoyer(Joueur j, Joueur TombeSurCase)
         {
             int nombreGares = j.calculeNombreGares();
             prixLoyer = 25 * nombreGares;

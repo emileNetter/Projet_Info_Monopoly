@@ -20,12 +20,15 @@ namespace Projet_Info_Monopoly
         private LinkedList<Cartes> cartesDuJoueur; // 
         public LinkedList<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
+        public Plateau plateau;
+        public int dernierLanceDe;
 
 
 
-        public Joueur(string nom)
+        public Joueur(string nom, Plateau p)
         {
             nom_joueur = nom;
+            plateau = p;
             argent = 1500;
             position = 0;
             cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
@@ -75,7 +78,7 @@ namespace Projet_Info_Monopoly
                     if (p.proprietaire == j)
                     {
 
-                        p.calculeLoyer(j);
+                        p.calculeLoyer(j, this);
                         Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + j.nom_joueur);
                         j.argent += p.prixLoyer;
                         this.argent -= p.prixLoyer;
@@ -112,8 +115,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-            int de1 = r.Next(1,7 );
-            int de2 = r.Next(1,7);
+            int de1 = r.Next(1,3);
+            int de2 = r.Next(1,3);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -125,7 +128,7 @@ namespace Projet_Info_Monopoly
             {
                 Console.WriteLine(nom_joueur + " a fait : " + total + " (" + de1 + "+" + de2 + ")");
             }
-
+            dernierLanceDe = total;// on récupere le résultat de lancer de dé en cas de tomber sur une case de type compagnie necessitant de connaitre le lancer de dé afin d'établir le prix du loyer
             return total;
         }
 

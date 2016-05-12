@@ -19,10 +19,10 @@ namespace Projet_Info_Monopoly
             
         }
 
-        public override double calculeLoyer(Joueur j)//Trouver un moyen d'avoir le résultat de dé de la personne tombant sur la case
+        public override double calculeLoyer(Joueur j, Joueur TombeSurCase)//Trouver un moyen d'avoir le résultat de dé de la personne tombant sur la case, pour le moment c'est le résultat de dé du propriétaire de la case ....
         {
             
-            int valDe = j.lanceDe();//ne va pas puisqu'il relance les dés, ce qu'on ne veut pas .. 
+            int valDe = TombeSurCase.dernierLanceDe; 
             int nombreCompagnie = j.calculeNombreCompagnies();
             if(nombreCompagnie==1)
             {

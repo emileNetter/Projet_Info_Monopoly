@@ -57,9 +57,9 @@ namespace Projet_Info_Monopoly
 
 
 
-        public bool peutConstruireMaison(Joueur j, Plateau p)
+        public bool peutConstruireMaison(Joueur j)
         {
-            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(p))
+            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau))
             {
                 return true;
             }
@@ -75,10 +75,17 @@ namespace Projet_Info_Monopoly
             return false;
         }
 
-        public override double calculeLoyer(Joueur j)
+        public override double calculeLoyer(Joueur j, Joueur tombeSurCase)
         {
             int nb = this.nbMaisonConstruites;
-            if (nb == 1)
+            /*if (nb == 0)
+            {
+                if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau))
+                {
+                    prixLoyer = prixLoyer * 2;
+                }
+            }*/
+            /*else*/ if (nb == 1)
             {
                 prixLoyer = prix1Maison;
             }

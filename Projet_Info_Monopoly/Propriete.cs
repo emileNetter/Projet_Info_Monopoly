@@ -32,7 +32,7 @@ namespace Projet_Info_Monopoly
 
 
         
-        public virtual double calculeLoyer(Joueur j)
+        public virtual double calculeLoyer(Joueur proprietaire, Joueur TombeSurCase)
         {
             return prixLoyer;
         }
