@@ -9,9 +9,8 @@ namespace Projet_Info_Monopoly
     public class Partie
     {
         public LinkedList<Joueur> joueurs;
-        
         public Plateau plateau;
-        
+
         public Partie()
         {
             joueurs = new LinkedList<Joueur>();
@@ -55,7 +54,7 @@ namespace Projet_Info_Monopoly
             foreach (Joueur j in joueurs)// 
             {
                 int de = j.lanceDe();
-                int aux = de;
+                //int aux = de;
                 if (de > maxDe)
                 {
                     maxDe = de;
@@ -69,40 +68,52 @@ namespace Projet_Info_Monopoly
             joueurs.Remove(jfirst);
             joueurs.AddFirst(jfirst);
 
-  
-        
+
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
             Console.ReadLine();
             Console.Clear();
-  
+            int tmp = nombreJoueursEncoreEnVie();
+            while(tmp>1)
+            {
+                foreach (Joueur j in joueurs)
+                {
+                    int newPosition = j.avancer();
+                    j.position = newPosition;
+                    Console.WriteLine(p.cases[j.position]);
+
+                    if (p.cases[j.position] is Propriete)
+                    {
+                        Propriete prop = p.cases[j.position] as Propriete;
+                        if (prop.estPossedee == false)
+                        {
+                            prop.affiche_info_case(p.cases[j.position]);
+                            j.acheterPropriete(prop);
+                        }
+                        else
+                        {
+                            j.paye_loyer(prop, this);
+                        }
+
+                    }
+
+
+                }
+            }
+            
+        }
+
+        public int nombreJoueursEncoreEnVie()
+        {
+            int nb = 0;
 
             foreach(Joueur j in joueurs)
             {
-                int newPosition= j.avancer();
-                j.position = newPosition;
-                Console.WriteLine(p.cases[j.position]);
-                
-                if (p.cases[j.position] is Propriete )
+                if(j.statut == Joueur.statutJoueur.vivant || j.statut == Joueur.statutJoueur.enPrison)
                 {
-                    Propriete prop =  p.cases[j.position] as Propriete;
-                    if (prop.estPossedee == false)
-                    {
-                        prop.affiche_info_case(p.cases[j.position]);
-                        j.acheterPropriete(prop);
-                    }
-                    else
-                    {
-                        j.paye_loyer(prop, this);
-                    }
-                    
+                    nb++;
                 }
-
-                
-
-
-
-
             }
+            return nb;
         }
 
     }

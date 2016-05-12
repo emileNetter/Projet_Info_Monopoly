@@ -15,8 +15,8 @@ namespace Projet_Info_Monopoly
         public string nom_joueur { get; set; }
         private double argent { get; set; } // argent du joueur (initialisé à 1500)
         public int position { get; set; } // la position du joueur sur le plateau
-        public bool estEnPrison { get; set; }
-        public bool estMort { get; set; }
+        public enum statutJoueur { vivant, enPrison, perdu};
+        public statutJoueur statut;
         private LinkedList<Cartes> cartesDuJoueur; // 
         public LinkedList<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
@@ -30,7 +30,8 @@ namespace Projet_Info_Monopoly
             position = 0;
             cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
             proprieteDuJoueur = new LinkedList<Propriete>();
-            estEnPrison = false;
+            statut = statutJoueur.vivant;
+            
         }
 
         public void acheterPropriete(Propriete p)
@@ -72,10 +73,10 @@ namespace Projet_Info_Monopoly
                 {
                     if (p.proprietaire == j)
                     {
-                        Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + j.nom_joueur);
+                        Console.WriteLine("Vous devez payer " + p.prixLoyer + " à " + j.nom_joueur);
                         j.argent += p.prixLoyer;
                         this.argent -= p.prixLoyer;
-                        Console.WriteLine(j.nom_joueur + " a désormais" + j.argent);
+                        Console.WriteLine(j.nom_joueur + " a désormais " + j.argent);
                         Console.WriteLine("Vous avez désormais " + this.argent);
                         Console.ReadLine();
                         Console.Clear();
@@ -172,6 +173,7 @@ namespace Projet_Info_Monopoly
             return nbr;
         }
 
+      
     }
 }
 
