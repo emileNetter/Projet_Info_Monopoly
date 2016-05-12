@@ -61,10 +61,10 @@ namespace Projet_Info_Monopoly
                     nomFirstPlayer = j.nom_joueur;
                     jfirst = j;
                 }
-               
+
 
             }
-            
+
             joueurs.Remove(jfirst);
             joueurs.AddFirst(jfirst);
 
@@ -72,8 +72,9 @@ namespace Projet_Info_Monopoly
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
             Console.ReadLine();
             Console.Clear();
+
             int tmp = nombreJoueursEncoreEnVie();
-            while(tmp>1)
+            while (tmp > 1)
             {
                 foreach (Joueur j in joueurs)
                 {
@@ -83,18 +84,6 @@ namespace Projet_Info_Monopoly
 
                     if (p.cases[j.position] is Propriete)
                     {
-<<<<<<< HEAD
-                        j.paye_loyer(prop, this);
-                    }
-                    
-                }
-                else if (p.cases[j.position] is Impot)
-                {
-                    Impot impot = p.cases[j.position] as Impot;
-                    j.payeImpot(impot);
-                }
-                    
-=======
                         Propriete prop = p.cases[j.position] as Propriete;
                         if (prop.estPossedee == false)
                         {
@@ -105,15 +94,26 @@ namespace Projet_Info_Monopoly
                         {
                             j.paye_loyer(prop, this);
                         }
->>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
+
 
                     }
 
-
+                    else if (p.cases[j.position] is Impot)
+                    {
+                        Impot impot = p.cases[j.position] as Impot;
+                        j.payeImpot(impot);
+                    }
                 }
+
+
+
             }
-            
+
+
         }
+            
+            
+        
 
         public int nombreJoueursEncoreEnVie()
         {

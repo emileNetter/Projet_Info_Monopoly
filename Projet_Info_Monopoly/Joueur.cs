@@ -75,8 +75,6 @@ namespace Projet_Info_Monopoly
                     if (p.proprietaire == j)
                     {
 
-                        Console.WriteLine("Vous devez payer " + p.prixLoyer + " à " + j.nom_joueur);
-
                         p.calculeLoyer(j);
                         Console.WriteLine("Vous devez payer" + p.prixLoyer + " à " + j.nom_joueur);
                         j.argent += p.prixLoyer;
@@ -114,15 +112,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-<<<<<<< HEAD
-            int de1 = 1;
-            int de2 = 3;
-=======
-
             int de1 = r.Next(1,7 );
-
             int de2 = r.Next(1,7);
->>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
             int total = de1 + de2;
 
             if (de1 == de2)

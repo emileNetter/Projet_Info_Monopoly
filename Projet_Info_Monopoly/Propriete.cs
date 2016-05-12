@@ -30,10 +30,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
+
         
         public virtual double calculeLoyer(Joueur j)
         {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <jeu>
 	<compagnie prix="150" mul1="4" mul2="10" hyp="75"/>
 	<gare prix="200" t0="25" t1="50" t2="100" t3="200" hyp="100" />
@@ -55,17 +55,14 @@
 		<carte id="22" type="0"/>
 		<carte id="33" type="1"/>
 		<carte id="36" type="0"/>
-<<<<<<< HEAD
+
 		<impot id="4" nom="Impot sur le revenu" prix="200"/>
 		<impot id="38" nom="Taxe de luxe" prix="100"/>
 		<compagnie id="12" nom="Campagne de distribution d'electricite" />
 		<compagnie id="28" nom="Campagne de distribution des eaux" />
-=======
-		<taxe id="4" nom="Impôts sur le revenu" prix="200"/>
-		<taxe id="38" nom="Taxe de luxe" prix="100"/>
 		<compagnie id="12" nom="Compagnie de distribution d'electricite" />
 		<compagnie id="28" nom="Compagnie de distribution des eaux" />
->>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
+
 	</plateau>
 	<cartes>
 		<paquet type="1" nom="Caisse de Communaute">
