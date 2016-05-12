@@ -57,20 +57,50 @@ namespace Projet_Info_Monopoly
 
         public bool peutConstruireMaison(Joueur j) // il faudrait vérifier que chaque terrain d'u^ne meme couleur comporte le meme nombre de maisons
         {
+            Boolean peutConstruire = false;
             if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau) && j.argent > this.prixMaison)
             {
-                return true;
+                peutConstruire = true;
+                int cpt = 0;
+                while (peutConstruire == true && cpt < j.proprieteDuJoueur.Count)
+                {
+                    Terrain aux = j.proprieteDuJoueur.ElementAt(cpt) as Terrain;
+                    if (aux.Couleur == this.Couleur)
+                    {
+                        if (aux.nbMaisonConstruites != this.nbMaisonConstruites && this.nbMaisonConstruites != aux.nbMaisonConstruites - 1)
+                        {
+                            peutConstruire = false;
+                        }
+                    }
+                    cpt++;
+                }
+                
             }
-            return false;
+            return peutConstruire;
         }
 
             
 
         public bool peutConstruireHotel(Joueur j)
         {
-            if (this.nbMaisonConstruites == 4 && j.argent>this.prixHotel)
-            { return true; }
-            return false;
+            Boolean peutConstruire=false;
+            if (this.nbMaisonConstruites == 4 && j.argent > this.prixHotel)
+            {
+                peutConstruire = true;
+                int cpt = 0;
+                while (peutConstruire == true && cpt < j.proprieteDuJoueur.Count)
+                {
+                    Terrain aux = j.proprieteDuJoueur.ElementAt(cpt) as Terrain;
+                    if (aux.Couleur == this.Couleur)
+                    {
+                        if (aux.nbMaisonConstruites != 4)
+                        {
+                            peutConstruire = false;
+                        }
+                    }
+                }
+            }
+            return peutConstruire;
         }
 
         public override double calculeLoyer(Joueur j, Joueur tombeSurCase)

@@ -208,6 +208,9 @@ namespace Projet_Info_Monopoly
         {
             if (t.peutConstruireMaison(this))
             {
+                
+
+                
                 Console.Clear();
                 Console.WriteLine("Voulez-vous construire une maison sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixMaison);
                 ConsoleKeyInfo c;

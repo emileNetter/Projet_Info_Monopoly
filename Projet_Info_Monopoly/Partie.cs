@@ -78,34 +78,42 @@ namespace Projet_Info_Monopoly
             {
                 foreach (Joueur j in joueurs)
                 {
-                    int newPosition = j.avancer();
-                    j.position = newPosition;
-                    Console.WriteLine(p.cases[j.position]);
-
-                    if (p.cases[j.position] is Propriete)
+                    if (j.statut != Joueur.statutJoueur.perdu)
                     {
-                        Propriete prop = p.cases[j.position] as Propriete;
-                        if (prop.estPossedee == false)
+
+                        int newPosition = j.avancer();
+                        j.position = newPosition;
+                        Console.WriteLine(p.cases[j.position]);
+
+                        if (p.cases[j.position] is Propriete)
                         {
-                            prop.affiche_info_case(p.cases[j.position]);
-                            j.acheterPropriete(prop);
-                        }
-                        else
-                        {
-                            j.paye_loyer(prop, this);
-                        }
+                            Propriete prop = p.cases[j.position] as Propriete;
+                            if (prop.estPossedee == false)
+                            {
+                                prop.affiche_info_case(p.cases[j.position]);
+                                j.acheterPropriete(prop);
+                            }
+                            else
+                            {
+                                j.paye_loyer(prop, this);
+                            }
 
 
+                        }
+
+                        else if (p.cases[j.position] is Impot)
+                        {
+                            Impot impot = p.cases[j.position] as Impot;
+                            j.payeImpot(impot);
+                        }
+                    }
+                    else
+                    {
+                        joueurs.Remove(j);
                     }
 
-                    else if (p.cases[j.position] is Impot)
-                    {
-                        Impot impot = p.cases[j.position] as Impot;
-                        j.payeImpot(impot);
-                    }
                 }
-
-
+                
 
             }
 

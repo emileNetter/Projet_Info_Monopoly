@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 namespace Projet_Info_Monopoly
 {
-    public class Speciales : Cartes
+    public class Speciales //: Cartes
     {
 
     }
