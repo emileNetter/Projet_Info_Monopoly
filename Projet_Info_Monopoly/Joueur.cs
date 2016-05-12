@@ -13,7 +13,7 @@ namespace Projet_Info_Monopoly
     public class Joueur
     {
         public string nom_joueur { get; set; }
-        private double argent { get; set; } // argent du joueur (initialisé à 1500)
+        public double argent { get; set; } // argent du joueur (initialisé à 1500)
         public int position { get; set; } // la position du joueur sur le plateau
         public bool estEnPrison { get; set; }
         public bool estMort { get; set; }
@@ -86,6 +86,14 @@ namespace Projet_Info_Monopoly
             }
         }
 
+        public void payeImpot(Impot impot)
+        {
+            Console.WriteLine("Vous devez payez une taxe de " + impot.prixAPayer);
+            this.argent -= impot.prixAPayer;
+            Console.WriteLine("Il vous reste :" + this.argent);
+        }
+
+
         public int avancer()
         {
             position += lanceDe();
@@ -102,8 +110,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-            int de1 = r.Next(1,7);
-            int de2 = r.Next(1,7);
+            int de1 = 1;
+            int de2 = 3;
             int total = de1 + de2;
 
             if (de1 == de2)

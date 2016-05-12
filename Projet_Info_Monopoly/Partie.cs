@@ -96,6 +96,12 @@ namespace Projet_Info_Monopoly
                     }
                     
                 }
+                else if (p.cases[j.position] is Impot)
+                {
+                    Impot impot = p.cases[j.position] as Impot;
+                    j.payeImpot(impot);
+                }
+                    
 
                 
 

@@ -55,8 +55,8 @@
 		<carte id="22" type="0"/>
 		<carte id="33" type="1"/>
 		<carte id="36" type="0"/>
-		<taxe id="4" nom="Impot sur le revenu" prix="200"/>
-		<taxe id="38" nom="Taxe de luxe" prix="100"/>
+		<impot id="4" nom="Impot sur le revenu" prix="200"/>
+		<impot id="38" nom="Taxe de luxe" prix="100"/>
 		<compagnie id="12" nom="Campagne de distribution d'electricite" />
 		<compagnie id="28" nom="Campagne de distribution des eaux" />
 	</plateau>

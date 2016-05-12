@@ -30,11 +30,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public override string ToString()
-        {
-            string ch = "Vous tombez sur : " + nom_case;
-            return ch;
-        }
+        
         
         public virtual double calculeLoyer(Joueur j)
         {
