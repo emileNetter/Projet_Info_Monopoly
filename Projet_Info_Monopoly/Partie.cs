@@ -9,9 +9,8 @@ namespace Projet_Info_Monopoly
     public class Partie
     {
         public LinkedList<Joueur> joueurs;
-        
         public Plateau plateau;
-        
+
         public Partie()
         {
             joueurs = new LinkedList<Joueur>();
@@ -69,29 +68,22 @@ namespace Projet_Info_Monopoly
             joueurs.Remove(jfirst);
             joueurs.AddFirst(jfirst);
 
-  
-        
+
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
             Console.ReadLine();
             Console.Clear();
-  
-
-            foreach(Joueur j in joueurs)
+            int tmp = nombreJoueursEncoreEnVie();
+            while(tmp>1)
             {
-                int newPosition= j.avancer();
-                j.position = newPosition;
-                Console.WriteLine(p.cases[j.position]);
-                
-                if (p.cases[j.position] is Propriete )
+                foreach (Joueur j in joueurs)
                 {
-                    Propriete prop =  p.cases[j.position] as Propriete;
-                    if (prop.estPossedee == false)
+                    int newPosition = j.avancer();
+                    j.position = newPosition;
+                    Console.WriteLine(p.cases[j.position]);
+
+                    if (p.cases[j.position] is Propriete)
                     {
-                        prop.affiche_info_case(p.cases[j.position]);
-                        j.acheterPropriete(prop);
-                    }
-                    else
-                    {
+<<<<<<< HEAD
                         j.paye_loyer(prop, this);
                     }
                     
@@ -102,13 +94,39 @@ namespace Projet_Info_Monopoly
                     j.payeImpot(impot);
                 }
                     
+=======
+                        Propriete prop = p.cases[j.position] as Propriete;
+                        if (prop.estPossedee == false)
+                        {
+                            prop.affiche_info_case(p.cases[j.position]);
+                            j.acheterPropriete(prop);
+                        }
+                        else
+                        {
+                            j.paye_loyer(prop, this);
+                        }
+>>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
 
-                
+                    }
 
 
-
-
+                }
             }
+            
+        }
+
+        public int nombreJoueursEncoreEnVie()
+        {
+            int nb = 0;
+
+            foreach(Joueur j in joueurs)
+            {
+                if(j.statut == Joueur.statutJoueur.vivant || j.statut == Joueur.statutJoueur.enPrison)
+                {
+                    nb++;
+                }
+            }
+            return nb;
         }
 
     }

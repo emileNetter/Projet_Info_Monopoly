@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Projet_Info_Monopoly
 {
+<<<<<<< HEAD
     public class Impot:Cases
+=======
+    class Impot: Cases
+>>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
     {
         
         public double  prixAPayer { get; set; }
@@ -16,7 +20,14 @@ namespace Projet_Info_Monopoly
             
         }
 
+<<<<<<< HEAD
         
+=======
+        public override string ToString()
+        {
+            return base.ToString() + " Payez 200 euros à la banque";
+        }
+>>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
 
     }
 }

@@ -30,7 +30,10 @@ namespace Projet_Info_Monopoly
 
         }
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
         
         public virtual double calculeLoyer(Joueur j)
         {
@@ -39,6 +42,7 @@ namespace Projet_Info_Monopoly
 
         public void affiche_info_case(Cases c1)
         {
+
             ConsoleKeyInfo c;
 
             Console.WriteLine("\nVoulez-vous voir les caractéristiques de cette carte ? (o/n)");

@@ -19,6 +19,10 @@ namespace Projet_Info_Monopoly
         {
             nom_case = _nom;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
         public override string ToString()
         {
             string ch = "Vous tombez sur : " + nom_case;

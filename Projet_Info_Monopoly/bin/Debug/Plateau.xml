@@ -24,8 +24,8 @@
 		</groupe>
 		<groupe couleur="orange" r="" g="" b="" maison="100">
 			<terrain id="16" nom="Avenue Mozart" t0="14" t1="70" t2="200" t3="550" t4="750" t5="950" hyp="90" prix="180"/>
-			<terrain id="18" nom="Boumlevard Saint-Michel" t0="14" t1="70" t2="200" t3="550" t4="750" t5="950" hyp="90" prix="180"/>
-			<terrain id="19" nom="Place Pligalle" t0="16" t1="80" t2="220" t3="600" t4="800" t5="1000" hyp="100" prix="200"/>
+			<terrain id="18" nom="Boulevard Saint-Michel" t0="14" t1="70" t2="200" t3="550" t4="750" t5="950" hyp="90" prix="180"/>
+			<terrain id="19" nom="Place Pigalle" t0="16" t1="80" t2="220" t3="600" t4="800" t5="1000" hyp="100" prix="200"/>
 		</groupe>
 		<groupe couleur="rose" r="" g="" b="" maison="100">
 			<terrain id="11" nom="Boulevard de la Villette" t0="10" t1="50" t2="150" t3="450" t4="625" t5="750" hyp="70" prix="140"/>
@@ -38,7 +38,7 @@
 			<terrain id="9" nom="Avenue de la Republique" t0="8" t1="40" t2="100" t3="300" t4="450" t5="600" hyp="60" prix="120"/>
 		</groupe>
 		<groupe couleur="marron" r="" g="" b="" maison="50">
-			<terrain id="1" nom="Boulvard de Belleville" t0="2" t1="10" t2="30" t3="90" t4="160" t5="250" hyp="30" prix="60"/>
+			<terrain id="1" nom="Boulevard de Belleville" t0="2" t1="10" t2="30" t3="90" t4="160" t5="250" hyp="30" prix="60"/>
 			<terrain id="3" nom="Rue Lecourbe" t0="4" t1="20" t2="60" t3="180" t4="320" t5="450" hyp="30" prix="60"/>
 		</groupe>
 		<gare id="5" nom="Gare Montparnasse" />
@@ -55,10 +55,17 @@
 		<carte id="22" type="0"/>
 		<carte id="33" type="1"/>
 		<carte id="36" type="0"/>
+<<<<<<< HEAD
 		<impot id="4" nom="Impot sur le revenu" prix="200"/>
 		<impot id="38" nom="Taxe de luxe" prix="100"/>
 		<compagnie id="12" nom="Campagne de distribution d'electricite" />
 		<compagnie id="28" nom="Campagne de distribution des eaux" />
+=======
+		<taxe id="4" nom="Impôts sur le revenu" prix="200"/>
+		<taxe id="38" nom="Taxe de luxe" prix="100"/>
+		<compagnie id="12" nom="Compagnie de distribution d'electricite" />
+		<compagnie id="28" nom="Compagnie de distribution des eaux" />
+>>>>>>> 8a16a6a69149ce5e7c412f2576961ae5d71505ba
 	</plateau>
 	<cartes>
 		<paquet type="1" nom="Caisse de Communaute">
