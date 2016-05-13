@@ -10,16 +10,23 @@ using System.Linq;
 using System.Text;
 namespace Projet_Info_Monopoly
 {
-    public class Cartes
+    public abstract class Cartes
     {
-        protected int numeroCarte;
-        protected string typeCarte;
+        public string nomCarte;
+        public enum typeCarte { communaute, chance }
+        public typeCarte type { get; set; }
 
-        public Cartes(int num,string type)
+        public Cartes(typeCarte t, string nom)
         {
-            numeroCarte = num;
-            typeCarte = type;
+            nomCarte = nom;
+            type = t;
+
         }
+
+        public abstract void EffetCarte(Joueur j);
+        
+        
+       
     }
 }
 

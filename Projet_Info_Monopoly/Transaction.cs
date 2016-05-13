@@ -10,8 +10,21 @@ using System.Linq;
 using System.Text;
 namespace Projet_Info_Monopoly
 {
-    public class Payer : Speciales
+    public class Transaction : Cartes
     {
+        public double valeur;
+
+        public Transaction(typeCarte type, string nom, double value):base(type,nom)
+        {
+            valeur = value;
+        }
+
+        public override void EffetCarte(Joueur j)
+        {
+
+            Console.WriteLine("Pas encore fait");
+            Console.ReadLine();
+        }
     }
 }
 

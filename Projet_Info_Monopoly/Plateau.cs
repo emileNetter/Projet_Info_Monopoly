@@ -15,11 +15,15 @@ namespace Projet_Info_Monopoly
     public class Plateau
     {
         public Cases [] cases { get; set; }
+        public List<Cartes> cartesChance {get; set; }
+        public List<Cartes> cartesCommunaute { get; set; }
         
 
         public Plateau()
         {
             cases = new Cases[40];
+        cartesChance = new List<Cartes>();
+        cartesCommunaute = new List<Cartes>();
             generePlateau();
 
             
@@ -33,6 +37,7 @@ namespace Projet_Info_Monopoly
             var groupe = jeu.Descendants("groupe");
             var gares = jeu.Descendants("gare").First();
             var compagnie = jeu.Descendants("compagnie").First();
+            var cartes = doc.Descendants("cartes").First();
 
             foreach (var g in groupe)
             {
@@ -63,8 +68,86 @@ namespace Projet_Info_Monopoly
             cases[10] = new Prison();
             cases[0] = new Depart();
 
-             
+
+             var caseCarte = plateau.Descendants("carte");
+        foreach(var c in caseCarte)
+        {
+            if ((string)c.Attribute("type")=="Communaute")
+            {
+                cases[(int)c.Attribute("id")] = new CasesCommunautes();
+                
+            }
+            else
+            {
+
+                cases[(int)c.Attribute("id")] = new CasesChances();
+            }
         }
+        
+
+        var caisseCom = cartes.Descendants("paquet");
+        
+
+        foreach (var p in caisseCom)
+        {
+            var carte = p.Descendants("carte");
+
+            if ((string)p.Attribute("type")=="Communaute") // creation des cartes communaute
+            {
+                
+                foreach (var c in carte)
+                {
+                    
+
+
+                    if ((string)c.Attribute("type") == "transaction")
+                    {
+                        Transaction nvCarte = new Transaction(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur")); 
+                        cartesCommunaute.Add(nvCarte);
+                    }
+                    
+                    else if ((string)c.Attribute("type") == "deplacement")
+                    {
+                        Deplacement nvCarte = new Deplacement(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
+                        cartesCommunaute.Add(nvCarte);
+                    }
+                    
+                    /*else if ((string)c.Attribute("type") == "libere") TODO 
+                    {
+                        LibereDePrison newCarte = new LibereDePrison(Cartes.typeCarte.communaute, (string)c.Attribute("nom"));
+                        cartesCommunaute(newCarte);
+                    }*/
+                }
+                
+            }
+            else if ((string )p.Attribute("type") == "Chance") //creation des cartes chance
+            {
+                foreach (var c in carte)
+                {
+                    if ((string)c.Attribute("type") == "argent")
+                    {
+                        Transaction nvCarte = new Transaction(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (double)c.Attribute("valeur"));
+                        cartesChance.Add(nvCarte);
+                    }
+                        else if ((string)c.Attribute("type") == "deplacement")
+                    {
+                        Deplacement nvCarte = new Deplacement(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
+                        cartesChance.Add(nvCarte);
+                    }
+                    /*else if ((string)c.Attribute("type") == "libere")
+                    {
+                        LibereDePrison nvCarte = new LibereDePrison(Cartes.TypeC.chance, (string)c.Attribute("nom")); TODO 
+                        addCartesChance(nvCarte);
+                    }*/
+                    
+                }
+            }
+        }
+        
+    }
+
+             
+        
 
        
     }
