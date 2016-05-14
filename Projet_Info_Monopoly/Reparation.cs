@@ -14,6 +14,7 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
+            base.EffetCarte(j);
             int nbMaison = j.nbMaisonPossedes;
             int nbHotel = j.nbHotelPossedes;
             valeur = 25 * nbMaison + 100 * nbHotel;

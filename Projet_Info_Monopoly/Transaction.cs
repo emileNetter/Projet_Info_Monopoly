@@ -21,11 +21,13 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
+            
             j.argent += valeur;
+            base.EffetCarte(j);
             Console.WriteLine("Vous avez desormais" + j.argent);
         }
-            
-             
+
+       
         
     }
 }

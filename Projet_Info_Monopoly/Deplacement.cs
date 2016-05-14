@@ -24,6 +24,7 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
+            base.EffetCarte(j);
             int anciennePosition=j.position; //on  stocke l'ancienne position du joueur.            
             if (this.mouvement == 0)
             {

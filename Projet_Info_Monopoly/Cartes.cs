@@ -23,7 +23,10 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public abstract void EffetCarte(Joueur j); // methode abstraite qui gère les effets des cartes
+        public virtual void EffetCarte(Joueur j)
+        {
+            Console.WriteLine(nomCarte);
+        }// methode abstraite qui gère les effets des cartes
         
         
        

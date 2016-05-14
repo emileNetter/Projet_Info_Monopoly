@@ -14,6 +14,7 @@ namespace Projet_Info_Monopoly
 
     public override void EffetCarte(Joueur j)
     {
+        base.EffetCarte(j);
         
         if (j.statut ==Joueur.statutJoueur.enPrison)
         {

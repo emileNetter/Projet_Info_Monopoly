@@ -146,7 +146,7 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
             
-            int de1 = r.Next(1,1);
+            int de1 = r.Next(0,0);
             int de2 = r.Next(2,2);
             int total = de1 + de2;
 
