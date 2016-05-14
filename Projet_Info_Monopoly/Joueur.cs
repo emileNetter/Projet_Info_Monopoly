@@ -25,6 +25,7 @@ namespace Projet_Info_Monopoly
         public int nbTourEnPrison;
         public int nbMaisonPossedes;
         public int nbHotelPossedes;
+        public int compteurDouble ;
         public Partie partie;
 
 
@@ -40,7 +41,9 @@ namespace Projet_Info_Monopoly
             statut = statutJoueur.vivant;
             nbTourEnPrison = 0;
             partie = p1;
-            
+            compteurDouble = 0;
+
+
         }
 
         public void acheterPropriete(Propriete p)
@@ -137,19 +140,20 @@ namespace Projet_Info_Monopoly
 
         public int lanceDe()
         {
-            int compteurDouble = 0;
-            int de1 = r.Next(1,7);
-            int de2 = r.Next(1,7);
+            
+            int de1 = r.Next(1,1);
+            int de2 = r.Next(1,1);
             int total = de1 + de2;
 
             if (de1 == de2)
             {
                 Console.WriteLine(nom_joueur + " a fait  un double  " + de1 + " ! " + "(" + 2 * de1 + ")");
-                compteurDouble++;
+                this.compteurDouble++;
             }
             else
             {
                 Console.WriteLine(nom_joueur + " a fait : " + total + " (" + de1 + "+" + de2 + ")");
+                this.compteurDouble = 0;
             }
             dernierLanceDe = total;// on récupere le résultat de lancer de dé en cas de tomber sur une case de type compagnie necessitant de connaitre le lancer de dé afin d'établir le prix du loyer
             return total;

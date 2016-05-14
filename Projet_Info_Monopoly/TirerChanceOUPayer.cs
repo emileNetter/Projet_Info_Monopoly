@@ -14,14 +14,14 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
-            Console.WriteLine("Que faites vous ? 'o' pour payer 'n' pour tirer carte chance");
+            Console.WriteLine("Que faites vous ? 'p' pour payer 't' pour tirer carte chance");
             ConsoleKeyInfo c;
                 do
                 {
                     c = Console.ReadKey();
                 }
-                while (c.KeyChar != 'o' && c.KeyChar != 'n');
-                if (c.KeyChar == 'o')
+                while (c.KeyChar != 'p' && c.KeyChar != 't');
+                if (c.KeyChar == 'p')
                 {
                     j.argent += valeur;
                     Console.WriteLine("Vous avez desormais" + j.argent);

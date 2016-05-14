@@ -73,8 +73,8 @@ namespace Projet_Info_Monopoly
             Console.ReadLine();
             Console.Clear();
 
-            int tmp = nombreJoueursEncoreEnVie();
-            while (tmp > 1)
+            
+            while (nombreJoueursEncoreEnVie())
             {
                 foreach (Joueur j in joueurs)
                 {
@@ -119,34 +119,46 @@ namespace Projet_Info_Monopoly
                            
                         }
                     }
+                   
                     else if (j.statut == Joueur.statutJoueur.vivant)
                     {
-
-                        int newPosition = j.avancer();
-                        j.position = newPosition;
-                        Console.WriteLine(p.cases[j.position]);
-
-                        if (p.cases[j.position] is Propriete)
+                        j.compteurDouble = 0;
+                        do
                         {
-                            Propriete prop = p.cases[j.position] as Propriete;
-                            if (prop.estPossedee == false)
+                            int newPosition = j.avancer();
+                            j.position = newPosition;
+                            Console.WriteLine(p.cases[j.position]);
+
+                            if (p.cases[j.position] is Propriete)
                             {
-                                prop.affiche_info_case(p.cases[j.position]);
-                                j.acheterPropriete(prop);
-                            }
-                            else
-                            {
-                                j.paye_loyer(prop, this);
+                                Propriete prop = p.cases[j.position] as Propriete;
+                                if (prop.estPossedee == false)
+                                {
+                                    prop.affiche_info_case(p.cases[j.position]);
+                                    j.acheterPropriete(prop);
+                                }
+                                else
+                                {
+                                    j.paye_loyer(prop, this);
+                                }
+
+
                             }
 
+                            else if (p.cases[j.position] is Impot)
+                            {
+                                Impot impot = p.cases[j.position] as Impot;
+                                j.payeImpot(impot);
+                            }
+                        }
+                        while (j.compteurDouble > 0 && j.compteurDouble < 2);
+                        if (j.compteurDouble == 2)
+                        {
+                            j.statut = Joueur.statutJoueur.enPrison;
+                            Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART");
 
                         }
-
-                        else if (p.cases[j.position] is Impot)
-                        {
-                            Impot impot = p.cases[j.position] as Impot;
-                            j.payeImpot(impot);
-                        }
+                        
                     }
                     else
                     {
@@ -161,21 +173,26 @@ namespace Projet_Info_Monopoly
 
         }
             
-            
 
-
-        public int nombreJoueursEncoreEnVie()
+        public bool nombreJoueursEncoreEnVie()
         {
             int nb = 0;
 
             foreach(Joueur j in joueurs)
             {
-                if(j.statut == Joueur.statutJoueur.vivant || j.statut == Joueur.statutJoueur.enPrison)
+                if(j.statut != Joueur.statutJoueur.perdu)
                 {
                     nb++;
                 }
             }
-            return nb;
+            if (nb > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
