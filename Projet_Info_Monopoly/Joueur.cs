@@ -66,6 +66,8 @@ namespace Projet_Info_Monopoly
                     this.proprieteDuJoueur.Add(p);
                     this.argent -= p.prixAchat;
                     Console.WriteLine("Il vous reste {0} euros.", this.argent);
+                    Console.ReadLine();
+                    Console.Clear();
                     //this.addCard(carte qui correspond à la propriete)
                 }
 
@@ -73,6 +75,7 @@ namespace Projet_Info_Monopoly
             else if (this.argent < p.prixAchat)
             {
                 Console.WriteLine("Vous n'avez pas assez d'argent pour acheter cette propriété");
+                Console.ReadLine();
                 Console.Clear();
             }
 
@@ -95,10 +98,10 @@ namespace Projet_Info_Monopoly
                         }
                         else
                         {
-                            Console.WriteLine("Vous devez payer " + loy + " à " + j.nom_joueur);
+                            Console.WriteLine("\nVous devez payer " + loy + " à " + j.nom_joueur);
                             j.argent += loy;
                             this.argent -= loy;
-                            Console.WriteLine(j.nom_joueur + " a désormais " + j.argent);
+                            Console.WriteLine("\n" +j.nom_joueur + " a désormais " + j.argent);
                             Console.WriteLine("Vous avez désormais " + this.argent);
                             Console.ReadLine();
                             Console.Clear();
@@ -117,11 +120,13 @@ namespace Projet_Info_Monopoly
             }
             else
             {
-                Console.WriteLine("Vous devez payez une taxe de " + impot.prixAPayer);
+                Console.WriteLine("\nVous devez payez une taxe de " + impot.prixAPayer);
                 this.argent -= impot.prixAPayer;
                 Console.WriteLine("Il vous reste : " + this.argent);
+                
             }
-            
+            Console.ReadLine();
+            Console.Clear();
         }
 
 
@@ -141,14 +146,14 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             
-            int de1 = r.Next(1,1);
-            int de2 = r.Next(1,1);
+            int de1 = r.Next(1,7);
+            int de2 = r.Next(1,7);
             int total = de1 + de2;
 
             if (de1 == de2)
             {
                 Console.WriteLine(nom_joueur + " a fait  un double  " + de1 + " ! " + "(" + 2 * de1 + ")");
-                this.compteurDouble++;
+                this.compteurDouble = 1;
                 if (this.compteurDouble == 3)
                 {
                     Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
@@ -158,7 +163,7 @@ namespace Projet_Info_Monopoly
             else
             {
                 Console.WriteLine(nom_joueur + " a fait : " + total + " (" + de1 + "+" + de2 + ")");
-                this.compteurDouble = 0;
+                this.compteurDouble = -1;
             }
             dernierLanceDe = total;// on récupere le résultat de lancer de dé en cas de tomber sur une case de type compagnie necessitant de connaitre le lancer de dé afin d'établir le prix du loyer
             return total;
@@ -292,6 +297,12 @@ namespace Projet_Info_Monopoly
                 l.Add(c);
                 c.EffetCarte(this);
             }
+        }
+
+        public void infoJoueur()
+        {
+            Console.Clear();
+            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent);
         }
       
     }

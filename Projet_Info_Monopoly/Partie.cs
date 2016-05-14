@@ -20,6 +20,9 @@ namespace Projet_Info_Monopoly
         }
         public void partie() // methode qui execute toutes les fonctions nécessaires pour jouer une partie 
         {
+            Console.WriteLine("Vous allez jouer une nouvelle partie de monopoly, appuyez sur entrée pour commencer à jouer.");
+            Console.ReadLine();
+            Console.Clear();
             ajoutJoueur();
             jouer(plateau);
         }
@@ -42,7 +45,8 @@ namespace Projet_Info_Monopoly
 
             }
             while ((i < 2 || nom != "*")&& i<9);
-            
+            Console.Clear();
+            Console.WriteLine("La partie commence ! \n");
         }
 
         public void jouer(Plateau p)
@@ -130,10 +134,13 @@ namespace Projet_Info_Monopoly
                             int newPosition = j.avancer();
                             if(j.compteurDouble==3)
                             {
+                                j.compteurDouble = 0;
                                 break;
                             }
                             j.position = newPosition;
                             Console.WriteLine(p.cases[j.position]);
+
+                           
                             if (j.compteurDouble != 3)
                             {
                                 if (p.cases[j.position] is Propriete)
@@ -143,6 +150,8 @@ namespace Projet_Info_Monopoly
                                     {
                                         prop.affiche_info_case(p.cases[j.position]);
                                         j.acheterPropriete(prop);
+ 
+                                        
                                     }
                                     else
                                     {
@@ -155,8 +164,10 @@ namespace Projet_Info_Monopoly
 
                                 else if (p.cases[j.position] is Impot)
                                 {
+                                    
                                     Impot impot = p.cases[j.position] as Impot;
                                     j.payeImpot(impot);
+   
                                 }
                             }
 
