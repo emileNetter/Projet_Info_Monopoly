@@ -149,6 +149,11 @@ namespace Projet_Info_Monopoly
             {
                 Console.WriteLine(nom_joueur + " a fait  un double  " + de1 + " ! " + "(" + 2 * de1 + ")");
                 this.compteurDouble++;
+                if (this.compteurDouble == 3)
+                {
+                    Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
+                    this.statut = Joueur.statutJoueur.enPrison;
+                }
             }
             else
             {

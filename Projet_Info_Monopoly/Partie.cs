@@ -92,6 +92,7 @@ namespace Projet_Info_Monopoly
                             j.debiter(50);
                             Console.WriteLine("Vous avez payé une amende de 50 euros, vous êtes libéré de prison. Lancez les dés.");
                             j.statut = Joueur.statutJoueur.vivant;
+                            j.avancer();
                         }
                         else if(c.KeyChar == '2')
                         {
@@ -151,13 +152,8 @@ namespace Projet_Info_Monopoly
                                 j.payeImpot(impot);
                             }
                         }
-                        while (j.compteurDouble > 0 && j.compteurDouble < 2);
-                        if (j.compteurDouble == 2)
-                        {
-                            j.statut = Joueur.statutJoueur.enPrison;
-                            Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART");
-
-                        }
+                        while (j.compteurDouble > 0 && j.compteurDouble < 3);
+                        
                         
                     }
                     else
