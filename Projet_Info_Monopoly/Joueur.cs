@@ -274,6 +274,7 @@ namespace Projet_Info_Monopoly
             }
             else
             {
+
                 l.Add(c);
                 c.EffetCarte(this);
             }
