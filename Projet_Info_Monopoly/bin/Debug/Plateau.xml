@@ -68,7 +68,7 @@
 			<carte nom="Erreur de la banque en votre faveur.
 				Recevez 200e" type="transaction" valeur="200" />
 			<carte nom="Recevez votre interet sur l'emprunt a 7%, 25e" type="transaction" valeur="25" />
-			<carte nom="Payez une amende de 10e ou bien tirez une carte chance" type="argent_tirer" valeur="-10" autre="0" />
+			<carte nom="Payez une amende de 10e ou bien tirez une carte chance" type="PayeOUChance" valeur="-10" />
 			<carte nom="Les contributions vous remboursent la somme de 20e" type="transaction" valeur="20" />
 			<carte nom="Payer la note du medecin 50e" type="transaction" valeur="-50"/>
 			<carte nom="Vous avez gagne le deuxieme prix de beaute.
@@ -102,7 +102,7 @@ Versez pour chaque hotel 100e." type="reparation" valeur="25" valeur1="100" />
 			<carte nom="Vous etes impose pour les reparations
 de voirie a raison de:
 40e par maison et
-115e par hotel." type="reparation" maison="-40" hotel="-115" />
+115e par hotel." type="reparation" valeur="40" valeur1="115" />
 			<carte nom="Allez a la gare de Lyon" type="deplacement" dep="0" id="15" />
 			<carte nom="Amende pour exces de vitesse: 15e." type="transaction" valeur="-15" />
 			<carte nom="Vous avez gagne le prix de mots croises.

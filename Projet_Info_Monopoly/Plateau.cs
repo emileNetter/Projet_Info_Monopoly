@@ -105,14 +105,15 @@ namespace Projet_Info_Monopoly
                         Transaction newCarte = new Transaction(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur")); 
                         cartesCommunaute.Add(newCarte);
                     }
-                    else if((string)c.Attribute("type") == "reparation")
-                    {
-                        Reparation newCarte = new Reparation(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur"), (double)c.Attribute("valeur1")); //valeur=prix/Maison, valeur 1=prix/Hotel 
-                        cartesCommunaute.Add(newCarte);
-                    }
+                    
                     else if ((string)c.Attribute("type") == "anniversaire")
                     {
                         Anniveraire newCarte = new Anniveraire(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur")); 
+                        cartesCommunaute.Add(newCarte);
+                    }
+                    else if ((string)c.Attribute("type") == "PayeOUChance")
+                    {
+                        TirerChanceOUPayer newCarte = new TirerChanceOUPayer(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur"));
                         cartesCommunaute.Add(newCarte);
                     }
                     else if ((string)c.Attribute("type") == "deplacement")
@@ -137,6 +138,11 @@ namespace Projet_Info_Monopoly
                     {
                         Transaction nvCarte = new Transaction(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (double)c.Attribute("valeur"));
                         cartesChance.Add(nvCarte);
+                    }
+                    else if ((string)c.Attribute("type") == "reparation")
+                    {
+                        Reparation newCarte = new Reparation(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (double)c.Attribute("valeur"), (double)c.Attribute("valeur1")); //valeur=prix/Maison, valeur 1=prix/Hotel 
+                        cartesChance.Add(newCarte);
                     }
                         else if ((string)c.Attribute("type") == "deplacement")
                     {
