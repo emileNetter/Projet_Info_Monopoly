@@ -80,6 +80,7 @@ namespace Projet_Info_Monopoly
                 {
                     if (j.statut == Joueur.statutJoueur.enPrison)
                     {
+                        j.position = 10;
                         ConsoleKeyInfo c;
                         Console.WriteLine("Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
                         do
@@ -124,9 +125,13 @@ namespace Projet_Info_Monopoly
                     else if (j.statut == Joueur.statutJoueur.vivant)
                     {
                         j.compteurDouble = 0;
-                        do
+                        while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
                         {
                             int newPosition = j.avancer();
+                            if(j.compteurDouble==3)
+                            {
+                                break;
+                            }
                             j.position = newPosition;
                             Console.WriteLine(p.cases[j.position]);
                             if (j.compteurDouble != 3)
@@ -161,10 +166,9 @@ namespace Projet_Info_Monopoly
                                 j.statut = Joueur.statutJoueur.enPrison;
                             }
                         }
-                        while (j.compteurDouble > 0 && j.compteurDouble < 3);
-                        
-                        
+                            
                     }
+                       
                     else
                     {
                         joueurs.Remove(j);
