@@ -24,7 +24,7 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
-            int anciennePosition=j.position; //on stocke l'ancienne position du joueur.            
+            int anciennePosition=j.position; //on  stocke l'ancienne position du joueur.            
             if (this.mouvement == 0)
             {
                 j.position = deplacementVersCase; // on va sur la case donnée par la carte grâce à l'id porté par deplacementVersCase

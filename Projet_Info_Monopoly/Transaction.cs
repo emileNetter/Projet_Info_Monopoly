@@ -23,7 +23,7 @@ namespace Projet_Info_Monopoly
         {
 
             Console.WriteLine("Pas encore fait");
-            Console.ReadLine();
+            Console.ReadLine(); 
         }
     }
 }
