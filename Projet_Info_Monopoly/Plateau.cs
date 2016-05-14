@@ -136,8 +136,8 @@ namespace Projet_Info_Monopoly
                 {
                     if ((string)c.Attribute("type") == "argent")
                     {
-                        Transaction nvCarte = new Transaction(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (double)c.Attribute("valeur"));
-                        cartesChance.Add(nvCarte);
+                        Transaction newCarte = new Transaction(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (double)c.Attribute("valeur"));
+                        cartesChance.Add(newCarte);
                     }
                     else if ((string)c.Attribute("type") == "reparation")
                     {
@@ -146,8 +146,8 @@ namespace Projet_Info_Monopoly
                     }
                         else if ((string)c.Attribute("type") == "deplacement")
                     {
-                        Deplacement nvCarte = new Deplacement(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
-                        cartesChance.Add(nvCarte);
+                        Deplacement newCarte = new Deplacement(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
+                        cartesChance.Add(newCarte);
                     }
                     /*else if ((string)c.Attribute("type") == "libere")
                     {

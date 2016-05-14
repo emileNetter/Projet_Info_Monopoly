@@ -138,8 +138,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe()
         {
             int compteurDouble = 0;
-            int de1 = r.Next(1,3);
-            int de2 = r.Next(1,3);
+            int de1 = r.Next(1,7);
+            int de2 = r.Next(1,7);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -273,7 +273,7 @@ namespace Projet_Info_Monopoly
         {
             Cartes c = l[0];
             l.Remove(c);
-            if (c.nomCarte == "Libere de prison")
+            if (c.nomCarte == "Allez en prison.Avancez tous droit en prison.Ne passez pas par la case depart.Ne recevez pas 200e")// ameliorer en cherchant la classe plutot
             {
                 cartesDuJoueur.Add(c);
             }
