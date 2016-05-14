@@ -98,7 +98,7 @@ Si vous passez par la case Depart recevez 200e" type="deplacement" dep="0" id="1
 Si vous passer par la case Depart recevez 200e" type="deplacement" dep="0" id="24" />
 			<carte nom="Faites des reparations dans toutes vos maisons.
 Versez pour chaque maison 25e.
-Versez pour chaque hotel 100e." type="reparation" maison="-25" hotel="-100" />
+Versez pour chaque hotel 100e." type="reparation" valeur="25" valeur1="100" />
 			<carte nom="Vous etes impose pour les reparations
 de voirie a raison de:
 40e par maison et

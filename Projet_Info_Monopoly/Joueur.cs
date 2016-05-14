@@ -17,12 +17,14 @@ namespace Projet_Info_Monopoly
         public int position { get; set; } // la position du joueur sur le plateau
         public enum statutJoueur { vivant, enPrison, perdu};
         public statutJoueur statut;
-        private List<Cartes> cartesDuJoueur; // 
-        public List<Propriete> proprieteDuJoueur;
+        private LinkedList<Cartes> cartesDuJoueur; // 
+        public LinkedList<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
         public Plateau plateau;
         public int dernierLanceDe;
         public int nbTourEnPrison;
+        public int nbMaisonPossedes;
+        public int nbHotelPossedes;
 
 
 
@@ -32,8 +34,8 @@ namespace Projet_Info_Monopoly
             plateau = p;
             argent = 1500;
             position = 0;
-            cartesDuJoueur = new List<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
-            proprieteDuJoueur = new List<Propriete>();
+            cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
+            proprieteDuJoueur = new LinkedList<Propriete>();
             statut = statutJoueur.vivant;
             nbTourEnPrison = 0;
             
@@ -56,7 +58,7 @@ namespace Projet_Info_Monopoly
                     Console.WriteLine(this.nom_joueur + " a acheté {0}", p.nom_case);
                     p.proprietaire = this;
                     p.estPossedee = true;
-                    this.proprieteDuJoueur.Add(p);
+                    this.proprieteDuJoueur.AddLast(p);
                     this.argent -= p.prixAchat;
                     Console.WriteLine("Il vous reste {0} euros.", this.argent);
                     //this.addCard(carte qui correspond à la propriete)
@@ -151,10 +153,9 @@ namespace Projet_Info_Monopoly
             return total;
         }
 
-
         public void addCard(Cartes c)
         {
-            cartesDuJoueur.Add(c);
+            cartesDuJoueur.AddLast(c);
 
         }
         public void removeCard(Cartes c)
@@ -230,6 +231,7 @@ namespace Projet_Info_Monopoly
                 {
                     this.argent -= t.prixMaison;
                     t.nbMaisonConstruites++;
+                    this.nbMaisonPossedes++;
                     Console.WriteLine("Vous avez construit une maison sur {0}", t.nom_case);
                 }
             }
@@ -251,6 +253,7 @@ namespace Projet_Info_Monopoly
                 {
                     this.argent -= t.prixHotel;
                     t.nbHotelConstruits ++;
+                    this.nbHotelPossedes++;
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
                 }
             }
@@ -264,20 +267,6 @@ namespace Projet_Info_Monopoly
             Console.Clear();
         }
 
-        public void tirerUneCarte (List<Cartes> l)
-        {
-            Cartes c = l[0];
-            l.Remove(c);
-            if (c.nomCarte == "Libere de prison")
-            {
-                cartesDuJoueur.Add(c);
-            }
-            else
-            {
-                l.Add(c);
-                c.EffetCarte(this);
-            }
-        }
       
     }
 }

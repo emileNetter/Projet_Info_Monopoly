@@ -102,10 +102,14 @@ namespace Projet_Info_Monopoly
 
                     if ((string)c.Attribute("type") == "transaction")
                     {
-                        Transaction nvCarte = new Transaction(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur")); 
+                        Transaction newCarte = new Transaction(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur")); 
+                        cartesCommunaute.Add(newCarte);
+                    }
+                    else if((string)c.Attribute("type") == "reparation")
+                    {
+                        Reparation nvCarte = new Reparation(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur"), (double)c.Attribute("valeur1")); //valeur=prix/Maison, valeur 1=prix/Hotel 
                         cartesCommunaute.Add(nvCarte);
                     }
-                    
                     else if ((string)c.Attribute("type") == "deplacement")
                     {
                         Deplacement nvCarte = new Deplacement(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
