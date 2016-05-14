@@ -23,6 +23,8 @@ namespace Projet_Info_Monopoly
         public Plateau plateau;
         public int dernierLanceDe;
         public int nbTourEnPrison;
+        public int nbMaisonPossedes;
+        public int nbHotelPossedes;
 
 
 
@@ -151,7 +153,6 @@ namespace Projet_Info_Monopoly
             return total;
         }
 
-
         public void addCard(Cartes c)
         {
             cartesDuJoueur.Add(c);
@@ -230,6 +231,7 @@ namespace Projet_Info_Monopoly
                 {
                     this.argent -= t.prixMaison;
                     t.nbMaisonConstruites++;
+                    this.nbMaisonPossedes++;
                     Console.WriteLine("Vous avez construit une maison sur {0}", t.nom_case);
                 }
             }
@@ -251,6 +253,7 @@ namespace Projet_Info_Monopoly
                 {
                     this.argent -= t.prixHotel;
                     t.nbHotelConstruits ++;
+                    this.nbHotelPossedes++;
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
                 }
             }
