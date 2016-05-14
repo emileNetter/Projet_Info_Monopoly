@@ -78,7 +78,23 @@ namespace Projet_Info_Monopoly
             {
                 foreach (Joueur j in joueurs)
                 {
-                    if (j.statut != Joueur.statutJoueur.perdu)
+                    if (j.statut == Joueur.statutJoueur.enPrison)
+                    {
+                        ConsoleKeyInfo c;
+                        Console.WriteLine("Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
+                        do
+                        {
+                            c = Console.ReadKey();
+                        }
+                        while (c.Key != ConsoleKey.NumPad1 && c.Key != ConsoleKey.NumPad2 && c.Key != ConsoleKey.NumPad3);
+                        if(c.Key == ConsoleKey.NumPad1)
+                        {
+                            j.debiter(50);
+                            Console.WriteLine("Vous avez payé une amende de 50 euros, vous êtes libéré de prison. Lancez les dés.");
+                            j.statut = Joueur.statutJoueur.vivant;
+                        }
+                    }
+                    else if (j.statut == Joueur.statutJoueur.vivant)
                     {
 
                         int newPosition = j.avancer();

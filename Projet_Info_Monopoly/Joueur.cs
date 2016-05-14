@@ -22,6 +22,7 @@ namespace Projet_Info_Monopoly
         private static Random r = new Random();
         public Plateau plateau;
         public int dernierLanceDe;
+        public int nbTourEnPrison;
 
 
 
@@ -34,6 +35,7 @@ namespace Projet_Info_Monopoly
             cartesDuJoueur = new LinkedList<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
             proprieteDuJoueur = new LinkedList<Propriete>();
             statut = statutJoueur.vivant;
+            nbTourEnPrison = 0;
             
         }
 
@@ -157,6 +159,10 @@ namespace Projet_Info_Monopoly
         public void removeCard(Cartes c)
         {
 
+        }
+        public void debiter(int somme)
+        {
+            this.argent -= somme;
         }
 
         public int calculeNombreTerrainCouleur(Terrain t)
