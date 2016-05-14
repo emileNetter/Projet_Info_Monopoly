@@ -86,12 +86,37 @@ namespace Projet_Info_Monopoly
                         {
                             c = Console.ReadKey();
                         }
-                        while (c.Key != ConsoleKey.NumPad1 && c.Key != ConsoleKey.NumPad2 && c.Key != ConsoleKey.NumPad3);
-                        if(c.Key == ConsoleKey.NumPad1)
+                        while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar != '3');
+                        if(c.KeyChar == '1')
                         {
                             j.debiter(50);
                             Console.WriteLine("Vous avez payé une amende de 50 euros, vous êtes libéré de prison. Lancez les dés.");
                             j.statut = Joueur.statutJoueur.vivant;
+                        }
+                        else if(c.KeyChar == '2')
+                        {
+                            //  utiliser la carte libéré de prison
+                            // l'enlever des cartes du joueur
+                            j.statut = Joueur.statutJoueur.vivant;
+                        }
+                        else if (c.KeyChar == '3')
+                        {
+                            Console.WriteLine("Faites un double pour sortir de prison");
+                            Random r = new Random();
+                            int de1 = r.Next(1, 7);
+                            int de2 = r.Next(1, 7);
+                            if(de1 == de2 || j.nbTourEnPrison == 3)
+                            {
+                                Console.WriteLine("Vous êtes libéré de prison");
+                                j.statut = Joueur.statutJoueur.vivant;
+                                j.dernierLanceDe = de1 + de2;
+                                j.position += j.dernierLanceDe;
+                            }
+                            else
+                            {
+                                j.nbTourEnPrison++;
+                            }
+                           
                         }
                     }
                     else if (j.statut == Joueur.statutJoueur.vivant)
@@ -137,7 +162,6 @@ namespace Projet_Info_Monopoly
         }
             
             
-        
 
         public int nombreJoueursEncoreEnVie()
         {
