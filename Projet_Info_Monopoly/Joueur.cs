@@ -25,10 +25,11 @@ namespace Projet_Info_Monopoly
         public int nbTourEnPrison;
         public int nbMaisonPossedes;
         public int nbHotelPossedes;
+        public Partie partie;
 
 
 
-        public Joueur(string nom, Plateau p)
+        public Joueur(string nom, Plateau p, Partie p1)
         {
             nom_joueur = nom;
             plateau = p;
@@ -38,6 +39,7 @@ namespace Projet_Info_Monopoly
             proprieteDuJoueur = new List<Propriete>();
             statut = statutJoueur.vivant;
             nbTourEnPrison = 0;
+            partie = p1;
             
         }
 

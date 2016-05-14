@@ -82,7 +82,7 @@ Ne recevez pas 200e"
 				type="deplacement" dep="0" id="10" />
 			<carte nom="Recevez votre revenu annuel 100e" type="transaction" valeur="100" />
 			<carte nom="C'est votre anniversaire:
-chaque joueur doit vous donner 10e" type="argent_depuis_joueurs" valeur="10"/>
+chaque joueur doit vous donner 10e" type="anniversaire" valeur="10"/>
 			<carte nom="Retournez a Belleville" type="deplacement" dep="0" id="1" />
 			<carte nom="Vous etes libere de prison." type="libere" />
 			<carte nom="Avancez jusqu'a la case depart" type="deplacement" dep="0" id="0" />

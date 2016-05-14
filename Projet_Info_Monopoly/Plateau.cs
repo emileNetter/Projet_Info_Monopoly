@@ -107,13 +107,18 @@ namespace Projet_Info_Monopoly
                     }
                     else if((string)c.Attribute("type") == "reparation")
                     {
-                        Reparation nvCarte = new Reparation(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur"), (double)c.Attribute("valeur1")); //valeur=prix/Maison, valeur 1=prix/Hotel 
-                        cartesCommunaute.Add(nvCarte);
+                        Reparation newCarte = new Reparation(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur"), (double)c.Attribute("valeur1")); //valeur=prix/Maison, valeur 1=prix/Hotel 
+                        cartesCommunaute.Add(newCarte);
+                    }
+                    else if ((string)c.Attribute("type") == "anniversaire")
+                    {
+                        Anniveraire newCarte = new Anniveraire(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (double)c.Attribute("valeur")); 
+                        cartesCommunaute.Add(newCarte);
                     }
                     else if ((string)c.Attribute("type") == "deplacement")
                     {
-                        Deplacement nvCarte = new Deplacement(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
-                        cartesCommunaute.Add(nvCarte);
+                        Deplacement newCarte = new Deplacement(Cartes.typeCarte.communaute, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
+                        cartesCommunaute.Add(newCarte);
                     }
                     
                     /*else if ((string)c.Attribute("type") == "libere") TODO 

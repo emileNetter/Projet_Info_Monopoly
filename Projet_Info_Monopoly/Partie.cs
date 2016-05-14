@@ -35,7 +35,7 @@ namespace Projet_Info_Monopoly
                     nom = Console.ReadLine();
                     if (nom != "*" && nom!="")
                     {
-                        joueurs.AddLast(new Joueur(nom,plateau));
+                        joueurs.AddLast(new Joueur(nom,plateau,this));
                         i++;
                     }
             //penser au try-catch pour gérer les erreurs
