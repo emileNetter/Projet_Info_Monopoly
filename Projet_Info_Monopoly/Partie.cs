@@ -129,27 +129,36 @@ namespace Projet_Info_Monopoly
                             int newPosition = j.avancer();
                             j.position = newPosition;
                             Console.WriteLine(p.cases[j.position]);
-
-                            if (p.cases[j.position] is Propriete)
+                            if (j.compteurDouble != 3)
                             {
-                                Propriete prop = p.cases[j.position] as Propriete;
-                                if (prop.estPossedee == false)
+                                if (p.cases[j.position] is Propriete)
                                 {
-                                    prop.affiche_info_case(p.cases[j.position]);
-                                    j.acheterPropriete(prop);
-                                }
-                                else
-                                {
-                                    j.paye_loyer(prop, this);
+                                    Propriete prop = p.cases[j.position] as Propriete;
+                                    if (prop.estPossedee == false)
+                                    {
+                                        prop.affiche_info_case(p.cases[j.position]);
+                                        j.acheterPropriete(prop);
+                                    }
+                                    else
+                                    {
+                                        j.paye_loyer(prop, this);
+                                    }
+
+
                                 }
 
+
+                                else if (p.cases[j.position] is Impot)
+                                {
+                                    Impot impot = p.cases[j.position] as Impot;
+                                    j.payeImpot(impot);
+                                }
 
                             }
-
-                            else if (p.cases[j.position] is Impot)
+                            else
                             {
-                                Impot impot = p.cases[j.position] as Impot;
-                                j.payeImpot(impot);
+                                Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
+                                j.statut = Joueur.statutJoueur.enPrison;
                             }
                         }
                         while (j.compteurDouble > 0 && j.compteurDouble < 3);
