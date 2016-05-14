@@ -84,7 +84,7 @@ namespace Projet_Info_Monopoly
         public void paye_loyer(Propriete p, Partie partie)
         {
             
-            if (p.estPossedee == true)
+            if (p.estPossedee == true && p.proprietaire != this) // on vérifie que la propriété est possédée et que l'on ne se paye pas soi-même
             {
                 foreach (Joueur j in partie.joueurs)
                 {
@@ -112,7 +112,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void payeImpot(Impot impot)
+        public void payeImpot(Impot impot) // cases taxe de luxe et impôt sur le revenu
         {
             if (impot.prixAPayer > this.argent)
             {
@@ -130,7 +130,7 @@ namespace Projet_Info_Monopoly
         }
 
 
-        public int avancer()
+        public int avancer() // déplace le joueur
         {
             position += lanceDe();
             if (position >= 40)
@@ -143,11 +143,11 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public int lanceDe()
+        public int lanceDe() // jet des dés et vérification des doubles
         {
             
-            int de1 = r.Next(1,7);
-            int de2 = r.Next(1,7);
+            int de1 = r.Next(1,1);
+            int de2 = r.Next(2,2);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -169,21 +169,18 @@ namespace Projet_Info_Monopoly
             return total;
         }
 
-        public void addCard(Cartes c)
+        public void addCard(Cartes c) // ajoute la carte à la main du joueur (libéré de prison)
         {
             cartesDuJoueur.Add(c);
 
         }
-        public void removeCard(Cartes c)
-        {
-
-        }
-        public void debiter(int somme)
+  
+        public void debiter(int somme) // retire une somme à un joueur
         {
             this.argent -= somme;
         }
 
-        public int calculeNombreTerrainCouleur(Terrain t)
+        public int calculeNombreTerrainCouleur(Terrain t) //compte le nombre de terrain d'une couleur
         {
 
             int nbr = 0;
@@ -198,7 +195,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public int calculeNombreGares()
+        public int calculeNombreGares() // nombre de gares
         {
             int nbr = 0;
             {
@@ -213,7 +210,7 @@ namespace Projet_Info_Monopoly
             return nbr;
         }
 
-        public int calculeNombreCompagnies()
+        public int calculeNombreCompagnies() // nombre de compagnies
         {
             int nbr = 0;
             {
@@ -228,13 +225,11 @@ namespace Projet_Info_Monopoly
             return nbr;
         }
 
-        public void construireMaison(Terrain t)
+        public void construireMaison(Terrain t) // permet de construire une maison sur un terrain passé en paramètre
         {
             if (t.peutConstruireMaison(this))
             {
-                
-
-                
+                 
                 Console.Clear();
                 Console.WriteLine("Voulez-vous construire une maison sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixMaison);
                 ConsoleKeyInfo c;
@@ -253,7 +248,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void construireHotel(Terrain t)
+        public void construireHotel(Terrain t) // permet de construire un hotel sur un terrain si l'on a 4 maisons 
         {
             if (t.peutConstruireHotel(this))
             {
@@ -275,7 +270,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void defaiteJoueur()
+        public void defaiteJoueur() // lorsqu'un joueur ne peux plus payer
         {
             Console.WriteLine("Vous n'avez pas assez d'argent pour payer le loyer, vous avez perdu.");
             this.statut = statutJoueur.perdu;
@@ -283,7 +278,7 @@ namespace Projet_Info_Monopoly
             Console.Clear();
         }
 
-        public void tirerUneCarte (List<Cartes> l)
+        public void tirerUneCarte (List<Cartes> l) // tire une carte dans une liste (communauté ou chance) et l'ajoute à la main du joueur si c'est libéré de prison
         {
             Cartes c = l[0];
             l.Remove(c);
@@ -299,7 +294,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void infoJoueur()
+        public void infoJoueur() // permet d'afficher les infos relatives à un joueur
         {
             Console.Clear();
             Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent);

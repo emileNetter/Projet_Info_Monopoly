@@ -40,7 +40,7 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public int nbreTerrainCouleur(Plateau p)
+        public int nbreTerrainCouleur(Plateau p) 
         {
             int nb=0;
                  foreach( Terrain t in p.cases) 
@@ -55,7 +55,7 @@ namespace Projet_Info_Monopoly
         }
 
 
-        public bool peutConstruireMaison(Joueur j) // il faudrait vérifier que chaque terrain d'u^ne meme couleur comporte le meme nombre de maisons
+        public bool peutConstruireMaison(Joueur j) // renvoie true si l'on peut construire une maison et que celles ci sont disposées uniformémént sur les cases
         {
             Boolean peutConstruire = false;
             if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau) && j.argent > this.prixMaison)
@@ -81,7 +81,7 @@ namespace Projet_Info_Monopoly
 
             
 
-        public bool peutConstruireHotel(Joueur j)
+        public bool peutConstruireHotel(Joueur j) // renvoie un booleen pour savoir si un joueur peut construire un hotel
         {
             Boolean peutConstruire=false;
             if (this.nbMaisonConstruites == 4 && j.argent > this.prixHotel)
@@ -103,7 +103,7 @@ namespace Projet_Info_Monopoly
             return peutConstruire;
         }
 
-        public override double calculeLoyer(Joueur j, Joueur tombeSurCase)
+        public override double calculeLoyer(Joueur j, Joueur tombeSurCase) // permet de calculer les prix des différents loyer d'un terrain
         {
             int nb = this.nbMaisonConstruites;
             /*if (nb == 0)
@@ -137,7 +137,7 @@ namespace Projet_Info_Monopoly
         }
 
 
-        public void affiche_info_terrain()
+        public void affiche_info_terrain() // affiche les infos relatives à un terrain
         {
                        
                 Console.Clear();

@@ -26,7 +26,8 @@ namespace Projet_Info_Monopoly
             ajoutJoueur();
             jouer(plateau);
         }
-        public void ajoutJoueur()
+
+        public void ajoutJoueur() // ajoute les joueurs dans une liste à la partie (de 2 à 8)
         {
             string nom;
             int i = 1;
@@ -41,7 +42,7 @@ namespace Projet_Info_Monopoly
                         joueurs.AddLast(new Joueur(nom,plateau,this));
                         i++;
                     }
-            //penser au try-catch pour gérer les erreurs
+            
 
             }
             while ((i < 2 || nom != "*")&& i<9);
@@ -49,7 +50,7 @@ namespace Projet_Info_Monopoly
             Console.WriteLine("La partie commence ! \n");
         }
 
-        public void jouer(Plateau p)
+        public void jouer(Plateau p) // gère les différents etats des joueurs et effectue les actions en conséquence
         {
             int maxDe = 1;
             string nomFirstPlayer = "";
@@ -78,11 +79,11 @@ namespace Projet_Info_Monopoly
             Console.Clear();
 
             
-            while (nombreJoueursEncoreEnVie())
+            while (nombreJoueursEncoreEnVie()) // si le nombre de joueurs en vie est 1 la partie se termine
             {
                 foreach (Joueur j in joueurs)
                 {
-                    if (j.statut == Joueur.statutJoueur.enPrison)
+                    if (j.statut == Joueur.statutJoueur.enPrison) // si le joueur est en prison
                     {
                         j.position = 10;
                         ConsoleKeyInfo c;
@@ -126,7 +127,7 @@ namespace Projet_Info_Monopoly
                         }
                     }
                    
-                    else if (j.statut == Joueur.statutJoueur.vivant)
+                    else if (j.statut == Joueur.statutJoueur.vivant) // si le joueur est vivant
                     {
                         j.compteurDouble = 0;
                         while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
@@ -190,7 +191,7 @@ namespace Projet_Info_Monopoly
         }
             
 
-        public bool nombreJoueursEncoreEnVie()
+        public bool nombreJoueursEncoreEnVie() // true si le nombre de joueurs est supérieur à 1
         {
             int nb = 0;
 

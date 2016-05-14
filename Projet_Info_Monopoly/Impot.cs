@@ -14,7 +14,7 @@ namespace Projet_Info_Monopoly
         
         public double  prixAPayer { get; set; }
 
-        public Impot(string nom_case, double prix):base(nom_case)
+        public Impot(string nom_case, double prix):base(nom_case) //constructeur
         {
             prixAPayer = prix;
             

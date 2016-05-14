@@ -22,8 +22,8 @@ namespace Projet_Info_Monopoly
         public Plateau()
         {
             cases = new Cases[40];
-        cartesChance = new List<Cartes>();
-        cartesCommunaute = new List<Cartes>();
+            cartesChance = new List<Cartes>();
+            cartesCommunaute = new List<Cartes>();
             generePlateau();
 
             
