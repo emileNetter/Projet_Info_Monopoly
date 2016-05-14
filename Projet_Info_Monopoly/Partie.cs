@@ -170,6 +170,24 @@ namespace Projet_Info_Monopoly
                                     j.payeImpot(impot);
    
                                 }
+                                else if (p.cases[j.position] is CasesCommunautes)
+                                {
+                                    j.tirerUneCarte(p.cartesCommunaute);
+
+                                }
+                                else if (p.cases[j.position] is CasesChances)
+                                {
+                                    j.tirerUneCarte(p.cartesChance);
+                                }
+                                else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
+                                {
+                                    Console.WriteLine("Reposez vous ");
+                                }
+                                else if (p.cases[j.position] is Police)
+                                {
+                                    Police police = p.cases[j.position] as Police;
+                                    police.arrestationPolice(j);
+                                }
                             }
 
                             

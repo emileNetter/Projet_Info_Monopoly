@@ -11,5 +11,12 @@ namespace Projet_Info_Monopoly
         public Police():base("Police")
         {
         }
+
+        public void arrestationPolice(Joueur j)
+        {
+            Console.WriteLine("Vous êtes arrétés par la police. Aller en prison, ne passer pas par la case départ");
+            j.position = 10;
+            j.statut = Joueur.statutJoueur.enPrison;
+        }
     }
 }
