@@ -160,11 +160,7 @@ namespace Projet_Info_Monopoly
                                 }
 
                             }
-                            else
-                            {
-                                Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
-                                j.statut = Joueur.statutJoueur.enPrison;
-                            }
+                           
                         }
                             
                     }
