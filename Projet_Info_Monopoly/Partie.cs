@@ -158,13 +158,9 @@ namespace Projet_Info_Monopoly
                                     Impot impot = p.cases[j.position] as Impot;
                                     j.payeImpot(impot);
                                 }
+                            }
 
-                            }
-                            else
-                            {
-                                Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
-                                j.statut = Joueur.statutJoueur.enPrison;
-                            }
+                            
                         }
                             
                     }
