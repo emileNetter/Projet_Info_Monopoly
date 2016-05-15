@@ -298,14 +298,31 @@ namespace Projet_Info_Monopoly
         public void infoJoueur() // permet d'afficher les infos relatives à un joueur
         {
             Console.Clear();
-            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent + "\nListe des cartes possédées");
+            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent );
             int i = 1;
+            int taille=proprieteDuJoueur.Count;
+            int taille1=cartesDuJoueur.Count;
+            if (taille >0)
+            {
+            Console.WriteLine(" Liste des Carte de propriétés :");
             foreach (Propriete p in proprieteDuJoueur)
             {
+                
                 Console.WriteLine(i + ": " + p.nom_case);
+                i++;
             }
-            int taille=proprieteDuJoueur.Count;
-            Console.WriteLine("Voulez vous en savoir plus sur une carte ? Si oui, taper le numéro correspondant, sinon taper 0");
+            }
+            if (taille1 > 0)
+            {
+                foreach (Cartes carte in cartesDuJoueur)
+                {
+                    Console.WriteLine("Carte :");
+                    Console.WriteLine(carte.nomCarte);
+                }
+            }
+
+            
+            Console.WriteLine("Voulez vous en savoir plus sur une carte de Propriété  ? Si oui, taper le numéro correspondant, sinon taper 0");
             int c;
             bool erreur=true;
             do
