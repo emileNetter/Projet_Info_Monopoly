@@ -39,69 +39,44 @@ namespace Projet_Info_Monopoly
             prix1Hotel = h1;
 
         }
-
-        public int nbreTerrainCouleur(Plateau p) 
-        {
-            int nb=0;
-                 foreach( Terrain t in p.cases) 
-                {
-                     if (t.Couleur==this.Couleur)
-                     {
-                         nb++;
-                     }
-                 }
-            return nb;
-                
-        }
-
+ 
 
         public bool peutConstruireMaison(Joueur j) // renvoie true si l'on peut construire une maison et que celles ci sont disposées uniformémént sur les cases
         {
-            Boolean peutConstruire = false;
-            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau) && j.argent > this.prixMaison)
+
+            if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) && this.nbMaisonConstruites < 5)
             {
-                peutConstruire = true;
-                int cpt = 0;
-                while (peutConstruire == true && cpt < j.proprieteDuJoueur.Count)
-                {
-                    Terrain aux = j.proprieteDuJoueur.ElementAt(cpt) as Terrain;
-                    if (aux.Couleur == this.Couleur)
-                    {
-                        if (aux.nbMaisonConstruites != this.nbMaisonConstruites && this.nbMaisonConstruites != aux.nbMaisonConstruites - 1)
-                        {
-                            peutConstruire = false;
-                        }
-                    }
-                    cpt++;
-                }
-                
+                //if (j.MemeNbMaisons(this)== true)
+                //{
+                //    if (j.argent > this.prixMaison)
+                //    {
+                //        this.nbMaisonConstruites++;
+                //        return true;
+                //    }
+                //    else return false;
+                //}
+                //else return false;
+                return true;
             }
-            return peutConstruire;
+            else return false;
         }
 
-            
-
-        public bool peutConstruireHotel(Joueur j) // renvoie un booleen pour savoir si un joueur peut construire un hotel
+        public bool peutConstruireHotel(Joueur j)
         {
-            Boolean peutConstruire=false;
-            if (this.nbMaisonConstruites == 4 && j.argent > this.prixHotel)
-            {
-                peutConstruire = true;
-                int cpt = 0;
-                while (peutConstruire == true && cpt < j.proprieteDuJoueur.Count)
-                {
-                    Terrain aux = j.proprieteDuJoueur.ElementAt(cpt) as Terrain;
-                    if (aux.Couleur == this.Couleur)
+            if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) && this.nbMaisonConstruites == 4)
+            {       
+                    if (j.argent > this.prixHotel)
                     {
-                        if (aux.nbMaisonConstruites != 4)
-                        {
-                            peutConstruire = false;
-                        }
+                        this.nbHotelConstruits++;
+                        return true;
                     }
-                }
+                    else return false;
+
             }
-            return peutConstruire;
+            else return false;
         }
+
+        
 
         public override double calculeLoyer(Joueur j, Joueur tombeSurCase) // permet de calculer les prix des différents loyer d'un terrain
         {

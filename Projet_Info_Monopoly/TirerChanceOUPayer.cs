@@ -25,7 +25,7 @@ namespace Projet_Info_Monopoly
                 if (c.KeyChar == 'p')
                 {
                     j.argent += valeur;
-                    Console.WriteLine("Vous avez desormais" + j.argent);
+                    Console.WriteLine("Vous avez désormais" + j.argent);
                 }
                 else
                 {

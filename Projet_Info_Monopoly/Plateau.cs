@@ -161,10 +161,26 @@ namespace Projet_Info_Monopoly
         
     }
 
-             
-        
+        public int calculePropCouleur(Terrain t) // calcule le nombre de prop de la couleur de la prop qu'on fournit 
+        {
+            int nb = 0;
+            foreach (Cases c in cases)
+            {
+                if (c is Terrain)
+                {
+                    Terrain tmp = c as Terrain;
+                    if (tmp.Couleur == t.Couleur)
+                    {
+                        nb ++;
+                    }
 
-       
+                }
+            }
+            return nb;
+        }
+
+
+
     }
 }
 

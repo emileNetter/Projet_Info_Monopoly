@@ -18,6 +18,7 @@ namespace Projet_Info_Monopoly
             plateau = new Plateau();
             
         }
+
         public void partie() // methode qui execute toutes les fonctions nécessaires pour jouer une partie 
         {
             Console.WriteLine("Vous allez jouer une nouvelle partie de monopoly, appuyez sur entrée pour commencer à jouer.");
@@ -216,7 +217,21 @@ namespace Projet_Info_Monopoly
                                 j.infoJoueur();
                             }
                             
-                           
+                           else if (c.KeyChar == '3')
+                            {
+                                Console.Clear();
+                                Terrain t = p.cases[j.position] as Terrain;
+                                if(t.peutConstruireMaison(j))
+                                {
+                                    Console.Clear();
+                                    j.argent -= t.prixMaison;
+                                    Console.WriteLine("Vous avez construit une maison sur " + t.nom_case);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Vous ne pouvez pas construire");
+                                }
+                            }
                             
                         }
                             

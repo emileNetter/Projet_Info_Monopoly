@@ -27,6 +27,7 @@ namespace Projet_Info_Monopoly
         public int nbHotelPossedes;
         public int compteurDouble ;
         public Partie partie;
+        
 
 
 
@@ -145,9 +146,9 @@ namespace Projet_Info_Monopoly
 
         public int lanceDe() // jet des dés et vérification des doubles
         {
-            
-            int de1 = r.Next(1,7);
-            int de2 = r.Next(1,7);
+
+            int de1 = r.Next(1, 7);
+            int de2 = r.Next(1, 7);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -224,35 +225,29 @@ namespace Projet_Info_Monopoly
             }
             return nbr;
         }
-
-        public void construireMaison(Terrain t) // permet de construire une maison sur un terrain passé en paramètre
+        public bool MemeNbMaisons(Terrain t) // on vérifie ici que toutes les propriétés ont un nombre de maisons adapté à la construction  
         {
-            if (t.peutConstruireMaison(this))
+            bool b = true;
+            int i = 0;
+            while (b == true && i < proprieteDuJoueur.Count)
             {
-                 
-                Console.Clear();
-                Console.WriteLine("Voulez-vous construire une maison sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixMaison);
-                ConsoleKeyInfo c;
-                do
+                Terrain tmp = proprieteDuJoueur.ElementAt(i) as Terrain;
+                if (tmp.Couleur == t.Couleur)
                 {
-                    c = Console.ReadKey();
+                    if (tmp.nbMaisonConstruites != t.nbMaisonConstruites && t.nbMaisonConstruites != tmp.nbMaisonConstruites - 1)
+                    {
+                        b = false;
+                    }
                 }
-                while (c.KeyChar != 'o' && c.KeyChar != 'n');
-                if (c.KeyChar == 'o')
-                {
-                    this.argent -= t.prixMaison;
-                    t.nbMaisonConstruites++;
-                    this.nbMaisonPossedes++;
-                    Console.WriteLine("Vous avez construit une maison sur {0}", t.nom_case);
-                }
+                i++;
             }
-            
+            return b;
         }
+        
 
         public void construireHotel(Terrain t) // permet de construire un hotel sur un terrain si l'on a 4 maisons 
         {
-            if (t.peutConstruireHotel(this))
-            {
+            
                 Console.Clear();
                 Console.WriteLine("Voulez-vous construire un hôtel sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixHotel);
                 ConsoleKeyInfo c;
@@ -268,7 +263,7 @@ namespace Projet_Info_Monopoly
                     this.nbHotelPossedes++;
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
                 }
-            }
+            
         }
 
         public void defaiteJoueur() // lorsqu'un joueur ne peux plus payer
@@ -363,12 +358,10 @@ namespace Projet_Info_Monopoly
                     Console.WriteLine(e);
                 }
             }
-            while (erreur == true);
-                
-                    
-              
+            while (erreur == true);   
                
         }
+
       
     }
 }
