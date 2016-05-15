@@ -83,6 +83,7 @@ namespace Projet_Info_Monopoly
             {
                 foreach (Joueur j in joueurs)
                 {
+                    
                     if (j.statut == Joueur.statutJoueur.enPrison) // si le joueur est en prison
                     {
                         j.position = 10;
@@ -129,9 +130,11 @@ namespace Projet_Info_Monopoly
                    
                     else if (j.statut == Joueur.statutJoueur.vivant) // si le joueur est vivant
                     {
+                        
                         j.compteurDouble = 0;
                         while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
                         {
+                            
                             Console.WriteLine("C'est au tour de " +j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
                             Console.WriteLine(" 1 pour lancer les dés, 2 pour consulter vos informations, 3 pour construire un batiment");
                             ConsoleKeyInfo c;
@@ -142,6 +145,7 @@ namespace Projet_Info_Monopoly
                             while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar!='3');
                             if (c.KeyChar == '1')
                             {
+                                Console.Clear();
                                 int newPosition = j.avancer();
                                 if (j.compteurDouble == 3)
                                 {
@@ -183,6 +187,8 @@ namespace Projet_Info_Monopoly
                                     else if (p.cases[j.position] is CasesCommunautes)
                                     {
                                         j.tirerUneCarte(p.cartesCommunaute);
+                                        Console.ReadLine();
+                                        Console.Clear();
 
                                     }
                                     else if (p.cases[j.position] is CasesChances)
@@ -192,16 +198,21 @@ namespace Projet_Info_Monopoly
                                     else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
                                     {
                                         Console.WriteLine("Reposez vous ");
+                                        Console.ReadLine();
+                                        Console.Clear();
                                     }
                                     else if (p.cases[j.position] is Police)
                                     {
                                         Police police = p.cases[j.position] as Police;
                                         police.arrestationPolice(j);
+                                        Console.ReadLine();
+                                        Console.Clear();
                                     }
                                 }
                             }
                             else if (c.KeyChar == '2')
                             {
+                                Console.Clear();
                                 j.infoJoueur();
                             }
                             

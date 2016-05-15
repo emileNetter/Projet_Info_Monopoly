@@ -120,9 +120,9 @@ namespace Projet_Info_Monopoly
             }
             else
             {
-                Console.WriteLine("\nVous devez payez une taxe de " + impot.prixAPayer);
+                Console.WriteLine("\nVous devez payez une taxe de " + impot.prixAPayer + " euros");
                 this.argent -= impot.prixAPayer;
-                Console.WriteLine("Il vous reste : " + this.argent);
+                Console.WriteLine("Il vous reste : " + this.argent + " euros");
                 
             }
             Console.ReadLine();
@@ -283,7 +283,7 @@ namespace Projet_Info_Monopoly
         {
             Cartes c = l[0];
             l.Remove(c);
-            if (c.nomCarte == "Allez en prison.Avancez tous droit en prison.Ne passez pas par la case depart.Ne recevez pas 200e")// ameliorer en cherchant la classe plutot
+            if (c.nomCarte == "Allez en prison.Avancez tout droit en prison.Ne passez pas par la case depart.Ne recevez pas 200e")// ameliorer en cherchant la classe plutot
             {
                 cartesDuJoueur.Add(c);
             }
@@ -298,17 +298,25 @@ namespace Projet_Info_Monopoly
         public void infoJoueur() // permet d'afficher les infos relatives à un joueur
         {
             Console.Clear();
-            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent );
+            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent + "\nPosition : " + this.position);
             int i = 1;
             int taille=proprieteDuJoueur.Count;
             int taille1=cartesDuJoueur.Count;
             if (taille >0)
             {
-            Console.WriteLine(" Liste des Carte de propriétés :");
+            Console.WriteLine("\nListe des cartes de propriétés :");
             foreach (Propriete p in proprieteDuJoueur)
             {
+                    if (p is Terrain )
+                    {
+                        Terrain t = p as Terrain;
+                        Console.WriteLine(i + ": " + p.nom_case + "   Couleur : " + t.Couleur + "   Nb de Maisons : " + t.nbMaisonConstruites + "   Nb d'hôtels : " + t.nbHotelConstruits);
+                    }
+                    else
+                    {
+                        Console.WriteLine(i + ": " + p.nom_case);
+                    }
                 
-                Console.WriteLine(i + ": " + p.nom_case);
                 i++;
             }
             }
@@ -322,7 +330,7 @@ namespace Projet_Info_Monopoly
             }
 
             
-            Console.WriteLine("Voulez vous en savoir plus sur une carte de Propriété  ? Si oui, taper le numéro correspondant, sinon taper 0");
+            Console.WriteLine("\nVoulez vous en savoir plus sur une carte de Propriété  ? Si oui, taper le numéro correspondant, sinon taper 0");
             int c;
             bool erreur=true;
             do
@@ -346,6 +354,7 @@ namespace Projet_Info_Monopoly
                     }
                     else
                     {
+                        Console.Clear();
                         break;
                     }
                 }
