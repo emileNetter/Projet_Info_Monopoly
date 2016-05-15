@@ -132,64 +132,80 @@ namespace Projet_Info_Monopoly
                         j.compteurDouble = 0;
                         while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
                         {
-                            int newPosition = j.avancer();
-                            if(j.compteurDouble==3)
+                            Console.WriteLine("C'est au tour de " +j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
+                            Console.WriteLine(" 1 pour lancer les dés, 2 pour consulter vos informations, 3 pour construire un batiment");
+                            ConsoleKeyInfo c;
+                            do
                             {
-                                j.compteurDouble = 0;
-                                break;
+                                c = Console.ReadKey();
                             }
-                            j.position = newPosition;
-                            Console.WriteLine(p.cases[j.position]);
+                            while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar!='3');
+                            if (c.KeyChar == '1')
+                            {
+                                int newPosition = j.avancer();
+                                if (j.compteurDouble == 3)
+                                {
+                                    j.compteurDouble = 0;
+                                    break;
+                                }
+                                j.position = newPosition;
+                                Console.WriteLine(p.cases[j.position]);
 
+
+                                if (j.compteurDouble != 3)
+                                {
+                                    if (p.cases[j.position] is Propriete)
+                                    {
+                                        Propriete prop = p.cases[j.position] as Propriete;
+                                        if (prop.estPossedee == false)
+                                        {
+                                            prop.affiche_info_case(p.cases[j.position]);
+                                            j.acheterPropriete(prop);
+
+
+                                        }
+                                        else
+                                        {
+                                            j.paye_loyer(prop, this);
+                                        }
+
+
+                                    }
+
+
+                                    else if (p.cases[j.position] is Impot)
+                                    {
+
+                                        Impot impot = p.cases[j.position] as Impot;
+                                        j.payeImpot(impot);
+
+                                    }
+                                    else if (p.cases[j.position] is CasesCommunautes)
+                                    {
+                                        j.tirerUneCarte(p.cartesCommunaute);
+
+                                    }
+                                    else if (p.cases[j.position] is CasesChances)
+                                    {
+                                        j.tirerUneCarte(p.cartesChance);
+                                    }
+                                    else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
+                                    {
+                                        Console.WriteLine("Reposez vous ");
+                                    }
+                                    else if (p.cases[j.position] is Police)
+                                    {
+                                        Police police = p.cases[j.position] as Police;
+                                        police.arrestationPolice(j);
+                                    }
+                                }
+                            }
+                            else if (c.KeyChar == '2')
+                            {
+                                j.infoJoueur();
+                            }
+                            
                            
-                            if (j.compteurDouble != 3)
-                            {
-                                if (p.cases[j.position] is Propriete)
-                                {
-                                    Propriete prop = p.cases[j.position] as Propriete;
-                                    if (prop.estPossedee == false)
-                                    {
-                                        prop.affiche_info_case(p.cases[j.position]);
-                                        j.acheterPropriete(prop);
- 
-                                        
-                                    }
-                                    else
-                                    {
-                                        j.paye_loyer(prop, this);
-                                    }
-
-
-                                }
-
-
-                                else if (p.cases[j.position] is Impot)
-                                {
-                                    
-                                    Impot impot = p.cases[j.position] as Impot;
-                                    j.payeImpot(impot);
-   
-                                }
-                                else if (p.cases[j.position] is CasesCommunautes)
-                                {
-                                    j.tirerUneCarte(p.cartesCommunaute);
-
-                                }
-                                else if (p.cases[j.position] is CasesChances)
-                                {
-                                    j.tirerUneCarte(p.cartesChance);
-                                }
-                                else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
-                                {
-                                    Console.WriteLine("Reposez vous ");
-                                }
-                                else if (p.cases[j.position] is Police)
-                                {
-                                    Police police = p.cases[j.position] as Police;
-                                    police.arrestationPolice(j);
-                                }
-                            }
-
                             
                         }
                             

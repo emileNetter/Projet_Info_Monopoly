@@ -17,7 +17,7 @@ namespace Projet_Info_Monopoly
         public int position { get; set; } // la position du joueur sur le plateau
         public enum statutJoueur { vivant, enPrison, perdu};
         public statutJoueur statut;
-        private List<Cartes> cartesDuJoueur; // 
+        private List<Cartes> cartesDuJoueur; 
         public List<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
         public Plateau plateau;
@@ -146,8 +146,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
             
-            int de1 = r.Next(0,0);
-            int de2 = r.Next(2,2);
+            int de1 = r.Next(1,7);
+            int de2 = r.Next(1,7);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -246,6 +246,7 @@ namespace Projet_Info_Monopoly
                     Console.WriteLine("Vous avez construit une maison sur {0}", t.nom_case);
                 }
             }
+            
         }
 
         public void construireHotel(Terrain t) // permet de construire un hotel sur un terrain si l'on a 4 maisons 
@@ -297,7 +298,50 @@ namespace Projet_Info_Monopoly
         public void infoJoueur() // permet d'afficher les infos relatives à un joueur
         {
             Console.Clear();
-            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent);
+            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent + "\nListe des cartes possédées");
+            int i = 1;
+            foreach (Propriete p in proprieteDuJoueur)
+            {
+                Console.WriteLine(i + ": " + p.nom_case);
+            }
+            int taille=proprieteDuJoueur.Count;
+            Console.WriteLine("Voulez vous en savoir plus sur une carte ? Si oui, taper le numéro correspondant, sinon taper 0");
+            int c;
+            bool erreur=true;
+            do
+            {
+                try
+                {
+                    c = int.Parse(Console.ReadLine());
+
+                    if (c != 0)
+                    {
+                        if (c < taille+1)
+                        {
+                            Propriete p1 = proprieteDuJoueur[c - 1];
+                            p1.affiche_info_propriete();
+                            erreur = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("L'indice désiré est trop élevé.");
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+            while (erreur == true);
+                
+                    
+              
+               
         }
       
     }

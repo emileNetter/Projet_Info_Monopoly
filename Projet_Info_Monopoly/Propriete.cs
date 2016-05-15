@@ -73,6 +73,28 @@ namespace Projet_Info_Monopoly
             }
         }
 
+        public void affiche_info_propriete()//obligé de créer une nouvelle fonction ne prenant pas en paramètre une case pour afficher les infos des cartes possédées par les joueurs
+        {
+            if (this is Terrain)
+            {
+                Terrain t = this as Terrain;
+                t.affiche_info_terrain();
+            }
+            else if (this is Gare)
+            {
+                Gare g = this as Gare;
+                g.affiche_info_gare();
+            }
+            else if (this is Compagnie)
+            {
+                Compagnie c = this as Compagnie;
+                c.affiche_info_compagnie();
+            }
+        }
+
+        
+
+
         
         
 
