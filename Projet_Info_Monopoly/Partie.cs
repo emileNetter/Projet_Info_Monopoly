@@ -10,10 +10,12 @@ namespace Projet_Info_Monopoly
     {
         public LinkedList<Joueur> joueurs;
         public Plateau plateau;
+        
 
         public Partie()
         {
             joueurs = new LinkedList<Joueur>();
+            
             
             plateau = new Plateau();
             
@@ -53,7 +55,7 @@ namespace Projet_Info_Monopoly
 
         public void jouer(Plateau p) // gère les différents etats des joueurs et effectue les actions en conséquence
         {
-            int maxDe = 1;
+            int maxDe = 0;
             string nomFirstPlayer = "";
             Joueur jfirst = null;
 
@@ -114,8 +116,10 @@ namespace Projet_Info_Monopoly
                             Random r = new Random();
                             int de1 = r.Next(1, 7);
                             int de2 = r.Next(1, 7);
+                            Console.WriteLine("Dé 1 : " +de1 + "\nDé2 : " +de2);
                             if(de1 == de2 || j.nbTourEnPrison == 3)
                             {
+                                Console.WriteLine("C'est un double!");
                                 Console.WriteLine("Vous êtes libéré de prison");
                                 j.statut = Joueur.statutJoueur.vivant;
                                 j.dernierLanceDe = de1 + de2;
@@ -123,6 +127,7 @@ namespace Projet_Info_Monopoly
                             }
                             else
                             {
+                                Console.WriteLine("+Dommage, réessayez au prochain tour");
                                 j.nbTourEnPrison++;
                             }
                            
@@ -220,7 +225,28 @@ namespace Projet_Info_Monopoly
                            else if (c.KeyChar == '3')
                             {
                                 Console.Clear();
-                                Terrain t = p.cases[j.position] as Terrain;
+                               int i=1;
+                               List<Terrain> constructionPossibleMaisons= new List<Terrain>();
+                               List<Terrain> constructionPossibleHotels= new List<Terrain>();
+                                foreach (Terrain t in j.proprieteDuJoueur)
+                                {
+                                    if (t.peutConstruireMaison(j))
+                                    {
+                                        constructionPossibleMaisons.Add(t);
+                                        i++;
+                                    }
+                                    else if (t.peutConstruireHotel(j))
+                                    {
+                                        constructionPossibleHotels.Add(t);
+                                        i++;
+                                    }
+                                    
+                                }
+                                PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
+
+                                
+
+                                /*Terrain t = p.cases[j.position] as Terrain;
                                 if(t.peutConstruireMaison(j))
                                 {
                                     Console.Clear();
@@ -230,7 +256,7 @@ namespace Projet_Info_Monopoly
                                 else
                                 {
                                     Console.WriteLine("Vous ne pouvez pas construire");
-                                }
+                                }*/
                             }
                             
                         }
@@ -269,6 +295,109 @@ namespace Projet_Info_Monopoly
             else
             {
                 return false;
+            }
+        }
+
+        public void PropositionConstructionBatiment(Joueur j, List<Terrain> Maisons, List<Terrain> Hotels)
+        {
+            int taille = Maisons.Count;
+            int taille1=Hotels.Count;
+            int i=1;
+            if (taille > 0)
+            {
+                Console.WriteLine("Maisons :");
+                foreach (Terrain t in Maisons)
+                {
+                    Console.WriteLine(i + " :\n  " + t.nom_case + " (" + t.Couleur + ")");
+                    i++;
+                }
+                Console.WriteLine("\nVoulez vous construire une maison sur un terrain  ? Si oui, taper le numéro correspondant, sinon taper 0");
+
+                int c;
+                bool erreur = true;
+                do
+                {
+                    try
+                    {
+                        c = int.Parse(Console.ReadLine());
+
+                        if (c != 0)
+                        {
+                            if (c < taille + 1)
+                            {
+                                Terrain t1 = Maisons[c - 1];
+                                j.construireMaison(t1);
+                                erreur = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("L'indice désiré est trop élevé.");
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                while (erreur == true);
+            }
+            else
+            {
+                Console.WriteLine("Vous n'avez aucune propriété permettant la construction de maisons.");
+            }
+        
+        if (taille1 > 0)
+            {
+                Console.WriteLine("Hotels :");
+                foreach (Terrain t in Hotels)
+                {
+                    Console.WriteLine(i + " :/n  " + t.nom_case + " (" + t.Couleur + ")");
+                }
+                Console.WriteLine("\nVoulez vous construire un hotel sur un terrain  ? Si oui, taper le numéro correspondant, sinon taper 0");
+
+                int c;
+                bool erreur = true;
+                do
+                {
+                    try
+                    {
+                        c = int.Parse(Console.ReadLine());
+
+                        if (c != 0)
+                        {
+                            if (c < taille + 1)
+                            {
+                                Terrain t2 = Hotels[c - 1];
+                                j.construireHotel(t2);
+                                erreur = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("L'indice désiré est trop élevé.");
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                while (erreur == true);
+            }
+            else
+            {
+                Console.WriteLine("Vous n'avez aucune propriété permettant la construction d'hotels.");
             }
         }
 

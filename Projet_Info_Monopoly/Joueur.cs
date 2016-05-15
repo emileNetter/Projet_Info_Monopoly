@@ -147,14 +147,14 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
 
-            int de1 = r.Next(1, 7);
-            int de2 = r.Next(1, 7);
+            int de1 = r.Next(0, 0);
+            int de2 = r.Next(1, 1);
             int total = de1 + de2;
 
             if (de1 == de2)
             {
                 Console.WriteLine(nom_joueur + " a fait  un double  " + de1 + " ! " + "(" + 2 * de1 + ")");
-                this.compteurDouble = 1;
+                this.compteurDouble++;
                 if (this.compteurDouble == 3)
                 {
                     Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
@@ -243,26 +243,26 @@ namespace Projet_Info_Monopoly
             }
             return b;
         }
+
+        public void construireMaison(Terrain t)
+        {
+            this.argent -= t.prixMaison;
+            Console.WriteLine("Vous avez construit une maison sur " + t.nom_case);
+            t.nbMaisonConstruites++;
+            this.nbMaisonPossedes++;
+        }
         
 
         public void construireHotel(Terrain t) // permet de construire un hotel sur un terrain si l'on a 4 maisons 
         {
             
                 Console.Clear();
-                Console.WriteLine("Voulez-vous construire un hôtel sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixHotel);
-                ConsoleKeyInfo c;
-                do
-                {
-                    c = Console.ReadKey();
-                }
-                while (c.KeyChar != 'o' && c.KeyChar != 'n');
-                if (c.KeyChar == 'o')
-                {
+                
                     this.argent -= t.prixHotel;
                     t.nbHotelConstruits ++;
                     this.nbHotelPossedes++;
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
-                }
+                
             
         }
 
@@ -290,19 +290,19 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void infoJoueur() // permet d'afficher les infos relatives à un joueur
+        public void infoJoueur() // permet d'afficher les infos relatives à un joueur dans l'option 2 du menu
         {
             Console.Clear();
             Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent + "\nPosition : " + this.position);
             int i = 1;
-            int taille=proprieteDuJoueur.Count;
-            int taille1=cartesDuJoueur.Count;
-            if (taille >0)
+            int taille = proprieteDuJoueur.Count;
+            int taille1 = cartesDuJoueur.Count;
+            if (taille > 0)
             {
-            Console.WriteLine("\nListe des cartes de propriétés :");
-            foreach (Propriete p in proprieteDuJoueur)
-            {
-                    if (p is Terrain )
+                Console.WriteLine("\nListe des cartes de propriétés :");
+                foreach (Propriete p in proprieteDuJoueur)
+                {
+                    if (p is Terrain)
                     {
                         Terrain t = p as Terrain;
                         Console.WriteLine(i + ": " + p.nom_case + "   Couleur : " + t.Couleur + "   Nb de Maisons : " + t.nbMaisonConstruites + "   Nb d'hôtels : " + t.nbHotelConstruits);
@@ -311,9 +311,9 @@ namespace Projet_Info_Monopoly
                     {
                         Console.WriteLine(i + ": " + p.nom_case);
                     }
-                
-                i++;
-            }
+
+                    i++;
+                }
             }
             if (taille1 > 0)
             {
@@ -324,43 +324,51 @@ namespace Projet_Info_Monopoly
                 }
             }
 
-            
-            Console.WriteLine("\nVoulez vous en savoir plus sur une carte de Propriété  ? Si oui, taper le numéro correspondant, sinon taper 0");
-            int c;
-            bool erreur=true;
-            do
+            if (taille > 0 | taille1 > 0)
             {
-                try
+                Console.WriteLine("\nVoulez vous en savoir plus sur une carte de Propriété  ? Si oui, taper le numéro correspondant, sinon taper 0");
+                int c;
+                bool erreur = true;
+                do
                 {
-                    c = int.Parse(Console.ReadLine());
-
-                    if (c != 0)
+                    try
                     {
-                        if (c < taille+1)
+                        c = int.Parse(Console.ReadLine());
+
+                        if (c != 0)
                         {
-                            Propriete p1 = proprieteDuJoueur[c - 1];
-                            p1.affiche_info_propriete();
-                            erreur = false;
+                            if (c < taille + 1)
+                            {
+                                Propriete p1 = proprieteDuJoueur[c - 1];
+                                p1.affiche_info_propriete();
+                                erreur = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("L'indice désiré est trop élevé.");
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("L'indice désiré est trop élevé.");
+                            Console.Clear();
+                            break;
                         }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        Console.Clear();
-                        break;
+                        Console.WriteLine(e);
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                while (erreur == true);
+
             }
-            while (erreur == true);   
-               
+            else
+            {
+                Console.WriteLine("Vous ne possédez aucune propriété pour le moment");
+            }
         }
+        
+
 
       
     }

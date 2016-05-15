@@ -16,6 +16,7 @@ namespace Projet_Info_Monopoly
         public double prixHotel { get; set; }
         public int nbMaisonConstruites { get; set; }
         public int nbHotelConstruits { get; set; }
+        protected double prixLoyernu { get; set; }
         protected double prix1Maison{get;set;}
         protected double prix2Maison { get; set; }
         protected double prix3Maison { get; set; }
@@ -32,6 +33,7 @@ namespace Projet_Info_Monopoly
             nbMaisonConstruites = 0;
             nbHotelConstruits = 0;
             Couleur = c;
+            prixLoyernu = prixL;
             prix1Maison = m1;
             prix2Maison = m2;
             prix3Maison = m3;
@@ -46,17 +48,17 @@ namespace Projet_Info_Monopoly
 
             if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) && this.nbMaisonConstruites < 5)
             {
-                //if (j.MemeNbMaisons(this)== true)
-                //{
-                //    if (j.argent > this.prixMaison)
-                //    {
-                //        this.nbMaisonConstruites++;
-                //        return true;
-                //    }
-                //    else return false;
-                //}
-                //else return false;
-                return true;
+                if (j.MemeNbMaisons(this) == true)
+                {
+                    if (j.argent > this.prixMaison)
+                    {
+
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+                
             }
             else return false;
         }
@@ -81,14 +83,14 @@ namespace Projet_Info_Monopoly
         public override double calculeLoyer(Joueur j, Joueur tombeSurCase) // permet de calculer les prix des différents loyer d'un terrain
         {
             int nb = this.nbMaisonConstruites;
-            /*if (nb == 0)
+            if (nb == 0)
             {
-                if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau))
+                if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this))
                 {
-                    prixLoyer = prixLoyer * 2;
+                    prixLoyer = prixLoyernu * 2;
                 }
-            }*/
-            /*else*/ if (nb == 1)
+            }
+             if (nb == 1)
             {
                 prixLoyer = prix1Maison;
             }
