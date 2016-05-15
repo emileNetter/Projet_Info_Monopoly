@@ -17,7 +17,7 @@ namespace Projet_Info_Monopoly
         public int position { get; set; } // la position du joueur sur le plateau
         public enum statutJoueur { vivant, enPrison, perdu};
         public statutJoueur statut;
-        private List<Cartes> cartesDuJoueur; 
+        public List<Cartes> cartesDuJoueur; 
         public List<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
         public Plateau plateau;
@@ -52,7 +52,7 @@ namespace Projet_Info_Monopoly
             if ((this.argent > p.prixAchat) && p.estPossedee == false)
             {
                 ConsoleKeyInfo c;
-                Console.WriteLine("Souhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_case, p.prixAchat);
+                Console.WriteLine("\nSouhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_case, p.prixAchat);
                 do
                 {
                     c = Console.ReadKey();
@@ -147,7 +147,7 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
 
-            int de1 = r.Next(0, 0);
+            int de1 = r.Next(1, 1);
             int de2 = r.Next(1, 1);
             int total = de1 + de2;
 
