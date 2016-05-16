@@ -39,6 +39,8 @@ namespace Projet_Info_Monopoly
             var compagnie = jeu.Descendants("compagnie").First();
             var cartes = doc.Descendants("cartes").First();
 
+            #region Definition des cases
+
             foreach (var g in groupe)
             {
                 var terrain = g.Descendants("terrain");
@@ -84,6 +86,9 @@ namespace Projet_Info_Monopoly
             }
         }
         
+#endregion
+
+        #region Definition des cartes
 
         var caisseCom = cartes.Descendants("paquet");
         
@@ -122,11 +127,7 @@ namespace Projet_Info_Monopoly
                         cartesCommunaute.Add(newCarte);
                     }
                     
-                    /*else if ((string)c.Attribute("type") == "libere") TODO 
-                    {
-                        LibereDePrison newCarte = new LibereDePrison(Cartes.typeCarte.communaute, (string)c.Attribute("nom"));
-                        cartesCommunaute(newCarte);
-                    }*/
+                    
                 }
                 
             }
@@ -149,17 +150,19 @@ namespace Projet_Info_Monopoly
                         Deplacement newCarte = new Deplacement(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
                         cartesChance.Add(newCarte);
                     }
-                    /*else if ((string)c.Attribute("type") == "libere")
+                    else if ((string)c.Attribute("type") == "libere")
                     {
-                        LibereDePrison nvCarte = new LibereDePrison(Cartes.TypeC.chance, (string)c.Attribute("nom")); TODO 
-                        addCartesChance(nvCarte);
-                    }*/
+                        Libere_Prison newCarte = new Libere_Prison(Cartes.typeCarte.chance, (string)c.Attribute("nom"));
+                        cartesChance.Add(newCarte);
+                    }
                     
                 }
             }
         }
-        
-    }
+
+        #endregion
+
+        }
 
         public int calculePropCouleur(Terrain t) // calcule le nombre de prop de la couleur de la prop qu'on fournit 
         {

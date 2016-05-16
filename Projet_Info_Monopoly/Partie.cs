@@ -86,12 +86,13 @@ namespace Projet_Info_Monopoly
             {
                 foreach (Joueur j in joueurs)
                 {
-                    
+                    #region Execution Joueur en Prison 
                     if (j.statut == Joueur.statutJoueur.enPrison) // si le joueur est en prison
                     {
                         j.position = 10;
                         ConsoleKeyInfo c;
-                        Console.WriteLine("Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
+                        Console.WriteLine("\nC'est au tour de " + j.nom_joueur +" de jouer");
+                        Console.WriteLine("\n Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
                         do
                         {
                             c = Console.ReadKey();
@@ -100,19 +101,30 @@ namespace Projet_Info_Monopoly
                         if(c.KeyChar == '1')
                         {
                             j.debiter(50);
-                            Console.WriteLine("Vous avez payé une amende de 50 euros, vous êtes libéré de prison. Lancez les dés.");
+                            Console.WriteLine("\nVous avez payé une amende de 50 euros, vous êtes libéré de prison. Lancez les dés.");
                             j.statut = Joueur.statutJoueur.vivant;
                             j.avancer();
                         }
-                        else if(c.KeyChar == '2')
+                        else if(c.KeyChar == '2') 
                         {
-                            //  utiliser la carte libéré de prison
-                            // l'enlever des cartes du joueur
-                            j.statut = Joueur.statutJoueur.vivant;
+                            
+                            
+                                if (j.cartesDuJoueur.Count > 0)// on ne peut que posséder 1 seul carte(celle de la prison)
+                                {
+                                    Libere_Prison c1 = j.cartesDuJoueur[0] as Libere_Prison;
+                                    c1.EffetCarte(j);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nVous ne possédez pas la carte");
+                                    break;
+                                }
+                            
+                 
                         }
                         else if (c.KeyChar == '3')
                         {
-                            Console.WriteLine("Faites un double pour sortir de prison");
+                            Console.WriteLine("\nFaites un double pour sortir de prison");
                             Random r = new Random();
                             int de1 = r.Next(1, 7);
                             int de2 = r.Next(1, 7);
@@ -127,13 +139,15 @@ namespace Projet_Info_Monopoly
                             }
                             else
                             {
-                                Console.WriteLine("+Dommage, réessayez au prochain tour");
+                                Console.WriteLine("Dommage, réessayez au prochain tour");
                                 j.nbTourEnPrison++;
                             }
                            
                         }
                     }
-                   
+                    #endregion 
+
+                    #region Execution Joueur vivant
                     else if (j.statut == Joueur.statutJoueur.vivant) // si le joueur est vivant
                     {
                         
@@ -141,7 +155,7 @@ namespace Projet_Info_Monopoly
                         while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
                         {
                             
-                            Console.WriteLine("C'est au tour de " +j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
+                            Console.WriteLine("\nC'est au tour de " +j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
                             Console.WriteLine(" 1 pour lancer les dés, 2 pour consulter vos informations, 3 pour construire un batiment");
                             ConsoleKeyInfo c;
                             do
@@ -258,12 +272,12 @@ namespace Projet_Info_Monopoly
                                     Console.WriteLine("Vous ne pouvez pas construire");
                                 }*/
                             }
-                            
+                    #endregion
                         }
                             
                     }
                        
-                    else
+                    else // si le joueur est mort 
                     {
                         joueurs.Remove(j);
                     }
