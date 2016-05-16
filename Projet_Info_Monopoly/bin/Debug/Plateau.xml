@@ -95,7 +95,7 @@ Si vous passez par la case Depart recevez 200e" type="deplacement" dep="0" id="1
 			<carte nom="La banque vous verse un diviende de 50e" type="transaction" valeur="50" />
 			<carte nom="Payez pour frais de scolarite. 150e" type="transaction" valeur="-150" />
 			<carte nom="Rendez-vous a l'Avenue Henri-Martin.
-Si vous passer par la case Depart recevez 200e" type="deplacement" dep="0" id="24" />
+Si vous passez par la case Depart recevez 200e" type="deplacement" dep="0" id="24" />
 			<carte nom="Faites des réparations dans toutes vos maisons.
 Versez pour chaque maison 25e.
 Versez pour chaque hotel 100e." type="reparation" valeur="25" valeur1="100" />

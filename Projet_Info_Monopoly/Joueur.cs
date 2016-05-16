@@ -66,7 +66,7 @@ namespace Projet_Info_Monopoly
                     p.estPossedee = true;
                     this.proprieteDuJoueur.Add(p);
                     this.argent -= p.prixAchat;
-                    Console.WriteLine("Il vous reste {0} euros.", this.argent);
+                    Console.WriteLine("Il vous reste {0} euros. ", this.argent);
                     Console.ReadLine();
                     Console.Clear();
                     //this.addCard(carte qui correspond à la propriete)
@@ -147,8 +147,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
 
-            int de1 = r.Next(1, 1);
-            int de2 = r.Next(1, 1);
+            int de1 = 1;
+            int de2 = 0;
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -247,7 +247,7 @@ namespace Projet_Info_Monopoly
         public void construireMaison(Terrain t)
         {
             this.argent -= t.prixMaison;
-            Console.WriteLine("Vous avez construit une maison sur " + t.nom_case);
+            Console.WriteLine("Vous avez construit une maison sur " + t.nom_case + "\nIl vous reste " + this.argent + " euros ");
             t.nbMaisonConstruites++;
             this.nbMaisonPossedes++;
         }
@@ -365,6 +365,8 @@ namespace Projet_Info_Monopoly
             else
             {
                 Console.WriteLine("Vous ne possédez aucune propriété pour le moment");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
         

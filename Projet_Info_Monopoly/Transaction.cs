@@ -24,7 +24,7 @@ namespace Projet_Info_Monopoly
             
             j.argent += valeur;
             base.EffetCarte(j);
-            Console.WriteLine("Vous avez desormais" + j.argent);
+            Console.WriteLine("Vous avez desormais " + j.argent);
         }
 
        

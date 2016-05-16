@@ -258,19 +258,7 @@ namespace Projet_Info_Monopoly
                                 }
                                 PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
 
-                                
-
-                                /*Terrain t = p.cases[j.position] as Terrain;
-                                if(t.peutConstruireMaison(j))
-                                {
-                                    Console.Clear();
-                                    j.argent -= t.prixMaison;
-                                    Console.WriteLine("Vous avez construit une maison sur " + t.nom_case);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Vous ne pouvez pas construire");
-                                }*/
+                               
                             }
                     #endregion
                         }
@@ -285,7 +273,12 @@ namespace Projet_Info_Monopoly
                 }
                 
 
-            }
+            }  
+            foreach (Joueur j in joueurs)
+            {
+                Console.WriteLine(j.nom_joueur + " a gagné !! ");
+            }  
+            
 
 
         }
@@ -412,6 +405,8 @@ namespace Projet_Info_Monopoly
             else
             {
                 Console.WriteLine("Vous n'avez aucune propriété permettant la construction d'hotels.");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
 
