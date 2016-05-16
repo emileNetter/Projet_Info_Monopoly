@@ -238,26 +238,46 @@ namespace Projet_Info_Monopoly
                             
                            else if (c.KeyChar == '3')
                             {
-                                Console.Clear();
-                               int i=1;
+                               Console.Clear();
+                               int cpt=0;// des qu'on a un terrain en possesion on change de méthode. Permet de gerer le cas ou l'on possède uniquement des gares, des compagnies ou rien du tout 
                                List<Terrain> constructionPossibleMaisons= new List<Terrain>();
                                List<Terrain> constructionPossibleHotels= new List<Terrain>();
-                                foreach (Terrain t in j.proprieteDuJoueur)
-                                {
-                                    if (t.peutConstruireMaison(j))
-                                    {
-                                        constructionPossibleMaisons.Add(t);
-                                        i++;
-                                    }
-                                    else if (t.peutConstruireHotel(j))
-                                    {
-                                        constructionPossibleHotels.Add(t);
-                                        i++;
-                                    }
-                                    
-                                }
-                                PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
+                               List<Terrain> terrainDuJoueur = new List<Terrain>();
+                               foreach (Propriete prop in j.proprieteDuJoueur)
+                               {
+                                   if (prop is Terrain)
+                                   {
+                                       Terrain t1= prop as Terrain;
+                                       terrainDuJoueur.Add(t1);
+                                   }
+                               }
+                                       foreach (Terrain t in terrainDuJoueur)
+                                       {
+                                           cpt++;// cpt !=0 -> on rentre plus dans le while d'apres et on applique donc la méthode propositionConstructionBatiment
+                                           if (t.peutConstruireMaison(j))
+                                           {
+                                               constructionPossibleMaisons.Add(t);
 
+                                           }
+                                           else if (t.peutConstruireHotel(j))
+                                           {
+                                               constructionPossibleHotels.Add(t);
+
+                                           }
+
+                                       }
+
+                                       PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
+                                   
+                                  
+                                       
+                                   
+                          
+                               /*while (cpt == 0)
+                                       {
+                                           Console.WriteLine("Vous ne possédez pas de propriété permettant la construction de maison et/ou d'hotels");
+                                           break;
+                                       }*/
                                
                             }
                     #endregion

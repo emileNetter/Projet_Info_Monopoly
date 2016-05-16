@@ -147,8 +147,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
 
-            int de1 = 1;
-            int de2 = 0;
+            int de1 = r.Next(1,1);
+            int de2 = r.Next(0,0);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -185,11 +185,15 @@ namespace Projet_Info_Monopoly
         {
 
             int nbr = 0;
-            foreach (Terrain p in proprieteDuJoueur)
+            foreach (Propriete p in proprieteDuJoueur)
             {
-                if (p.Couleur == t.Couleur)
+                if (p is Terrain)
                 {
-                    nbr++;
+                    Terrain t1 = p as Terrain;
+                    if (t1.Couleur == t.Couleur)
+                    {
+                        nbr++;
+                    }
                 }
             }
             return nbr;
@@ -231,16 +235,22 @@ namespace Projet_Info_Monopoly
             int i = 0;
             while (b == true && i < proprieteDuJoueur.Count)
             {
-                Terrain tmp = proprieteDuJoueur.ElementAt(i) as Terrain;
-                if (tmp.Couleur == t.Couleur)
+
+                if (proprieteDuJoueur[i] is Terrain)
                 {
-                    if (tmp.nbMaisonConstruites != t.nbMaisonConstruites && t.nbMaisonConstruites != tmp.nbMaisonConstruites - 1)
+                    Terrain tmp = proprieteDuJoueur[i] as Terrain;
+                    if (tmp.Couleur == t.Couleur)
                     {
-                        b = false;
+                        if (tmp.nbMaisonConstruites != t.nbMaisonConstruites && t.nbMaisonConstruites != tmp.nbMaisonConstruites - 1)
+                        {
+                            b = false;
+                        }
                     }
+                    
                 }
                 i++;
             }
+
             return b;
         }
 
