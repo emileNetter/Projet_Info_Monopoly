@@ -259,7 +259,12 @@ namespace Projet_Info_Monopoly
                 }
                 
 
-            }
+            }  
+            foreach (Joueur j in joueurs)
+            {
+                Console.WriteLine(j.nom_joueur + " a gagné !! ");
+            }  
+            
 
 
         }
