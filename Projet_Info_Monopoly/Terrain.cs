@@ -46,7 +46,7 @@ namespace Projet_Info_Monopoly
         public bool peutConstruireMaison(Joueur j) // renvoie true si l'on peut construire une maison et que celles ci sont disposées uniformémént sur les cases
         {
 
-            if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) && this.nbMaisonConstruites < 5)
+            if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) & this.nbMaisonConstruites < 5 & this.nbMaisonConstruites!=4 & this.nbHotelConstruits==0)//ici 4 maisons sont acceptées donc il faut encore mettre un if !=4
             {
                 if (j.MemeNbMaisons(this) == true)
                 {
@@ -59,6 +59,7 @@ namespace Projet_Info_Monopoly
                 }
                 else return false;
                 
+                
             }
             else return false;
         }
@@ -69,7 +70,7 @@ namespace Projet_Info_Monopoly
             {       
                     if (j.argent > this.prixHotel)
                     {
-                        this.nbHotelConstruits++;
+                        
                         return true;
                     }
                     else return false;

@@ -55,235 +55,29 @@ namespace Projet_Info_Monopoly
 
         public void jouer(Plateau p) // gère les différents etats des joueurs et effectue les actions en conséquence
         {
-            int maxDe = 0;
-            string nomFirstPlayer = "";
-            Joueur jfirst = null;
 
-            foreach (Joueur j in joueurs)// 
-            {
-                int de = j.lanceDe();
-                //int aux = de;
-                if (de > maxDe)
-                {
-                    maxDe = de;
-                    nomFirstPlayer = j.nom_joueur;
-                    jfirst = j;
-                }
-
-
-            }
-
-            joueurs.Remove(jfirst);
-            joueurs.AddFirst(jfirst);
-
-
-            Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
-            Console.ReadLine();
-            Console.Clear();
-
+            whoStart();
             
             while (nombreJoueursEncoreEnVie()) // si le nombre de joueurs en vie est 1 la partie se termine
             {
                 foreach (Joueur j in joueurs)
                 {
-                    #region Execution Joueur en Prison 
+                    
                     if (j.statut == Joueur.statutJoueur.enPrison) // si le joueur est en prison
                     {
-                        j.position = 10;
-                        ConsoleKeyInfo c;
-                        Console.WriteLine("\nC'est au tour de " + j.nom_joueur +" de jouer");
-                        Console.WriteLine("\n Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
-                        do
-                        {
-                            c = Console.ReadKey();
-                        }
-                        while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar != '3');
-                        if(c.KeyChar == '1')
-                        {
-                            j.debiter(50);
-                            Console.WriteLine("\nVous avez payé une amende de 50 euros, vous êtes libéré de prison. Lancez les dés.");
-                            j.statut = Joueur.statutJoueur.vivant;
-                            j.avancer();
-                        }
-                        else if(c.KeyChar == '2') 
-                        {
-                            
-                            
-                                if (j.cartesDuJoueur.Count > 0)// on ne peut que posséder 1 seul carte(celle de la prison)
-                                {
-                                    Libere_Prison c1 = j.cartesDuJoueur[0] as Libere_Prison;
-                                    c1.EffetCarte(j);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("\nVous ne possédez pas la carte");
-                                    break;
-                                }
-                            
-                 
-                        }
-                        else if (c.KeyChar == '3')
-                        {
-                            Console.WriteLine("\nFaites un double pour sortir de prison");
-                            Random r = new Random();
-                            int de1 = r.Next(1, 7);
-                            int de2 = r.Next(1, 7);
-                            Console.WriteLine("Dé 1 : " +de1 + "\nDé2 : " +de2);
-                            if(de1 == de2 || j.nbTourEnPrison == 3)
-                            {
-                                Console.WriteLine("C'est un double!");
-                                Console.WriteLine("Vous êtes libéré de prison");
-                                j.statut = Joueur.statutJoueur.vivant;
-                                j.dernierLanceDe = de1 + de2;
-                                j.position += j.dernierLanceDe;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Dommage, réessayez au prochain tour");
-                                j.nbTourEnPrison++;
-                            }
-                           
-                        }
+                        ExecutionJoueuPrison(j, plateau);
                     }
-                    #endregion 
+                    
 
-                    #region Execution Joueur vivant
+                    
                     else if (j.statut == Joueur.statutJoueur.vivant) // si le joueur est vivant
                     {
-                        
-                        j.compteurDouble = 0;
-                        while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
-                        {
-                            
-                            Console.WriteLine("\nC'est au tour de " +j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
-                            Console.WriteLine(" 1 pour lancer les dés, 2 pour consulter vos informations, 3 pour construire un batiment");
-                            ConsoleKeyInfo c;
-                            do
-                            {
-                                c = Console.ReadKey();
-                            }
-                            while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar!='3');
-                            if (c.KeyChar == '1')
-                            {
-                                Console.Clear();
-                                int newPosition = j.avancer();
-                                if (j.compteurDouble == 3)
-                                {
-                                    j.compteurDouble = 0;
-                                    break;
-                                }
-                                j.position = newPosition;
-                                Console.WriteLine(p.cases[j.position]);
-
-
-                                if (j.compteurDouble != 3)
-                                {
-                                    if (p.cases[j.position] is Propriete)
-                                    {
-                                        Propriete prop = p.cases[j.position] as Propriete;
-                                        if (prop.estPossedee == false)
-                                        {
-                                            prop.affiche_info_case(p.cases[j.position]);
-                                            j.acheterPropriete(prop);
-
-
-                                        }
-                                        else
-                                        {
-                                            j.paye_loyer(prop, this);
-                                        }
-
-
-                                    }
-
-
-                                    else if (p.cases[j.position] is Impot)
-                                    {
-
-                                        Impot impot = p.cases[j.position] as Impot;
-                                        j.payeImpot(impot);
-
-                                    }
-                                    else if (p.cases[j.position] is CasesCommunautes)
-                                    {
-                                        j.tirerUneCarte(p.cartesCommunaute);
-                                        Console.ReadLine();
-                                        Console.Clear();
-
-                                    }
-                                    else if (p.cases[j.position] is CasesChances)
-                                    {
-                                        j.tirerUneCarte(p.cartesChance);
-                                    }
-                                    else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
-                                    {
-                                        Console.WriteLine("Reposez vous ");
-                                        Console.ReadLine();
-                                        Console.Clear();
-                                    }
-                                    else if (p.cases[j.position] is Police)
-                                    {
-                                        Police police = p.cases[j.position] as Police;
-                                        police.arrestationPolice(j);
-                                        Console.ReadLine();
-                                        Console.Clear();
-                                    }
-                                }
-                            }
-                            else if (c.KeyChar == '2')
-                            {
-                                Console.Clear();
-                                j.infoJoueur();
-                            }
-                            
-                           else if (c.KeyChar == '3')
-                            {
-                               Console.Clear();
-                               int cpt=0;// des qu'on a un terrain en possesion on change de méthode. Permet de gerer le cas ou l'on possède uniquement des gares, des compagnies ou rien du tout 
-                               List<Terrain> constructionPossibleMaisons= new List<Terrain>();
-                               List<Terrain> constructionPossibleHotels= new List<Terrain>();
-                               List<Terrain> terrainDuJoueur = new List<Terrain>();
-                               foreach (Propriete prop in j.proprieteDuJoueur)
-                               {
-                                   if (prop is Terrain)
-                                   {
-                                       Terrain t1= prop as Terrain;
-                                       terrainDuJoueur.Add(t1);
-                                   }
-                               }
-                                       foreach (Terrain t in terrainDuJoueur)
-                                       {
-                                           cpt++;// cpt !=0 -> on rentre plus dans le while d'apres et on applique donc la méthode propositionConstructionBatiment
-                                           if (t.peutConstruireMaison(j))
-                                           {
-                                               constructionPossibleMaisons.Add(t);
-
-                                           }
-                                           else if (t.peutConstruireHotel(j))
-                                           {
-                                               constructionPossibleHotels.Add(t);
-
-                                           }
-
-                                       }
-
-                                       PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
-                                   
-                                  
-                                       
-                                   
-                          
-                               /*while (cpt == 0)
-                                       {
-                                           Console.WriteLine("Vous ne possédez pas de propriété permettant la construction de maison et/ou d'hotels");
-                                           break;
-                                       }*/
-                               
-                            }
-                    #endregion
-                        }
-                            
+                        ExecutionJoueurVivant(j, plateau);
                     }
+                    
+                        
+                            
+                    
                        
                     else // si le joueur est mort 
                     {
@@ -335,7 +129,7 @@ namespace Projet_Info_Monopoly
                 Console.WriteLine("Maisons :");
                 foreach (Terrain t in Maisons)
                 {
-                    Console.WriteLine(i + " :\n  " + t.nom_case + " (" + t.Couleur + ")");
+                    Console.WriteLine(i + " :\n  " + t.nom_case + " (" + t.Couleur + ") Prix Maison : "+t.prixMaison);
                     i++;
                 }
                 Console.WriteLine("\nVoulez vous construire une maison sur un terrain  ? Si oui, taper le numéro correspondant, sinon taper 0");
@@ -378,13 +172,14 @@ namespace Projet_Info_Monopoly
             {
                 Console.WriteLine("Vous n'avez aucune propriété permettant la construction de maisons.");
             }
-        
+             i = 1;
         if (taille1 > 0)
             {
                 Console.WriteLine("Hotels :");
                 foreach (Terrain t in Hotels)
                 {
-                    Console.WriteLine(i + " :/n  " + t.nom_case + " (" + t.Couleur + ")");
+                    Console.WriteLine(i + " :\n  " + t.nom_case + " (" + t.Couleur + ") Prix Hotel : "+t.prixHotel);
+                    i++;
                 }
                 Console.WriteLine("\nVoulez vous construire un hotel sur un terrain  ? Si oui, taper le numéro correspondant, sinon taper 0");
 
@@ -430,5 +225,223 @@ namespace Projet_Info_Monopoly
             }
         }
 
+        public void ExecutionJoueurVivant(Joueur j, Plateau p)
+        {
+            j.compteurDouble = 0;
+            while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
+            {
+
+                Console.WriteLine("\nC'est au tour de " + j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
+                Console.WriteLine(" 1 pour lancer les dés, 2 pour consulter vos informations, 3 pour construire un batiment");
+                ConsoleKeyInfo c;
+                do
+                {
+                    c = Console.ReadKey();
+                }
+                while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar != '3');
+                if (c.KeyChar == '1')
+                {
+                    Console.Clear();
+                    int newPosition = j.avancer();
+                    if (j.compteurDouble == 3)
+                    {
+                        j.compteurDouble = 0;
+                        break;
+                    }
+                    j.position = newPosition;
+                    Console.WriteLine(p.cases[j.position]);
+
+
+                    if (j.compteurDouble != 3)
+                    {
+                        if (p.cases[j.position] is Propriete)
+                        {
+                            Propriete prop = p.cases[j.position] as Propriete;
+                            if (prop.estPossedee == false)
+                            {
+                                prop.affiche_info_case(p.cases[j.position]);
+                                j.acheterPropriete(prop);
+
+
+                            }
+                            else
+                            {
+                                j.paye_loyer(prop, this);
+                            }
+
+
+                        }
+
+
+                        else if (p.cases[j.position] is Impot)
+                        {
+
+                            Impot impot = p.cases[j.position] as Impot;
+                            j.payeImpot(impot);
+
+                        }
+                        else if (p.cases[j.position] is CasesCommunautes)
+                        {
+                            j.tirerUneCarte(p.cartesCommunaute);
+                            Console.ReadLine();
+                            Console.Clear();
+
+                        }
+                        else if (p.cases[j.position] is CasesChances)
+                        {
+                            j.tirerUneCarte(p.cartesChance);
+                        }
+                        else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
+                        {
+                            Console.WriteLine("Reposez vous ");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        else if (p.cases[j.position] is Police)
+                        {
+                            Police police = p.cases[j.position] as Police;
+                            police.arrestationPolice(j);
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                    }
+                }
+                else if (c.KeyChar == '2')
+                {
+                    Console.Clear();
+                    j.infoJoueur();
+                }
+
+                else if (c.KeyChar == '3')
+                {
+                    Console.Clear();
+                    List<Terrain> constructionPossibleMaisons = new List<Terrain>();
+                    List<Terrain> constructionPossibleHotels = new List<Terrain>();
+                    List<Terrain> terrainDuJoueur = new List<Terrain>();
+                    foreach (Propriete prop in j.proprieteDuJoueur)
+                    {
+                        if (prop is Terrain)
+                        {
+                            Terrain t1 = prop as Terrain;
+                            terrainDuJoueur.Add(t1);
+                        }
+                    }
+                    foreach (Terrain t in terrainDuJoueur)
+                    {
+                        
+                        if (t.peutConstruireMaison(j))
+                        {
+                            constructionPossibleMaisons.Add(t);
+
+                        }
+                        else if (t.peutConstruireHotel(j))
+                        {
+                            constructionPossibleHotels.Add(t);
+
+                        }
+
+                    }
+
+                    PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
+
+
+
+
+
+                 
+
+                }
+
+            }
+        }
+
+        public void ExecutionJoueuPrison(Joueur j, Plateau p)
+        {
+            j.position = 10;
+            ConsoleKeyInfo c;
+            Console.WriteLine("\nC'est au tour de " + j.nom_joueur + " de jouer");
+            Console.WriteLine("\n Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
+            do
+            {
+                c = Console.ReadKey();
+            }
+            while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar != '3');
+            if (c.KeyChar == '1')
+            {
+                j.debiter(50);
+                Console.WriteLine("\nVous avez payé une amende de 50 euros, vous êtes libéré de prison");
+                j.statut = Joueur.statutJoueur.vivant;
+                ExecutionJoueurVivant(j, plateau);
+            }
+            else if (c.KeyChar == '2')
+            {
+
+
+                if (j.cartesDuJoueur.Count > 0)// on ne peut que posséder 1 seul carte(celle de la prison)
+                {
+                    Libere_Prison c1 = j.cartesDuJoueur[0] as Libere_Prison;
+                    c1.EffetCarte(j);
+                    ExecutionJoueurVivant(j, plateau);
+                }
+                else
+                {
+                    Console.WriteLine("\nVous ne possédez pas la carte");
+                    //break;
+                }
+
+
+            }
+            else if (c.KeyChar == '3')
+            {
+                Console.WriteLine("\nFaites un double pour sortir de prison");
+                Random r = new Random();
+                int de1 = r.Next(1, 7);
+                int de2 = r.Next(1, 7);
+                Console.WriteLine("Dé 1 : " + de1 + "\nDé2 : " + de2);
+                if (de1 == de2 || j.nbTourEnPrison == 3)
+                {
+                    Console.WriteLine("C'est un double!");
+                    Console.WriteLine("Vous êtes libéré de prison");
+                    j.statut = Joueur.statutJoueur.vivant;
+                    ExecutionJoueurVivant(j, plateau);
+                }
+                else
+                {
+                    Console.WriteLine("Dommage, réessayez au prochain tour");
+                    j.nbTourEnPrison++;
+                }
+
+            }
+
+        }
+
+        public void whoStart()
+        {
+            int maxDe = 0;
+            string nomFirstPlayer = "";
+            Joueur jfirst = null;
+
+            foreach (Joueur j in joueurs)// 
+            {
+                int de = j.lanceDe();
+                //int aux = de;
+                if (de > maxDe)
+                {
+                    maxDe = de;
+                    nomFirstPlayer = j.nom_joueur;
+                    jfirst = j;
+                }
+
+
+            }
+
+            joueurs.Remove(jfirst);
+            joueurs.AddFirst(jfirst);
+
+
+            Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
+            Console.ReadLine();
+            Console.Clear();
+        }
     }
 }

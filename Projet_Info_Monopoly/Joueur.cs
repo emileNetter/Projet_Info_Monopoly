@@ -35,7 +35,7 @@ namespace Projet_Info_Monopoly
         {
             nom_joueur = nom;
             plateau = p;
-            argent = 1500;
+            argent = 1800;
             position = 0;
             cartesDuJoueur = new List<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
             proprieteDuJoueur = new List<Propriete>();
@@ -138,6 +138,7 @@ namespace Projet_Info_Monopoly
             {
                 position = position % 40;
                 argent += 200; // pouvoir définir une valeur modifiable depuis le XML
+                Console.WriteLine("\nVous avez franchi la case de départ, vous recevez 200 €");
             }
             return position;
 
@@ -270,6 +271,8 @@ namespace Projet_Info_Monopoly
                 
                     this.argent -= t.prixHotel;
                     t.nbHotelConstruits ++;
+                    t.nbMaisonConstruites = 0;
+                    this.nbMaisonPossedes -= 4;//on enleve 4 maisons forcemment lors de la construction d'un hotel.
                     this.nbHotelPossedes++;
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
                 
