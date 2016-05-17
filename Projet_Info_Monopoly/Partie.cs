@@ -65,7 +65,7 @@ namespace Projet_Info_Monopoly
                     
                     if (j.statut == Joueur.statutJoueur.enPrison) // si le joueur est en prison
                     {
-                        ExecutionJoueuPrison(j, plateau);
+                        ExecutionJoueurPrison(j, plateau);
                     }
                     
 
@@ -344,22 +344,28 @@ namespace Projet_Info_Monopoly
 
                     PropositionConstructionBatiment(j, constructionPossibleMaisons, constructionPossibleHotels);
 
-
-
-
-
-                 
-
                 }
 
             }
         }
 
-        public void ExecutionJoueuPrison(Joueur j, Plateau p)
+        public void ExecutionJoueurPrison(Joueur j, Plateau p)
         {
             j.position = 10;
+            j.nbTourEnPrison++;
+            if (j.nbTourEnPrison == 4)
+            {
+                Console.WriteLine("Vous avez passé 3 tours en prison, payez 50 euros puis vous sortez");
+                j.argent -= 50;
+                Console.WriteLine("Il vous reste " + j.argent);
+                j.statut = Joueur.statutJoueur.vivant;
+                ExecutionJoueurVivant(j, plateau);
+                j.nbTourEnPrison = 0;
+                Console.ReadLine();
+                Console.Clear();
+            }
             ConsoleKeyInfo c;
-            Console.WriteLine("\nC'est au tour de " + j.nom_joueur + " de jouer");
+            Console.WriteLine("\nC'est au tour de " + j.nom_joueur + " de jouer");    
             Console.WriteLine("\n Vous êtes en prison : vous avez 3 choix possibles. Faites 1 pour payer une amende de 50 euros et sortir, 2 pour utiliser une carte sortie de prison et 3 pour tenter de faire un double.");
             do
             {
@@ -368,20 +374,23 @@ namespace Projet_Info_Monopoly
             while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar != '3');
             if (c.KeyChar == '1')
             {
+                Console.Clear();
                 j.debiter(50);
                 Console.WriteLine("\nVous avez payé une amende de 50 euros, vous êtes libéré de prison");
                 j.statut = Joueur.statutJoueur.vivant;
                 ExecutionJoueurVivant(j, plateau);
+                j.nbTourEnPrison = 0;
             }
             else if (c.KeyChar == '2')
             {
+                Console.Clear();
 
-
-                if (j.cartesDuJoueur.Count > 0)// on ne peut que posséder 1 seul carte(celle de la prison)
+                if (j.cartesDuJoueur.Count > 0)// on ne peut que posséder 1 seule carte(celle de la prison)
                 {
                     Libere_Prison c1 = j.cartesDuJoueur[0] as Libere_Prison;
                     c1.EffetCarte(j);
                     ExecutionJoueurVivant(j, plateau);
+                    j.nbTourEnPrison = 0;
                 }
                 else
                 {
@@ -393,22 +402,29 @@ namespace Projet_Info_Monopoly
             }
             else if (c.KeyChar == '3')
             {
+                Console.Clear();
                 Console.WriteLine("\nFaites un double pour sortir de prison");
                 Random r = new Random();
                 int de1 = r.Next(1, 7);
                 int de2 = r.Next(1, 7);
                 Console.WriteLine("Dé 1 : " + de1 + "\nDé2 : " + de2);
-                if (de1 == de2 || j.nbTourEnPrison == 3)
+                if (de1 == de2)
                 {
                     Console.WriteLine("C'est un double!");
                     Console.WriteLine("Vous êtes libéré de prison");
+                    j.nbTourEnPrison = 0;
                     j.statut = Joueur.statutJoueur.vivant;
+                    Console.ReadLine();
+                    Console.Clear();
                     ExecutionJoueurVivant(j, plateau);
+                    
                 }
+
                 else
                 {
                     Console.WriteLine("Dommage, réessayez au prochain tour");
-                    j.nbTourEnPrison++;
+                    Console.ReadLine();
+                    Console.Clear();
                 }
 
             }

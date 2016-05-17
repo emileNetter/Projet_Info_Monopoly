@@ -71,6 +71,10 @@ namespace Projet_Info_Monopoly
                     Console.Clear();
                     //this.addCard(carte qui correspond à la propriete)
                 }
+                else if (c.KeyChar=='n')
+                {
+                    Console.Clear();
+                }
 
             }
             else if (this.argent < p.prixAchat)
@@ -149,7 +153,7 @@ namespace Projet_Info_Monopoly
         {
 
             int de1 = r.Next(1,1);
-            int de2 = r.Next(0,0);
+            int de2 = r.Next(1,1);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -160,6 +164,8 @@ namespace Projet_Info_Monopoly
                 {
                     Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
                     this.statut = Joueur.statutJoueur.enPrison;
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
             else
