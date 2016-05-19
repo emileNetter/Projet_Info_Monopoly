@@ -452,14 +452,14 @@ namespace Projet_Info_Monopoly
                             j.payeImpot(impot);
 
                         }
-                        else if (plateau.cases[j.position] is CasesCommunautes)
+                        else if (plateau.cases[j.position] is CasesCommunaute)
                         {
                             j.tirerUneCarte(plateau.cartesCommunaute);
                             Console.ReadLine();
                             Console.Clear();
 
                         }
-                        else if (plateau.cases[j.position] is CasesChances)
+                        else if (plateau.cases[j.position] is CasesChance)
                         {
                             j.tirerUneCarte(plateau.cartesChance);
                         }

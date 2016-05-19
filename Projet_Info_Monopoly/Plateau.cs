@@ -76,13 +76,13 @@ namespace Projet_Info_Monopoly
         {
             if ((string)c.Attribute("type")=="Communaute")
             {
-                cases[(int)c.Attribute("id")] = new CasesCommunautes();
+                cases[(int)c.Attribute("id")] = new CasesCommunaute();
                 
             }
             else
             {
 
-                cases[(int)c.Attribute("id")] = new CasesChances();
+                cases[(int)c.Attribute("id")] = new CasesChance();
             }
         }
         
