@@ -67,9 +67,8 @@ namespace Projet_Info_Monopoly
                     this.proprieteDuJoueur.Add(p);
                     this.argent -= p.prixAchat;
                     Console.WriteLine("Il vous reste {0} euros. ", this.argent);
-                    Console.ReadLine();
-                    Console.Clear();
-                    //this.addCard(carte qui correspond à la propriete)
+                    
+                    
                 }
                 else if (c.KeyChar=='n')
                 {
@@ -80,10 +79,18 @@ namespace Projet_Info_Monopoly
             else if (this.argent < p.prixAchat)
             {
                 Console.WriteLine("Vous n'avez pas assez d'argent pour acheter cette propriété");
+              
+            }
+            if (p is Terrain)
+            {
+                Terrain t = p as Terrain;
+                if (t.peutConstruireMaison(this))
+                {
+                    Console.WriteLine("Vous pouvez désormais construire une maison sur un terrain : " + t.Couleur);
+                }
                 Console.ReadLine();
                 Console.Clear();
             }
-
         }
 
         public void paye_loyer(Propriete p, Partie partie)
@@ -152,8 +159,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
 
-            int de1 = r.Next(11,11);
-            int de2 = r.Next(11,11);
+            int de1 = r.Next(1,1);
+            int de2 = r.Next(0,1);
             int total = de1 + de2;
 
             if (de1 == de2)
