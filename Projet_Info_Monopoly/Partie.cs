@@ -219,7 +219,7 @@ namespace Projet_Info_Monopoly
         public void ExecutionJoueurVivant(Joueur j)
         {
             j.compteurDouble = 0;
-            while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
+            while (j.compteurDouble >= 0 && j.compteurDouble <= 3 & j.statut==Joueur.statutJoueur.vivant)
             {
                 
                 Console.WriteLine("\nC'est au tour de " + j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
@@ -246,56 +246,7 @@ namespace Projet_Info_Monopoly
                     if (j.compteurDouble != 3)
                     {
                         actionCase(j);
-                        /*if (p.cases[j.position] is Propriete)
-                        {
-                            Propriete prop = p.cases[j.position] as Propriete;
-                            if (prop.estPossedee == false)
-                            {
-                                prop.affiche_info_case(p.cases[j.position]);
-                                j.acheterPropriete(prop);
-
-
-                            }
-                            else
-                            {
-                                j.paye_loyer(prop, this);
-                            }
-
-
-                        }
-
-
-                        else if (p.cases[j.position] is Impot)
-                        {
-
-                            Impot impot = p.cases[j.position] as Impot;
-                            j.payeImpot(impot);
-
-                        }
-                        else if (p.cases[j.position] is CasesCommunautes)
-                        {
-                            j.tirerUneCarte(p.cartesCommunaute);
-                            Console.ReadLine();
-                            Console.Clear();
-
-                        }
-                        else if (p.cases[j.position] is CasesChances)
-                        {
-                            j.tirerUneCarte(p.cartesChance);
-                        }
-                        else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
-                        {
-                            Console.WriteLine("Reposez vous ");
-                            Console.ReadLine();
-                            Console.Clear();
-                        }
-                        else if (p.cases[j.position] is Police)
-                        {
-                            Police police = p.cases[j.position] as Police;
-                            police.arrestationPolice(j);
-                            Console.ReadLine();
-                            Console.Clear();
-                        }*/
+                        
                     }
                 }
                 else if (c.KeyChar == '2')
@@ -387,7 +338,9 @@ namespace Projet_Info_Monopoly
                 else
                 {
                     Console.WriteLine("\nVous ne possédez pas la carte");
+                    j.nbTourEnPrison--; // on décrémente le tour de prison car on ne veut pas que cette option fasse gagner un tour au joueur.
                     ExecutionJoueurPrison(j, p);
+                    
                 }
 
 

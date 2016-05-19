@@ -64,31 +64,43 @@
 	</plateau>
 	<cartes>
 		<paquet type="Communaute" nom="Caisse de Communaute">
+			<carte nom="Payez une amende de 10e ou bien tirez une carte chance" type="PayeOUChance" valeur="-10" />
+			<carte nom="C'est votre anniversaire:
+chaque joueur doit vous donner 10e" type="anniversaire" valeur="10"/>
+			<carte nom="Allez en prison.
+Avancez tous droit en prison.
+Ne passez pas par la case depart.
+Ne recevez pas 200e"
+				type="deplacement" dep="0" id="10" />
 			<carte nom="Payez a l'hopital 10e" type="transaction" valeur="-10" />
 			<carte nom="Erreur de la banque en votre faveur.
 				Recevez 200e" type="transaction" valeur="200" />
 			<carte nom="Recevez votre interêt sur l'emprunt a 7%, 25e" type="transaction" valeur="25" />
-			<carte nom="Payez une amende de 10e ou bien tirez une carte chance" type="PayeOUChance" valeur="-10" />
 			<carte nom="Les contributions vous remboursent la somme de 20e" type="transaction" valeur="20" />
 			<carte nom="Payer la note du medecin 50e" type="transaction" valeur="-50"/>
 			<carte nom="Vous avez gagné le deuxieme prix de beaute.
 				Recevez 10e." type="transaction" valeur="10" />
 			<carte nom="Vous héritez 100e" type="transaction" valeur="100" />
 			<carte nom="La vente de votre stock vous rapporte 50e" type="transaction" valeur="50" />
-			<carte nom="Allez en prison.
-Avancez tous droit en prison.
-Ne passez pas par la case depart.
-Ne recevez pas 200e"
-				type="deplacement" dep="0" id="10" />
 			<carte nom="Recevez votre revenu annuel 100e" type="transaction" valeur="100" />
-			<carte nom="C'est votre anniversaire:
-chaque joueur doit vous donner 10e" type="anniversaire" valeur="10"/>
 			<carte nom="Retournez a Belleville" type="deplacement" dep="0" id="1" />
-			<carte nom="Vous etes libere de prison." type="libere" />
+			<carte nom="Vous êtes libéré de prison." type="libere" />
 			<carte nom="Avancez jusqu'a la case depart" type="deplacement" dep="0" id="0" />
 			<carte nom="Payer votre Police d'Assurance s'elevant a 50e" type="transaction" valeur="-50" />
 		</paquet>
 		<paquet type="Chance" nom="Chance">
+			<carte nom="Allez en prison.
+Avancez tout droit en prison.
+Ne passez pas par la case depart.
+Ne recevez pas 200e"
+				type="deplacement" dep="0" id="10" />
+			<carte nom="Faites des réparations dans toutes vos maisons.
+Versez pour chaque maison 25e.
+Versez pour chaque hotel 100e." type="reparation" valeur="25" valeur1="100" />
+			<carte nom="Vous êtes imposé pour les réparations
+de voirie a raison de:
+40e par maison et
+115e par hotel." type="reparation" valeur="40" valeur1="115" />
 			<carte nom="Vous êtes libéré de prison." type="libere" />
 			<carte nom="Reculez de 3 cases" type="deplacement" dep="-3" id="0" />
 			<carte nom="Avancez a Boulevard de la Villette.
@@ -97,13 +109,7 @@ Si vous passez par la case Depart recevez 200e" type="deplacement" dep="0" id="1
 			<carte nom="Payez pour frais de scolarite. 150e" type="transaction" valeur="-150" />
 			<carte nom="Rendez-vous a l'Avenue Henri-Martin.
 Si vous passez par la case Depart recevez 200e" type="deplacement" dep="0" id="24" />
-			<carte nom="Faites des réparations dans toutes vos maisons.
-Versez pour chaque maison 25e.
-Versez pour chaque hotel 100e." type="reparation" valeur="25" valeur1="100" />
-			<carte nom="Vous êtes imposé pour les réparations
-de voirie a raison de:
-40e par maison et
-115e par hotel." type="reparation" valeur="40" valeur1="115" />
+			
 			<carte nom="Allez a la gare de Lyon" type="deplacement" dep="0" id="15" />
 			<carte nom="Amende pour exces de vitesse: 15e." type="transaction" valeur="-15" />
 			<carte nom="Vous avez gagne le prix de mots croises.
@@ -112,11 +118,7 @@ recevez 100e." type="transaction" valeur="100" />
 			<carte nom="Avancez jusqu'a la case depart" type="deplacement" dep="0" id="0" />
 			<carte nom="Rendez-vous a la Rue de la Paix" type="deplacement" dep="0" id="39" />
 			<carte nom="Votre immeuble et votre prêt rapportent 150e" type="transaction" valeur="150" />
-			<carte nom="Allez en prison.
-Avancez tout droit en prison.
-Ne passez pas par la case depart.
-Ne recevez pas 200e"
-				type="deplacement" dep="0" id="10" />
+			
 		</paquet>
 	</cartes>
 </jeu>

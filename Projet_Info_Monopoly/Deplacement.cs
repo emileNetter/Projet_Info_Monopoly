@@ -55,8 +55,11 @@ namespace Projet_Info_Monopoly
                     Console.WriteLine("Vous passez par la case départ, touchez 200 euros");
                 }
             }
-            Console.WriteLine(j.plateau.cases[j.position]);
-            j.partie.actionCase(j);// on réalise l'action en rapport avec la case sur laquelle on tombe. Action définie dans la classe partie 
+            if (j.statut == Joueur.statutJoueur.vivant)
+            {
+                Console.WriteLine(j.plateau.cases[j.position]);
+                j.partie.actionCase(j);// on réalise l'action en rapport avec la case sur laquelle on tombe. Action définie dans la classe partie 
+            }
         }
     
 
