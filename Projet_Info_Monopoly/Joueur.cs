@@ -35,7 +35,7 @@ namespace Projet_Info_Monopoly
         {
             nom_joueur = nom;
             plateau = p;
-            argent = 1800;
+            argent = 1500;
             position = 0;
             cartesDuJoueur = new List<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
             proprieteDuJoueur = new List<Propriete>();
