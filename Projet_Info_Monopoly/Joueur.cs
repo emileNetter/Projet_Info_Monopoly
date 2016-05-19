@@ -67,8 +67,9 @@ namespace Projet_Info_Monopoly
                     this.proprieteDuJoueur.Add(p);
                     this.argent -= p.prixAchat;
                     Console.WriteLine("Il vous reste {0} euros. ", this.argent);
-                    
-                    
+                    Console.ReadLine();
+                    Console.Clear();
+
                 }
                 else if (c.KeyChar=='n')
                 {
@@ -87,9 +88,12 @@ namespace Projet_Info_Monopoly
                 if (t.peutConstruireMaison(this))
                 {
                     Console.WriteLine("Vous pouvez désormais construire une maison sur un terrain : " + t.Couleur);
+                    Console.ReadLine();
+                    Console.Clear();
                 }
-                Console.ReadLine();
-                Console.Clear();
+                else { return; }
+ 
+                
             }
         }
 
