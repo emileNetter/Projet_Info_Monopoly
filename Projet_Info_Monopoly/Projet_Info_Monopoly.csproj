@@ -52,10 +52,6 @@
     <Compile Include="Deplacement.cs" />
     <Compile Include="Libere_Prison.cs" />
     <Compile Include="Propriete.cs" />
-<<<<<<< HEAD
-    <Compile Include="Banque.cs" />
-=======
->>>>>>> construireMaison
     <Compile Include="Cartes.cs" />
     <Compile Include="Cases.cs" />
     <Compile Include="Compagnie .cs" />
@@ -72,12 +68,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reparation.cs" />
     <Compile Include="Terrain.cs" />
-<<<<<<< HEAD
-    <Compile Include="Recevoir.cs" />
-    <Compile Include="Special.cs" />
-    <Compile Include="Speciales.cs" />
-=======
->>>>>>> construireMaison
     <Compile Include="TirerChanceOUPayer.cs" />
     <Compile Include="Transaction.cs" />
   </ItemGroup>
