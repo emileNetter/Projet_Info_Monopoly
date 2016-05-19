@@ -9,8 +9,7 @@ namespace Projet_Info_Monopoly
     public class Partie
     {
         public LinkedList<Joueur> joueurs;
-        public Plateau plateau;
-        
+        public Plateau plateau;        
 
         public Partie()
         {
@@ -27,7 +26,7 @@ namespace Projet_Info_Monopoly
             Console.ReadLine();
             Console.Clear();
             ajoutJoueur();
-            jouer(plateau);
+            jouer();
         }
 
         public void ajoutJoueur() // ajoute les joueurs dans une liste à la partie (de 2 à 8)
@@ -53,7 +52,7 @@ namespace Projet_Info_Monopoly
             Console.WriteLine("La partie commence ! \n");
         }
 
-        public void jouer(Plateau p) // gère les différents etats des joueurs et effectue les actions en conséquence
+        public void jouer() // gère les différents etats des joueurs et effectue les actions en conséquence
         {
 
             whoStart();
@@ -72,13 +71,9 @@ namespace Projet_Info_Monopoly
                     
                     else if (j.statut == Joueur.statutJoueur.vivant) // si le joueur est vivant
                     {
-                        ExecutionJoueurVivant(j, plateau);
+                        ExecutionJoueurVivant(j);
                     }
-                    
-                        
-                            
-                    
-                       
+                     
                     else // si le joueur est mort 
                     {
                         joueurs.Remove(j);
@@ -86,17 +81,13 @@ namespace Projet_Info_Monopoly
 
                 }
                 
-
             }  
             foreach (Joueur j in joueurs)
             {
                 Console.WriteLine(j.nom_joueur + " a gagné !! ");
-            }  
-            
+            }              
 
-
-        }
-            
+        }            
 
         public bool nombreJoueursEncoreEnVie() // true si le nombre de joueurs est supérieur à 1
         {
@@ -225,7 +216,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void ExecutionJoueurVivant(Joueur j, Plateau p)
+        public void ExecutionJoueurVivant(Joueur j)
         {
             j.compteurDouble = 0;
             while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
@@ -249,12 +240,12 @@ namespace Projet_Info_Monopoly
                         break;
                     }
                     j.position = newPosition;
-                    Console.WriteLine(p.cases[j.position]);
+                    Console.WriteLine(plateau.cases[j.position]);
 
 
                     if (j.compteurDouble != 3)
                     {
-                        actionCase(j, p);
+                        actionCase(j);
                         /*if (p.cases[j.position] is Propriete)
                         {
                             Propriete prop = p.cases[j.position] as Propriete;
@@ -360,7 +351,7 @@ namespace Projet_Info_Monopoly
                 j.argent -= 50;
                 Console.WriteLine("Il vous reste " + j.argent);
                 j.statut = Joueur.statutJoueur.vivant;
-                ExecutionJoueurVivant(j, plateau);
+                ExecutionJoueurVivant(j);
                 j.nbTourEnPrison = 0;
                 Console.ReadLine();
                 Console.Clear();
@@ -379,7 +370,7 @@ namespace Projet_Info_Monopoly
                 j.debiter(50);
                 Console.WriteLine("\nVous avez payé une amende de 50 euros, vous êtes libéré de prison");
                 j.statut = Joueur.statutJoueur.vivant;
-                ExecutionJoueurVivant(j, plateau);
+                ExecutionJoueurVivant(j);
                 j.nbTourEnPrison = 0;
             }
             else if (c.KeyChar == '2')
@@ -390,7 +381,7 @@ namespace Projet_Info_Monopoly
                 {
                     Libere_Prison c1 = j.cartesDuJoueur[0] as Libere_Prison;
                     c1.EffetCarte(j);
-                    ExecutionJoueurVivant(j, plateau);
+                    ExecutionJoueurVivant(j);
                     j.nbTourEnPrison = 0;
                 }
                 else
@@ -417,7 +408,7 @@ namespace Projet_Info_Monopoly
                     j.statut = Joueur.statutJoueur.vivant;
                     Console.ReadLine();
                     Console.Clear();
-                    ExecutionJoueurVivant(j, plateau);
+                    ExecutionJoueurVivant(j);
                     
                 }
 
@@ -432,15 +423,15 @@ namespace Projet_Info_Monopoly
 
         }
 
-        public void actionCase(Joueur j, Plateau p)
+        public void actionCase(Joueur j)
             
         {
-            if (p.cases[j.position] is Propriete)
+            if (plateau.cases[j.position] is Propriete)
                         {
-                            Propriete prop = p.cases[j.position] as Propriete;
+                            Propriete prop = plateau.cases[j.position] as Propriete;
                             if (prop.estPossedee == false)
                             {
-                                prop.affiche_info_case(p.cases[j.position]);
+                                prop.affiche_info_case(plateau.cases[j.position]);
                                 j.acheterPropriete(prop);
 
 
@@ -454,33 +445,33 @@ namespace Projet_Info_Monopoly
                         }
 
 
-                        else if (p.cases[j.position] is Impot)
+                        else if (plateau.cases[j.position] is Impot)
                         {
 
-                            Impot impot = p.cases[j.position] as Impot;
+                            Impot impot = plateau.cases[j.position] as Impot;
                             j.payeImpot(impot);
 
                         }
-                        else if (p.cases[j.position] is CasesCommunautes)
+                        else if (plateau.cases[j.position] is CasesCommunautes)
                         {
-                            j.tirerUneCarte(p.cartesCommunaute);
+                            j.tirerUneCarte(plateau.cartesCommunaute);
                             Console.ReadLine();
                             Console.Clear();
 
                         }
-                        else if (p.cases[j.position] is CasesChances)
+                        else if (plateau.cases[j.position] is CasesChances)
                         {
-                            j.tirerUneCarte(p.cartesChance);
+                            j.tirerUneCarte(plateau.cartesChance);
                         }
-                        else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
+                        else if (plateau.cases[j.position] is Prison | plateau.cases[j.position] is ParcGratuit)
                         {
                             Console.WriteLine("Reposez vous ");
                             Console.ReadLine();
                             Console.Clear();
                         }
-                        else if (p.cases[j.position] is Police)
+                        else if (plateau.cases[j.position] is Police)
                         {
-                            Police police = p.cases[j.position] as Police;
+                            Police police = plateau.cases[j.position] as Police;
                             police.arrestationPolice(j);
                             Console.ReadLine();
                             Console.Clear();
@@ -504,12 +495,10 @@ namespace Projet_Info_Monopoly
                     jfirst = j;
                 }
 
-
             }
 
             joueurs.Remove(jfirst);
             joueurs.AddFirst(jfirst);
-
 
             Console.WriteLine(nomFirstPlayer + " commence à jouer");// stocker peut etre le numéro correspondant a ce joueur.
             Console.ReadLine();

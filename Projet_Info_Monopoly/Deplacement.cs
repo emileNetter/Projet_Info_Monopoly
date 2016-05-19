@@ -56,7 +56,7 @@ namespace Projet_Info_Monopoly
                 }
             }
             Console.WriteLine(j.plateau.cases[j.position]);
-            j.partie.actionCase(j, j.plateau);// on réalise l'action en rapport avec la case sur laquelle on tombe. Action définie dans la classe partie 
+            j.partie.actionCase(j);// on réalise l'action en rapport avec la case sur laquelle on tombe. Action définie dans la classe partie 
         }
     
 
