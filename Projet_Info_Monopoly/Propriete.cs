@@ -20,7 +20,7 @@ namespace Projet_Info_Monopoly
         public Joueur proprietaire { get; set; }
 
 
-        public Propriete(string nom_case,double prix, double prixL, double valHyp):base(nom_case)
+        public Propriete(string nom_case,double prix, double prixL, double valHyp):base(nom_case) //constructeur
         {
             prixAchat = prix;
             prixLoyer = prixL;
@@ -32,12 +32,12 @@ namespace Projet_Info_Monopoly
 
 
         
-        public virtual double calculeLoyer(Joueur proprietaire, Joueur TombeSurCase)
+        public virtual double calculeLoyer(Joueur proprietaire, Joueur TombeSurCase) // retourne le prix du loyer
         {
             return prixLoyer;
         }
 
-        public void affiche_info_case(Cases c1)
+        public void affiche_info_case(Cases c1) // affiche les informations de la case sur laquelle on se trouve
         {
 
             ConsoleKeyInfo c;
@@ -72,6 +72,28 @@ namespace Projet_Info_Monopoly
                 }
             }
         }
+
+        public void affiche_info_propriete()//obligé de créer une nouvelle fonction ne prenant pas en paramètre une case pour afficher les infos des cartes possédées par les joueurs
+        {
+            if (this is Terrain)
+            {
+                Terrain t = this as Terrain;
+                t.affiche_info_terrain();
+            }
+            else if (this is Gare)
+            {
+                Gare g = this as Gare;
+                g.affiche_info_gare();
+            }
+            else if (this is Compagnie)
+            {
+                Compagnie c = this as Compagnie;
+                c.affiche_info_compagnie();
+            }
+        }
+
+        
+
 
         
         

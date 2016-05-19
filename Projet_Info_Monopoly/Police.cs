@@ -14,6 +14,7 @@ namespace Projet_Info_Monopoly
 
         public void arrestationPolice(Joueur j)
         {
+
             Console.WriteLine("Vous êtes arrétés par la police, aller en prison, ne passer pas par la case depart");
             j.position = 10;
             j.statut = Joueur.statutJoueur.enPrison;

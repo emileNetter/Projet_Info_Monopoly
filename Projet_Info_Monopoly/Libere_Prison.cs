@@ -14,10 +14,10 @@ namespace Projet_Info_Monopoly
 
     public override void EffetCarte(Joueur j)
     {
-        
+                
         if (j.statut ==Joueur.statutJoueur.enPrison)
         {
-            Console.WriteLine("Voulez vous utilisez votre carte pour vous libérer de prison ? o/n");
+            /*Console.WriteLine("Voulez vous utilisez votre carte pour vous libérer de prison ? o/n");
             ConsoleKeyInfo c;
                 do
                 {
@@ -25,10 +25,11 @@ namespace Projet_Info_Monopoly
                 }
                 while (c.KeyChar != 'o' && c.KeyChar != 'n');
                 if (c.KeyChar == 'o')
-                {
+                {*/
                     j.statut = Joueur.statutJoueur.vivant;
                     Console.WriteLine("Vous êtes libéré(e) de prison");
-                }
+                    j.cartesDuJoueur.Remove(this);
+                //}
             
 
         }
@@ -36,6 +37,8 @@ namespace Projet_Info_Monopoly
         {
             Console.WriteLine("Vous n'êtes pas en prison, conservez votre carte");
         }
+        Console.ReadLine();
+        Console.Clear();
         
     }
     }

@@ -17,7 +17,7 @@ namespace Projet_Info_Monopoly
         public int position { get; set; } // la position du joueur sur le plateau
         public enum statutJoueur { vivant, enPrison, perdu};
         public statutJoueur statut;
-        private List<Cartes> cartesDuJoueur; // 
+        public List<Cartes> cartesDuJoueur; 
         public List<Propriete> proprieteDuJoueur;
         private static Random r = new Random();
         public Plateau plateau;
@@ -27,6 +27,7 @@ namespace Projet_Info_Monopoly
         public int nbHotelPossedes;
         public int compteurDouble ;
         public Partie partie;
+        
 
 
 
@@ -34,7 +35,7 @@ namespace Projet_Info_Monopoly
         {
             nom_joueur = nom;
             plateau = p;
-            argent = 1500;
+            argent = 1800;
             position = 0;
             cartesDuJoueur = new List<Cartes>(); // on initialise une liste de cartes dans laquelle on va ajouter les cartes qu'il possède
             proprieteDuJoueur = new List<Propriete>();
@@ -51,7 +52,7 @@ namespace Projet_Info_Monopoly
             if ((this.argent > p.prixAchat) && p.estPossedee == false)
             {
                 ConsoleKeyInfo c;
-                Console.WriteLine("Souhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_case, p.prixAchat);
+                Console.WriteLine("\nSouhaitez vous acheter {0} pour {1} euros ? (o) (n)", p.nom_case, p.prixAchat);
                 do
                 {
                     c = Console.ReadKey();
@@ -65,23 +66,41 @@ namespace Projet_Info_Monopoly
                     p.estPossedee = true;
                     this.proprieteDuJoueur.Add(p);
                     this.argent -= p.prixAchat;
-                    Console.WriteLine("Il vous reste {0} euros.", this.argent);
-                    //this.addCard(carte qui correspond à la propriete)
+                    Console.WriteLine("Il vous reste {0} euros. ", this.argent);
+                    Console.ReadLine();
+                    Console.Clear();
+
+                }
+                else if (c.KeyChar=='n')
+                {
+                    Console.Clear();
                 }
 
             }
             else if (this.argent < p.prixAchat)
             {
                 Console.WriteLine("Vous n'avez pas assez d'argent pour acheter cette propriété");
-                Console.Clear();
+              
             }
-
+            if (p is Terrain)
+            {
+                Terrain t = p as Terrain;
+                if (t.peutConstruireMaison(this))
+                {
+                    Console.WriteLine("Vous pouvez désormais construire une maison sur un terrain : " + t.Couleur);
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+                else { return; }
+ 
+                
+            }
         }
 
         public void paye_loyer(Propriete p, Partie partie)
         {
             
-            if (p.estPossedee == true)
+            if (p.estPossedee == true && p.proprietaire != this) // on vérifie que la propriété est possédée et que l'on ne se paye pas soi-même
             {
                 foreach (Joueur j in partie.joueurs)
                 {
@@ -95,10 +114,10 @@ namespace Projet_Info_Monopoly
                         }
                         else
                         {
-                            Console.WriteLine("Vous devez payer " + loy + " à " + j.nom_joueur);
+                            Console.WriteLine("\nVous devez payer " + loy + " à " + j.nom_joueur);
                             j.argent += loy;
                             this.argent -= loy;
-                            Console.WriteLine(j.nom_joueur + " a désormais " + j.argent);
+                            Console.WriteLine("\n" +j.nom_joueur + " a désormais " + j.argent);
                             Console.WriteLine("Vous avez désormais " + this.argent);
                             Console.ReadLine();
                             Console.Clear();
@@ -109,7 +128,7 @@ namespace Projet_Info_Monopoly
             }
         }
 
-        public void payeImpot(Impot impot)
+        public void payeImpot(Impot impot) // cases taxe de luxe et impôt sur le revenu
         {
             if (impot.prixAPayer > this.argent)
             {
@@ -117,32 +136,36 @@ namespace Projet_Info_Monopoly
             }
             else
             {
-                Console.WriteLine("Vous devez payez une taxe de " + impot.prixAPayer);
+                Console.WriteLine("\nVous devez payez une taxe de " + impot.prixAPayer + " euros");
                 this.argent -= impot.prixAPayer;
-                Console.WriteLine("Il vous reste : " + this.argent);
+                Console.WriteLine("Il vous reste : " + this.argent + " euros");
+                
             }
-            
+            Console.ReadLine();
+            Console.Clear();
         }
 
 
-        public int avancer()
+        public int avancer() // déplace le joueur
         {
             position += lanceDe();
             if (position >= 40)
             {
                 position = position % 40;
                 argent += 200; // pouvoir définir une valeur modifiable depuis le XML
+                Console.WriteLine("\nVous avez franchi la case de départ, vous recevez 200 €");
             }
             return position;
 
 
         }
 
-        public int lanceDe()
+        public int lanceDe() // jet des dés et vérification des doubles
         {
             
             int de1 = r.Next(1,7);
             int de2 = r.Next(1,7);
+
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -153,47 +176,50 @@ namespace Projet_Info_Monopoly
                 {
                     Console.WriteLine("3ème double ! ALLEZ EN PRISON NE PASSEZ PAS PAR LA CASE DÉPART.");
                     this.statut = Joueur.statutJoueur.enPrison;
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
             else
             {
                 Console.WriteLine(nom_joueur + " a fait : " + total + " (" + de1 + "+" + de2 + ")");
-                this.compteurDouble = 0;
+                this.compteurDouble = -1;
             }
             dernierLanceDe = total;// on récupere le résultat de lancer de dé en cas de tomber sur une case de type compagnie necessitant de connaitre le lancer de dé afin d'établir le prix du loyer
             return total;
         }
 
-        public void addCard(Cartes c)
+        public void addCard(Cartes c) // ajoute la carte à la main du joueur (libéré de prison)
         {
             cartesDuJoueur.Add(c);
 
         }
-        public void removeCard(Cartes c)
-        {
-
-        }
-        public void debiter(int somme)
+  
+        public void debiter(int somme) // retire une somme à un joueur
         {
             this.argent -= somme;
         }
 
-        public int calculeNombreTerrainCouleur(Terrain t)
+        public int calculeNombreTerrainCouleur(Terrain t) //compte le nombre de terrain d'une couleur
         {
 
             int nbr = 0;
-            foreach (Terrain p in proprieteDuJoueur)
+            foreach (Propriete p in proprieteDuJoueur)
             {
-                if (p.Couleur == t.Couleur)
+                if (p is Terrain)
                 {
-                    nbr++;
+                    Terrain t1 = p as Terrain;
+                    if (t1.Couleur == t.Couleur)
+                    {
+                        nbr++;
+                    }
                 }
             }
             return nbr;
 
         }
 
-        public int calculeNombreGares()
+        public int calculeNombreGares() // nombre de gares
         {
             int nbr = 0;
             {
@@ -208,7 +234,7 @@ namespace Projet_Info_Monopoly
             return nbr;
         }
 
-        public int calculeNombreCompagnies()
+        public int calculeNombreCompagnies() // nombre de compagnies
         {
             int nbr = 0;
             {
@@ -222,55 +248,56 @@ namespace Projet_Info_Monopoly
             }
             return nbr;
         }
+        public bool MemeNbMaisons(Terrain t) // on vérifie ici que toutes les propriétés ont un nombre de maisons adapté à la construction  
+        {
+            bool b = true;
+            int i = 0;
+            while (b == true && i < proprieteDuJoueur.Count)
+            {
+
+                if (proprieteDuJoueur[i] is Terrain)
+                {
+                    Terrain tmp = proprieteDuJoueur[i] as Terrain;
+                    if (tmp.Couleur == t.Couleur)
+                    {
+                        if (tmp.nbMaisonConstruites != t.nbMaisonConstruites && t.nbMaisonConstruites != tmp.nbMaisonConstruites - 1)
+                        {
+                            b = false;
+                        }
+                    }
+                    
+                }
+                i++;
+            }
+
+            return b;
+        }
 
         public void construireMaison(Terrain t)
         {
-            if (t.peutConstruireMaison(this))
-            {
-                
-
-                
-                Console.Clear();
-                Console.WriteLine("Voulez-vous construire une maison sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixMaison);
-                ConsoleKeyInfo c;
-                do
-                {
-                    c = Console.ReadKey();
-                }
-                while (c.KeyChar != 'o' && c.KeyChar != 'n');
-                if (c.KeyChar == 'o')
-                {
-                    this.argent -= t.prixMaison;
-                    t.nbMaisonConstruites++;
-                    this.nbMaisonPossedes++;
-                    Console.WriteLine("Vous avez construit une maison sur {0}", t.nom_case);
-                }
-            }
+            this.argent -= t.prixMaison;
+            Console.WriteLine("Vous avez construit une maison sur " + t.nom_case + "\nIl vous reste " + this.argent + " euros ");
+            t.nbMaisonConstruites++;
+            this.nbMaisonPossedes++;
         }
+        
 
-        public void construireHotel(Terrain t)
+        public void construireHotel(Terrain t) // permet de construire un hotel sur un terrain si l'on a 4 maisons 
         {
-            if (t.peutConstruireHotel(this))
-            {
+            
                 Console.Clear();
-                Console.WriteLine("Voulez-vous construire un hôtel sur {0} pour {1} euros ? (o/n)", t.nom_case, t.prixHotel);
-                ConsoleKeyInfo c;
-                do
-                {
-                    c = Console.ReadKey();
-                }
-                while (c.KeyChar != 'o' && c.KeyChar != 'n');
-                if (c.KeyChar == 'o')
-                {
+                
                     this.argent -= t.prixHotel;
                     t.nbHotelConstruits ++;
+                    t.nbMaisonConstruites = 0;
+                    this.nbMaisonPossedes -= 4;//on enleve 4 maisons forcemment lors de la construction d'un hotel.
                     this.nbHotelPossedes++;
                     Console.WriteLine("Vous avez construit un hôtel sur {0}", t.nom_case);
-                }
-            }
+                
+            
         }
 
-        public void defaiteJoueur()
+        public void defaiteJoueur() // lorsqu'un joueur ne peux plus payer
         {
             Console.WriteLine("Vous n'avez pas assez d'argent pour payer le loyer, vous avez perdu.");
             this.statut = statutJoueur.perdu;
@@ -278,11 +305,11 @@ namespace Projet_Info_Monopoly
             Console.Clear();
         }
 
-        public void tirerUneCarte (List<Cartes> l)
+        public void tirerUneCarte (List<Cartes> l) // tire une carte dans une liste (communauté ou chance) et l'ajoute à la main du joueur si c'est libéré de prison
         {
             Cartes c = l[0];
             l.Remove(c);
-            if (c.nomCarte == "Allez en prison.Avancez tous droit en prison.Ne passez pas par la case depart.Ne recevez pas 200e")// ameliorer en cherchant la classe plutot
+            if (c.nomCarte == "Vous êtes libéré de prison.")// ameliorer en cherchant la classe plutot
             {
                 cartesDuJoueur.Add(c);
             }
@@ -290,9 +317,93 @@ namespace Projet_Info_Monopoly
             {
 
                 l.Add(c);
-                c.EffetCarte(this);
+                
+            }
+            c.EffetCarte(this);
+        }
+
+        public void infoJoueur() // permet d'afficher les infos relatives à un joueur dans l'option 2 du menu
+        {
+            Console.Clear();
+            Console.WriteLine("Nom du joueur : " + this.nom_joueur + "\nArgent : " + this.argent + "\nPosition : " + this.position);
+            int i = 1;
+            int taille = proprieteDuJoueur.Count;
+            int taille1 = cartesDuJoueur.Count;
+            if (taille > 0)
+            {
+                Console.WriteLine("\nListe des cartes de propriétés :");
+                foreach (Propriete p in proprieteDuJoueur)
+                {
+                    if (p is Terrain)
+                    {
+                        Terrain t = p as Terrain;
+                        Console.WriteLine(i + ": " + p.nom_case + "   Couleur : " + t.Couleur + "   Nb de Maisons : " + t.nbMaisonConstruites + "   Nb d'hôtels : " + t.nbHotelConstruits);
+                    }
+                    else
+                    {
+                        Console.WriteLine(i + ": " + p.nom_case);
+                    }
+
+                    i++;
+                }
+            }
+            if (taille1 > 0)
+            {
+                foreach (Cartes carte in cartesDuJoueur)
+                {
+                    Console.WriteLine("Carte :");
+                    Console.WriteLine(carte.nomCarte);
+                }
+            }
+
+            if (taille > 0 | taille1 > 0)
+            {
+                Console.WriteLine("\nVoulez vous en savoir plus sur une carte de Propriété  ? Si oui, taper le numéro correspondant, sinon taper 0");
+                int c;
+                bool erreur = true;
+                do
+                {
+                    try
+                    {
+                        c = int.Parse(Console.ReadLine());
+
+                        if (c != 0)
+                        {
+                            if (c < taille + 1)
+                            {
+                                Propriete p1 = proprieteDuJoueur[c - 1];
+                                p1.affiche_info_propriete();
+                                erreur = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("L'indice désiré est trop élevé.");
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                while (erreur == true);
+
+            }
+            else
+            {
+                Console.WriteLine("Vous ne possédez aucune propriété pour le moment");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
+        
+
+
       
     }
 }

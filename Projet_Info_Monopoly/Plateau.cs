@@ -22,8 +22,8 @@ namespace Projet_Info_Monopoly
         public Plateau()
         {
             cases = new Cases[40];
-        cartesChance = new List<Cartes>();
-        cartesCommunaute = new List<Cartes>();
+            cartesChance = new List<Cartes>();
+            cartesCommunaute = new List<Cartes>();
             generePlateau();
 
             
@@ -38,6 +38,8 @@ namespace Projet_Info_Monopoly
             var gares = jeu.Descendants("gare").First();
             var compagnie = jeu.Descendants("compagnie").First();
             var cartes = doc.Descendants("cartes").First();
+
+            #region Definition des cases
 
             foreach (var g in groupe)
             {
@@ -74,16 +76,19 @@ namespace Projet_Info_Monopoly
         {
             if ((string)c.Attribute("type")=="Communaute")
             {
-                cases[(int)c.Attribute("id")] = new CasesCommunautes();
+                cases[(int)c.Attribute("id")] = new CasesCommunaute();
                 
             }
             else
             {
 
-                cases[(int)c.Attribute("id")] = new CasesChances();
+                cases[(int)c.Attribute("id")] = new CasesChance();
             }
         }
         
+#endregion
+
+        #region Definition des cartes
 
         var caisseCom = cartes.Descendants("paquet");
         
@@ -122,11 +127,7 @@ namespace Projet_Info_Monopoly
                         cartesCommunaute.Add(newCarte);
                     }
                     
-                    /*else if ((string)c.Attribute("type") == "libere") TODO 
-                    {
-                        LibereDePrison newCarte = new LibereDePrison(Cartes.typeCarte.communaute, (string)c.Attribute("nom"));
-                        cartesCommunaute(newCarte);
-                    }*/
+                    
                 }
                 
             }
@@ -149,22 +150,40 @@ namespace Projet_Info_Monopoly
                         Deplacement newCarte = new Deplacement(Cartes.typeCarte.chance, (string)c.Attribute("nom"), (int)c.Attribute("dep"), (int)c.Attribute("id"));
                         cartesChance.Add(newCarte);
                     }
-                    /*else if ((string)c.Attribute("type") == "libere")
+                    else if ((string)c.Attribute("type") == "libere")
                     {
-                        LibereDePrison nvCarte = new LibereDePrison(Cartes.TypeC.chance, (string)c.Attribute("nom")); TODO 
-                        addCartesChance(nvCarte);
-                    }*/
+                        Libere_Prison newCarte = new Libere_Prison(Cartes.typeCarte.chance, (string)c.Attribute("nom"));
+                        cartesChance.Add(newCarte);
+                    }
                     
                 }
             }
         }
-        
-    }
 
-             
-        
+        #endregion
 
-       
+        }
+
+        public int calculePropCouleur(Terrain t) // calcule le nombre de prop de la couleur de la prop qu'on fournit 
+        {
+            int nb = 0;
+            foreach (Cases c in cases)
+            {
+                if (c is Terrain)
+                {
+                    Terrain tmp = c as Terrain;
+                    if (tmp.Couleur == t.Couleur)
+                    {
+                        nb ++;
+                    }
+
+                }
+            }
+            return nb;
+        }
+
+
+
     }
 }
 

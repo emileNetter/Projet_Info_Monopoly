@@ -20,10 +20,12 @@ namespace Projet_Info_Monopoly
             mouvement = mouv;
             deplacementVersCase = deplacementCase;
 
+
         }
 
         public override void EffetCarte(Joueur j)
         {
+            base.EffetCarte(j);
             int anciennePosition=j.position; //on  stocke l'ancienne position du joueur.            
             if (this.mouvement == 0)
             {
@@ -38,6 +40,7 @@ namespace Projet_Info_Monopoly
                     if (j.position < anciennePosition)// on passe par la case départ que si on arrive sur une case dont le numéro de case est inférieur à celui de la case sur laquelle on était
                     {
                         j.argent += 200;//définir dans xml l'argent qu'on gagne lorsqu'on passe par case départ
+                        Console.WriteLine("Vous passez par la case départ, touchez 200 euros");
                     }
                 }
 
@@ -49,7 +52,13 @@ namespace Projet_Info_Monopoly
                 {
                     j.position = j.position % 40;
                     j.argent += 200;//définir dans xml l'argent qu'on gagne lorsqu'on passe par case départ
+                    Console.WriteLine("Vous passez par la case départ, touchez 200 euros");
                 }
+            }
+            if (j.statut == Joueur.statutJoueur.vivant)
+            {
+                Console.WriteLine(j.plateau.cases[j.position]);
+                j.partie.actionCase(j);// on réalise l'action en rapport avec la case sur laquelle on tombe. Action définie dans la classe partie 
             }
         }
     

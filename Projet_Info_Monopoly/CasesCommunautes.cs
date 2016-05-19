@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Projet_Info_Monopoly
 {
-    public class CasesCommunautes : Cases
+    public class CasesCommunaute : Cases
     {
-        public CasesCommunautes()
+        public CasesCommunaute()
             : base("Carte Communauté")
         { }
 

@@ -14,6 +14,7 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
+            Console.WriteLine(nomCarte);
             Console.WriteLine("Que faites vous ? 'p' pour payer 't' pour tirer carte chance");
             ConsoleKeyInfo c;
                 do
@@ -24,12 +25,14 @@ namespace Projet_Info_Monopoly
                 if (c.KeyChar == 'p')
                 {
                     j.argent += valeur;
-                    Console.WriteLine("Vous avez desormais" + j.argent);
+                    Console.WriteLine("\nVous avez désormais " + j.argent);
+                    
                 }
                 else
                 {
                     j.tirerUneCarte(j.plateau.cartesChance);
                 }
+                
 
         }
     }

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Projet_Info_Monopoly
 {
-    public class CasesChances : Cases
+    public class CasesChance : Cases
     {
-        public CasesChances()
+        public CasesChance()
             : base("Carte Chance")
         {
         }

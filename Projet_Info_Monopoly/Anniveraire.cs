@@ -15,6 +15,7 @@ namespace Projet_Info_Monopoly
 
         public override void EffetCarte(Joueur j)
         {
+            
             foreach (Joueur autrej in j.partie.joueurs)
             {
                 if (j != autrej)
@@ -22,8 +23,11 @@ namespace Projet_Info_Monopoly
                     autrej.argent -= valeur;
                     j.argent += valeur;
                 }
-                Console.WriteLine("Vous avez désormais " + j.argent);
+                
             }
+            Console.WriteLine(nomCarte);
+            Console.WriteLine("Vous avez désormais " + j.argent);
+            
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Projet_Info_Monopoly
         public double prixHotel { get; set; }
         public int nbMaisonConstruites { get; set; }
         public int nbHotelConstruits { get; set; }
+        protected double prixLoyernu { get; set; }
         protected double prix1Maison{get;set;}
         protected double prix2Maison { get; set; }
         protected double prix3Maison { get; set; }
@@ -32,6 +33,7 @@ namespace Projet_Info_Monopoly
             nbMaisonConstruites = 0;
             nbHotelConstruits = 0;
             Couleur = c;
+            prixLoyernu = prixL;
             prix1Maison = m1;
             prix2Maison = m2;
             prix3Maison = m3;
@@ -39,81 +41,57 @@ namespace Projet_Info_Monopoly
             prix1Hotel = h1;
 
         }
+ 
 
-        public int nbreTerrainCouleur(Plateau p)
+        public bool peutConstruireMaison(Joueur j) // renvoie true si l'on peut construire une maison et que celles ci sont disposées uniformémént sur les cases
         {
-            int nb=0;
-                 foreach( Terrain t in p.cases) 
-                {
-                     if (t.Couleur==this.Couleur)
-                     {
-                         nb++;
-                     }
-                 }
-            return nb;
-                
-        }
 
-
-        public bool peutConstruireMaison(Joueur j) // il faudrait vérifier que chaque terrain d'u^ne meme couleur comporte le meme nombre de maisons
-        {
-            Boolean peutConstruire = false;
-            if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau) && j.argent > this.prixMaison)
+            if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) & this.nbMaisonConstruites < 5 & this.nbMaisonConstruites!=4 & this.nbHotelConstruits==0)//ici 4 maisons sont acceptées donc il faut encore mettre un if !=4
             {
-                peutConstruire = true;
-                int cpt = 0;
-                while (peutConstruire == true && cpt < j.proprieteDuJoueur.Count)
+                if (j.MemeNbMaisons(this) == true)
                 {
-                    Terrain aux = j.proprieteDuJoueur.ElementAt(cpt) as Terrain;
-                    if (aux.Couleur == this.Couleur)
+                    if (j.argent > this.prixMaison)
                     {
-                        if (aux.nbMaisonConstruites != this.nbMaisonConstruites && this.nbMaisonConstruites != aux.nbMaisonConstruites - 1)
-                        {
-                            peutConstruire = false;
-                        }
+
+                        return true;
                     }
-                    cpt++;
+                    else return false;
                 }
+                else return false;
+                
                 
             }
-            return peutConstruire;
+            else return false;
         }
-
-            
 
         public bool peutConstruireHotel(Joueur j)
         {
-            Boolean peutConstruire=false;
-            if (this.nbMaisonConstruites == 4 && j.argent > this.prixHotel)
-            {
-                peutConstruire = true;
-                int cpt = 0;
-                while (peutConstruire == true && cpt < j.proprieteDuJoueur.Count)
-                {
-                    Terrain aux = j.proprieteDuJoueur.ElementAt(cpt) as Terrain;
-                    if (aux.Couleur == this.Couleur)
+            if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this) && this.nbMaisonConstruites == 4)
+            {       
+                    if (j.argent > this.prixHotel)
                     {
-                        if (aux.nbMaisonConstruites != 4)
-                        {
-                            peutConstruire = false;
-                        }
+                        
+                        return true;
                     }
-                }
+                    else return false;
+
             }
-            return peutConstruire;
+            else return false;
         }
 
-        public override double calculeLoyer(Joueur j, Joueur tombeSurCase)
+        
+
+        public override double calculeLoyer(Joueur j, Joueur tombeSurCase) // permet de calculer les prix des différents loyer d'un terrain
         {
             int nb = this.nbMaisonConstruites;
-            /*if (nb == 0)
+            if (nb == 0)
             {
-                if (j.calculeNombreTerrainCouleur(this) == nbreTerrainCouleur(j.plateau))
+                if (j.calculeNombreTerrainCouleur(this) == j.plateau.calculePropCouleur(this))
                 {
-                    prixLoyer = prixLoyer * 2;
+                    prixLoyer = prixLoyernu * 2;
                 }
-            }*/
-            /*else*/ if (nb == 1)
+            }
+             if (nb == 1)
             {
                 prixLoyer = prix1Maison;
             }
@@ -137,7 +115,7 @@ namespace Projet_Info_Monopoly
         }
 
 
-        public void affiche_info_terrain()
+        public void affiche_info_terrain() // affiche les infos relatives à un terrain
         {
                        
                 Console.Clear();

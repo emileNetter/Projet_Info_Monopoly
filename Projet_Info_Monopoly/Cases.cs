@@ -12,7 +12,7 @@ namespace Projet_Info_Monopoly
 {
     public abstract class Cases
     {
-        public string nom_case { get; set; }
+        public string nom_case { get; set; } // le nom est un attribut commun à toutes les cases
         
 
         public Cases(string _nom)
@@ -20,7 +20,7 @@ namespace Projet_Info_Monopoly
             nom_case = _nom;
         }
 
-        public override string ToString()
+        public override string ToString() // renvoie le nom de la case 
         {
             string ch = "Vous tombez sur : " + nom_case;
             return ch;
