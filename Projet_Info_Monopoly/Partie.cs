@@ -230,7 +230,7 @@ namespace Projet_Info_Monopoly
             j.compteurDouble = 0;
             while (j.compteurDouble >= 0 && j.compteurDouble <= 3)
             {
-
+                
                 Console.WriteLine("\nC'est au tour de " + j.nom_joueur + " de jouer. Que souhaitez vous faire ?");
                 Console.WriteLine(" 1 pour lancer les dés, 2 pour consulter vos informations, 3 pour construire un batiment");
                 ConsoleKeyInfo c;
@@ -254,7 +254,8 @@ namespace Projet_Info_Monopoly
 
                     if (j.compteurDouble != 3)
                     {
-                        if (p.cases[j.position] is Propriete)
+                        actionCase(j, p);
+                        /*if (p.cases[j.position] is Propriete)
                         {
                             Propriete prop = p.cases[j.position] as Propriete;
                             if (prop.estPossedee == false)
@@ -303,7 +304,7 @@ namespace Projet_Info_Monopoly
                             police.arrestationPolice(j);
                             Console.ReadLine();
                             Console.Clear();
-                        }
+                        }*/
                     }
                 }
                 else if (c.KeyChar == '2')
@@ -372,7 +373,7 @@ namespace Projet_Info_Monopoly
                 c = Console.ReadKey();
             }
             while (c.KeyChar != '1' && c.KeyChar != '2' && c.KeyChar != '3');
-            if (c.KeyChar == '1')
+            if(c.KeyChar == '1')
             {
                 Console.Clear();
                 j.debiter(50);
@@ -395,7 +396,7 @@ namespace Projet_Info_Monopoly
                 else
                 {
                     Console.WriteLine("\nVous ne possédez pas la carte");
-                    //break;
+                    ExecutionJoueurPrison(j, p);
                 }
 
 
@@ -430,6 +431,61 @@ namespace Projet_Info_Monopoly
             }
 
         }
+
+        public void actionCase(Joueur j, Plateau p)
+            
+        {
+            if (p.cases[j.position] is Propriete)
+                        {
+                            Propriete prop = p.cases[j.position] as Propriete;
+                            if (prop.estPossedee == false)
+                            {
+                                prop.affiche_info_case(p.cases[j.position]);
+                                j.acheterPropriete(prop);
+
+
+                            }
+                            else
+                            {
+                                j.paye_loyer(prop, this);
+                            }
+
+
+                        }
+
+
+                        else if (p.cases[j.position] is Impot)
+                        {
+
+                            Impot impot = p.cases[j.position] as Impot;
+                            j.payeImpot(impot);
+
+                        }
+                        else if (p.cases[j.position] is CasesCommunautes)
+                        {
+                            j.tirerUneCarte(p.cartesCommunaute);
+                            Console.ReadLine();
+                            Console.Clear();
+
+                        }
+                        else if (p.cases[j.position] is CasesChances)
+                        {
+                            j.tirerUneCarte(p.cartesChance);
+                        }
+                        else if (p.cases[j.position] is Prison | p.cases[j.position] is ParcGratuit)
+                        {
+                            Console.WriteLine("Reposez vous ");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        else if (p.cases[j.position] is Police)
+                        {
+                            Police police = p.cases[j.position] as Police;
+                            police.arrestationPolice(j);
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                    }
 
         public void whoStart()
         {

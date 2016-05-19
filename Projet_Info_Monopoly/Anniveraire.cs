@@ -24,6 +24,8 @@ namespace Projet_Info_Monopoly
                 }
                 Console.WriteLine("Vous avez désormais " + j.argent);
             }
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }

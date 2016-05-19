@@ -31,6 +31,8 @@ namespace Projet_Info_Monopoly
                 {
                     j.tirerUneCarte(j.plateau.cartesChance);
                 }
+                Console.ReadLine();
+                Console.Clear();
 
         }
     }

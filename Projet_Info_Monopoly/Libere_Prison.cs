@@ -29,6 +29,7 @@ namespace Projet_Info_Monopoly
                 {*/
                     j.statut = Joueur.statutJoueur.vivant;
                     Console.WriteLine("Vous êtes libéré(e) de prison");
+                    j.cartesDuJoueur.Remove(this);
                 //}
             
 
@@ -37,6 +38,8 @@ namespace Projet_Info_Monopoly
         {
             Console.WriteLine("Vous n'êtes pas en prison, conservez votre carte");
         }
+        Console.ReadLine();
+        Console.Clear();
         
     }
     }

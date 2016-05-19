@@ -20,6 +20,8 @@ namespace Projet_Info_Monopoly
             valeur = 25 * nbMaison + 100 * nbHotel;
             j.argent -= valeur;
             Console.WriteLine("Vous avez {0} maison(s) et {1} hotel(s). Vous payez donc : {2} . Il vous reste desormais {4}.", nbMaison, nbHotel, valeur, j.argent);
+            Console.ReadLine();
+            Console.Clear();
 
         }
             

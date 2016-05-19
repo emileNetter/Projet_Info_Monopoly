@@ -89,6 +89,7 @@ chaque joueur doit vous donner 10e" type="anniversaire" valeur="10"/>
 			<carte nom="Payer votre Police d'Assurance s'elevant a 50e" type="transaction" valeur="-50" />
 		</paquet>
 		<paquet type="Chance" nom="Chance">
+			<carte nom="Vous êtes libéré de prison." type="libere" />
 			<carte nom="Reculez de 3 cases" type="deplacement" dep="-3" id="0" />
 			<carte nom="Avancez a Boulevard de la Villette.
 Si vous passez par la case Depart recevez 200e" type="deplacement" dep="0" id="11" />
@@ -109,7 +110,6 @@ de voirie a raison de:
 recevez 100e." type="transaction" valeur="100" />
 			<carte nom="Amende pour ivresse: 20e" type="transaction" valeur="-20" />
 			<carte nom="Avancez jusqu'a la case depart" type="deplacement" dep="0" id="0" />
-			<carte nom="Vous êtes libéré de prison." type="libere" />
 			<carte nom="Rendez-vous a la Rue de la Paix" type="deplacement" dep="0" id="39" />
 			<carte nom="Votre immeuble et votre prêt rapportent 150e" type="transaction" valeur="150" />
 			<carte nom="Allez en prison.

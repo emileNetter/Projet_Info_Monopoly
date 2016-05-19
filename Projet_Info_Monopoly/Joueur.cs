@@ -152,8 +152,8 @@ namespace Projet_Info_Monopoly
         public int lanceDe() // jet des dés et vérification des doubles
         {
 
-            int de1 = r.Next(1,1);
-            int de2 = r.Next(1,1);
+            int de1 = r.Next(11,11);
+            int de2 = r.Next(11,11);
             int total = de1 + de2;
 
             if (de1 == de2)
@@ -297,7 +297,7 @@ namespace Projet_Info_Monopoly
         {
             Cartes c = l[0];
             l.Remove(c);
-            if (c.nomCarte == "Allez en prison.Avancez tout droit en prison.Ne passez pas par la case depart.Ne recevez pas 200e")// ameliorer en cherchant la classe plutot
+            if (c.nomCarte == "Vous êtes libéré de prison.")// ameliorer en cherchant la classe plutot
             {
                 cartesDuJoueur.Add(c);
             }
@@ -305,8 +305,9 @@ namespace Projet_Info_Monopoly
             {
 
                 l.Add(c);
-                c.EffetCarte(this);
+                
             }
+            c.EffetCarte(this);
         }
 
         public void infoJoueur() // permet d'afficher les infos relatives à un joueur dans l'option 2 du menu
